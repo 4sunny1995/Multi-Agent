@@ -25,3 +25,6 @@ Nếu bạn vẫn còn đang học tập tại giảng đường, việc kẹt l
 
 > **LỜI KẾT**
 > Chúng ta đang may mắn ở trong một thời đại được máy móc hỗ trợ mọi rào cản thao tác tay. Hãy dùng AI để bản thân có thời gian giải quyết các bài toán tầm cỡ lớn hơn, nhưng người cầm vô lăng và nắm giữ những kiến thức tinh túy nhất... luôn luôn phải là **BẠN**! Dũng cảm tiến lên nhé!
+> Đừng bao giờ quên rằng, chúng ta là những kỹ sư phần mềm. 
+> Người đi trước đã xây dựng nên nền móng cho chúng ta, và chúng ta có trách nhiệm xây dựng nền móng cho thế hệ sau. 
+> Hãy để AI là công cụ hỗ trợ, không phải là người thay thế chúng ta.
