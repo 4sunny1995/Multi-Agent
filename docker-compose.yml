@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: rbac_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_NAME:-rbac_db}
+      MYSQL_USER: ${DB_USER:-user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - rbac_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: rbac_backend
+    environment:
+      DB_HOST: database
+      DB_PORT: 3306
+      DB_USER: ${DB_USER:-user}
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      DB_NAME: ${DB_NAME:-rbac_db}
+      JWT_SECRET: ${JWT_SECRET:-supersecretkey}
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - database
+    networks:
+      - rbac_net
+    command: npm run dev
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rbac_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      VITE_API_URL: http://localhost:3000
+    networks:
+      - rbac_net
+    command: npm run dev
+    # Vite needs this for Docker
+    tty: true
+
+networks:
+  rbac_net:
+    driver: bridge
+
+volumes:
+  mysql_data:

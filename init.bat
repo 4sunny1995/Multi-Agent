@@ -12,8 +12,9 @@ echo ⏳ Dang tien hanh thiet lap khong gian lam viec (Dung cho Windows)...
 
 :: Tạo thư mục an toàn
 if not exist "src" mkdir "src"
-if not exist "docs\business" mkdir "docs\business"
-if not exist "docs\architecture" mkdir "docs\architecture"
+if not exist "docs\orgingin\business" mkdir "docs\orgingin\business"
+if not exist "docs\orgingin\architecture" mkdir "docs\orgingin\architecture"
+
 
 :: Do Windows hiếm khi bị lỗi permission denied ở thư mục root dự án như Linux
 :: Nên việc bắt lỗi ở đây được đơn giản hoá
