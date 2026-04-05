@@ -1,33 +1,36 @@
-# 🎭 Agent Roles Registry: Danh mục Nhân sự AI
+# 🎭 Agent Roles Registry: Danh mục nhân sự AI
 
-Chào mừng bạn đến với trung tâm điều phối nhân sự của Antigravity. Đây là bảng tóm tắt các vai trò chuyên biệt phục vụ cho các dự án Enterprise.
-
-| Role | Tên gọi | Nhiệm vụ chính | Metadata (Agent ID) |
-| :--- | :--- | :--- | :--- |
-| **LEADER** | Manager | Điều phối, kiểm duyệt và quản lý tài liệu. | `leader-agent-001` |
-| **BA** | Business Analyst | Phân tích nghiệp vụ, viết User Stories. | `ba-agent-001` |
-| **DESIGNER** | UX/UI Designer | Thiết kế giao diện [JP Aesthetic], Mockup. | `designer-agent-001` |
-| **SA** | System Architect | Thiết kế kiến trúc, DB Schema, API Contract. | `sa-agent-001` |
-| **DEV** | Developer | Lập trình tính năng, tuân thủ Clean Code & SOLID. | `dev-agent-001` |
-| **TESTER** | QA/QC | Viết Unit/Integration Test, báo cáo lỗi. | `tester-agent-001` |
-| **SECURITY** | Security Officer | Kiểm soát lỗ hổng, quản lý bí mật & RBAC. | `security-agent-001` |
-| **CLOUD** | Cloud Architect | Thiết kế hạ tầng Docker, CI/CD, Scaling. | `cloud-agent-001` |
-| **AUDITOR** | Legacy Expert | Khám phá và giải mã các hệ thống cũ. | `auditor-agent-001` |
-| **WRITER** | Tech Writer | Viết tài liệu hướng dẫn kỹ thuật. | `tech-writer-001` |
-| **TRANS** | Translator | Dịch thuật tài liệu sang VI/JA/EN. | `translator-agent-001` |
-| **OPS** | Find-Ops | Tối ưu hóa vận hành và nợ kỹ thuật. | `find-ops-001` |
+Chào mừng bạn đến với thư viện nhân sự số. Mỗi tệp tin bên dưới định nghĩa một chuyên gia với bộ kỹ năng và quy tắc ứng xử riêng biệt.
 
 ---
 
-## 🤝 Cách phối hợp (Collaboration)
+## 🏗️ Danh sách Roles (13)
 
-Các Agent hoạt động dựa trên triết lý **Loose Coupling**:
-- Mỗi Agent có tệp cấu hình riêng trong thư mục này.
-- **Input** của Agent này là **Output** của Agent kia thông qua thư mục `docs/original/`.
-- Mọi Agent đều tuân thủ các quy tắc an toàn tại `.agents/rules/`.
-
-> [!TIP]
-> Bạn có thể triệu hồi một nhóm Agent thông qua các lệnh Slash (e.g., `/dev`).
+| Role | Tên Tệp | Sứ mệnh chính |
+| :--- | :--- | :--- |
+| **LEADER** | [leader.md](file:///leader.md) | Gatekeeper & CTO - Điều phối và phê duyệt tối cao. |
+| **BA** | [ba.md](file:///ba.md) | Business Analyst - Phân tích nghiệp vụ & User Stories. |
+| **SA** | [sa.md](file:///sa.md) | System Architect - Thiết kế kiến trúc & Plan. |
+| **DEV** | [dev.md](file:///dev.md) | The Clean Coder - Hiện thực hóa mã nguồn & Unit Test. |
+| **TESTER** | [tester.md](file:///tester.md) | QA & Security - Kiểm thử và phá vỡ hệ thống. |
+| **DESIGNER** | [designer.md](file:///designer.md) | UI/UX Specialist - Thiết kế giao diện & Trải nghiệm. |
+| **TECH WRITER** | [tech-writer.md](file:///tech-writer.md) | Documentation - Tài liệu hóa & Báo cáo kỹ thuật. |
+| **SECURITY** | [security.md](file:///security.md) | Security Agent - Cường hóa & Bảo vệ môi trường. |
+| **CLOUD ARCH** | [cloud-architect.md](file:///cloud-architect.md) | Infra Expert - Xây dựng hạ tầng Cloud & IaC. |
+| **FIND-OPS** | [find-ops.md](file:///find-ops.md) | FinOps - Quản lý chi phí & Tài nguyên Cloud. |
+| **TRANSLATOR** | [translator.md](file:///translator.md) | Polyglot - Dịch thuật & Đa ngôn ngữ. |
+| **AUDITOR** | [auditor.md](file:///auditor.md) | Audit Agent - Kiểm tra tính nhất quán & Nợ kỹ thuật. |
+| **FIXER** | [fixer.md](file:///fixer.md) | Bug Slayer - Sửa lỗi và tối ưu nóng ứng dụng. |
 
 ---
-> **"Con người đưa ra tầm nhìn, Robot thực thi chi tiết."** — _The Gatekeeper Leader_
+
+## 🚦 Quy trình phối hợp (Handoff)
+
+Mọi Agent phải tuân thủ **Team Handoff Protocol**:
+1. Đọc tệp đầu vào (Input) từ Agent trước đó.
+2. Thực hiện nhiệm vụ dựa trên Rules.
+3. Xuất bản tệp đầu ra (Output) đúng địa chỉ quy định.
+4. Đánh dấu `[x]` vào `task.md`.
+
+---
+> **"Dùng đúng người, giao đúng việc, gặt đúng kết quả."** 

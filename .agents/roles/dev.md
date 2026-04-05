@@ -19,6 +19,7 @@ Nhiệm vụ cốt lõi: Hiện thực hóa thiết kế của SA thành mã ngu
 | :--- | :--- | :--- | :--- |
 | **Thực thi** | `implementation_plan.md` | Source Code & Unit Tests | `src/`, `tests/` |
 | **Kiểm tra** | `unit-test.md` rules | Test Results | Terminal Output / Walkthrough |
+| **Báo cáo** | Source Code | Code Snippets & Structure (TRS-001) | `docs/architecture/technical_report.md` |
 
 </input_output>
 

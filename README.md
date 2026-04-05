@@ -44,6 +44,7 @@ Tương tác với đội ngũ Ảo thông qua 10 lệnh "Thần chú" trực ti
 | `/design` | Thiết kế UX/UI [JP] | **Designer** tạo Mockup & Specs chuẩn thẩm mỹ Nhật. |
 | `/dev` | Phát triển tính năng mới | **BA** -> **SA** -> **DEV** -> **TESTER** -> **LEADER**. |
 | `/fix` | Sửa lỗi hệ thống | **TESTER** cô lập lỗi -> **DEV** trị tận gốc -> **LEADER** duyệt. |
+| `/report` | Báo cáo kỹ thuật | **BA**, **SA**, **DEV** trích xuất dữ liệu -> **TECH WRITER** tổng hợp. |
 | `/inspect` | Diệt nợ kỹ thuật | **LEADER** quét lỗi thiết kế -> **DEV** refactor chuẩn SOLID. |
 | `/retro` | Nâng cấp Agent | **Team** họp rút kinh nghiệm & tự động cập nhật Rules mới. |
 

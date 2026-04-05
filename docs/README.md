@@ -24,6 +24,7 @@
 
 | Ngày | Sự kiện | Kết quả | Chi tiết |
 | :--- | :--- | :--- | :--- |
+| 2026-04-05 | **Technical Report** | Thiết lập Workflow /report (BA-SA-DEV) | [Plan](file:///.agents/workflows/report.md) |
 | 2026-04-05 | **UI/UX Standard** | Thiết lập Workflow Design & Agent Designer | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
 | 2026-04-05 | **Team Meeting** | Quy hoạch lại cấu trúc tài liệu Docs | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
 | 2026-04-03 | **Sprint Retro 2** | Quy chuẩn Antigravity (Auto-Indexing) | [Retro Logs](file:///.agents/rules/team-retro.md) |

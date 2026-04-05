@@ -20,6 +20,7 @@ SA KHÔNG ĐƯỢC PHÉP VIẾT CODE NGHIỆP VỤ TRỰC TIẾP.
 | :--- | :--- | :--- | :--- |
 | **Thiết kế** | `docs/original/business/` | Implementation Plan & Arch Docs | `implementation_plan.md`, `docs/original/architecture/` |
 | **Giao thức** | User Stories | API Contract / Interface Design | `docs/original/architecture/api-contract.md` |
+| **Báo cáo** | Architecture / IaC | Arch & Infra Summary (TRS-001) | `docs/architecture/technical_report.md` |
 
 </input_output>
 

@@ -1,41 +1,49 @@
-# 📜 Operational Rules Registry: Danh mục Quy chuẩn
+# ⚖️ Agent Rules Registry: Hiến chương vận hành AI
 
-Các quy chuẩn và nguyên tắc vận hành an toàn cho toàn bộ hệ thống Agent tại Antigravity.
-
-## 🛡️ Nhóm 1: An toàn & Hạ tầng (Safety & Infra)
-Quy định cách tương tác với hệ thống hiện có và bảo vệ tài nguyên.
-
-- **[DBS-001] [Database Protection](file:///.agents/rules/database-protection-standards.md)**: Bảo vệ bộ não dự án.
-- **[INF-001] [Infra Detection](file:///.agents/rules/infra-detection-standards.md)**: Tự động nhận diện New/Legacy.
-- **[OPS-001] [Operation Safety](file:///.agents/rules/operation-safety.md)**: Quy tắc vận hành an toàn (VCS, File Manipulation).
-- **[SDC-001] [External Secret](file:///.agents/rules/external-secret.md)**: Quản lý API Keys và cấu hình động.
-- **[RES-001] [Rule Resilience](file:///.agents/rules/rule-resilience.md)**: Phục hồi và chịu lỗi.
-
-## 💻 Nhóm 2: Kỹ thuật & Chất lượng (Engineering)
-Quy định về chất lượng mã nguồn và kiến trúc.
-
-- **[CLN-001] [Clean Code](file:///.agents/rules/clean-code.md)**: Mã nguồn dễ đọc, dễ bảo trì.
-- **[SLD-001] [SOLID](file:///.agents/rules/solid.md)**: 5 nguyên tắc thiết kế hướng đối tượng.
-- **[PAT-001] [Design Pattern](file:///.agents/rules/design-pattern.md)**: Mẫu thiết kế chuẩn GoF.
-- **[TDD-001] [Unit Test](file:///.agents/rules/unit-test.md)**: F.I.R.S.T & AAA testing framework.
-- **[ENT-001] [Enterprise Standards](file:///.agents/rules/enterprise-standards.md)**: Quy chuẩn dự án quy mô lớn.
-
-## 🎨 Nhóm 3: UX/UI & Thẩm mỹ (Aesthetics)
-Quy định về trải nghiệm người dùng và thiết kế.
-
-- **[UI-001] [UX/UI Principles](file:///.agents/rules/ui-ux-design-principles.md)**: Trải nghiệm đồng bộ.
-- **[JP-001] [Japanese Aesthetic]**: Tối giản, tin cậy, Functional Hierarchy.
-
-## 🤝 Nhóm 4: Quy trình & Ngôn ngữ (Workflow & Language)
-Quy định về phối hợp đội ngũ và tài liệu.
-
-- **[AGV-001] [Antigravity Standard](file:///.agents/rules/antigravity-standard.md)**: Quy chuẩn tài liệu Artifacts.
-- **[TRL-001] [Translate Language](file:///.agents/rules/translate-language.md)**: IT Specialization translation.
-- **[WRI-001] [Tech Writer Constraints](file:///.agents/rules/tech-writer-constraints.md)**: Quy tắc viết tài liệu chuẩn xác.
+Thư mục này chứa "Luật lệ" tối cao của hệ thống. Mỗi tệp tin định nghĩa các tiêu chuẩn kỹ thuật và đạo đức mà mọi Agent phải tuân thủ tuyệt đối.
 
 ---
-> [!IMPORTANT]
-> Mọi Agent khi thực hiện nhiệm vụ BẮT BUỘC phải tuân thủ ít nhất 1 quy chuẩn từ Nhóm 1 và Nhóm 2.
+
+## 🏗️ Phân loại Quy chuẩn (28)
+
+### 1. 📂 Core Development (Phát triển cốt lõi)
+- [CLEAN-CODE](file:///clean-code.md): Viết mã sạch, dễ đọc.
+- [SOLID](file:///solid.md): 5 nguyên tắc thiết kế hướng đối tượng.
+- [UNIT-TEST](file:///unit-test.md): Quy chuẩn TDD & Testing.
+- [DESIGN-PATTERN](file:///design-pattern.md): Các mẫu thiết kế hệ thống GOF.
+- [ALGORITHMS](file:///algorithms-handbook.md): Cẩm nang thuật toán & tối ưu.
+
+### 2. 🛡️ Security & Environment (Bảo mật & Môi trường)
+- [SECURE](file:///security-hardening-standards.md): Cường hóa hệ thống.
+- [ENV-PROT](file:///environment-protection-standards.md): Bảo vệ Secrets & Môi trường.
+- [DBS-001](file:///database-protection-standards.md): Bảo vệ Database Registry.
+- [EXTERNAL-SEC](file:///external-secret.md): Quản lý cấu hình động & Secret Manager.
+
+### 3. 🏗️ Architecture & Cloud (Kiến trúc & Hạ tầng)
+- [CTO-VISION](file:///cto-strategic-vision.md): Tầm nhìn chiến lược 2-5 năm.
+- [CLD-DEPL](file:///cloud-deployment-standards.md): Tiêu chuẩn triển khai Cloud.
+- [HOT-SWAP](file:///hot-swapping-standards.md): Cấu hình động & Hot-swapping.
+- [INF-DET](file:///infra-detection-standards.md): Khảo sát hạ tầng hiện có.
+- [BUDGET](file:///cloud-budget.md): Quản lý dự toán & FinOps.
+
+### 4. 📝 Operations & Reporting (Vận hành & Báo cáo)
+- [TRANSLATE](file:///translate-language.md): Quy chuẩn đa ngôn ngữ TRL-IT-001.
+- [REPORT](file:///technical-reporting-standards.md): Báo cáo kỹ thuật TRS-001.
+- [VERSION](file:///versioning-standards.md): Quản lý phiên bản SemVer VER-001.
+- [TW-CONST](file:///tech-writer-constraints.md): Luật lệ cho Tech Writer.
+
+### 5. 🛸 Antigravity Standards (Quy chuẩn Hệ thống)
+- [ANTIGRAVITY](file:///antigravity-standard.md): Quy chuẩn vận hành AI Assistant.
+- [RESP-AI](file:///home/quoc/workspaces/ai/RESPONSIBLE_AI.md): Đạo đức & An toàn AI.
+- [ADV-PRIN](file:///ADVANCED_PRINCIPLES.md): Tư duy lập trình hiện đại.
+- [OPER-SAFE](file:///operation-safety.md): Vận hành an toàn.
 
 ---
-> **"Quy chuẩn là mỏ neo của sự sáng tạo."** — _The Gatekeeper Leader_
+
+## 🚦 Quy trình tiến hóa (Evolution)
+
+Bộ quy tắc này không cố định. Sau mỗi lần chạy lệnh `@[/retro]`, các bài học kinh nghiệm sẽ được đúc rút và cập nhật vào:
+- [RETRO-LOG](file:///team-retro.md): Nhật ký tiến hóa của đội ngũ Agent.
+
+---
+> **"Luật lệ là xi măng gắn kết các viên gạch mã nguồn thành một tòa lâu đài bền vững."** 

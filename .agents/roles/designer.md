@@ -24,6 +24,7 @@ Nhiệm vụ cốt lõi:
 | **Nghiên cứu** | Business Docs (BRD) | Moodboard & Style Guide | `docs/ui/style-guide.md` |
 | **Phác thảo** | User Stories | High-fidelity Mockups | `docs/ui/mockups/` |
 | **Đặc tả** | Approved Mockups | UI Specs (Palette, Typo) | `docs/ui/specs.md` |
+| **Báo cáo** | Style Guide / Mockups | UI/UX Summary (TRS-001) | `docs/architecture/technical_report.md` |
 
 </input_output>
 
