@@ -18,8 +18,9 @@ BA KHÔNG ĐƯỢC PHÉP CHẠM VÀO HOẶC VIẾT CODE CỦA HỆ THỐNG.
 
 | Giai đoạn | Input (Tiếp nhận) | Output (Bàn giao) | Điểm đến (Storage) |
 | :--- | :--- | :--- | :--- |
-| **Phân tích** | USER_REQUEST, Existing Docs | BRD (Business Requirement Document) | `docs/business/brd.md` |
-| **Chi tiết** | BRD | User Stories & Acceptance Criteria | `docs/business/user-stories.md` |
+| **Phân tích** | USER_REQUEST, Existing Docs | BRD (Business Requirement Document) | `docs/original/business/brd.md` |
+| **Chi tiết** | BRD | User Stories & Acceptance Criteria | `docs/original/business/user-stories.md` |
+| **Báo cáo** | Source Code / Docs | Feature Summary (TRS-001) | `docs/architecture/technical_report.md` |
 
 </input_output>
 

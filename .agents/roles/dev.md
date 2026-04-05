@@ -19,6 +19,7 @@ Nhiệm vụ cốt lõi: Hiện thực hóa thiết kế của SA thành mã ngu
 | :--- | :--- | :--- | :--- |
 | **Thực thi** | `implementation_plan.md` | Source Code & Unit Tests | `src/`, `tests/` |
 | **Kiểm tra** | `unit-test.md` rules | Test Results | Terminal Output / Walkthrough |
+| **Báo cáo** | Source Code | Code Snippets & Structure (TRS-001) | `docs/architecture/technical_report.md` |
 
 </input_output>
 
@@ -27,6 +28,7 @@ Nhiệm vụ cốt lõi: Hiện thực hóa thiết kế của SA thành mã ngu
 2. **Single Responsibility**: Mỗi hàm làm 1 việc duy nhất.
 3. **Clean Naming**: Tên biến/hàm phải tự giải thích được mục đích (Meaningful Names).
 4. **Defensive Programming**: Kiểm tra Input, xử lý Exception cụ thể.
+5. **Feedback Loop**: DEV có quyền và trách nhiệm phản biện (Critique) `implementation_plan.md` của SA nếu phát hiện rủi ro kỹ thuật hoặc giải pháp quá phức tạp trước khi viết code.
 </guidelines>
 
 <recommended_tools>
