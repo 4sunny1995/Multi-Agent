@@ -1,42 +1,41 @@
 ---
+rule_id: CLEAN-CODE-001
 trigger: always_on
-rule_id: clean-code-001
+applies_to: [DEV, LEADER, SA]
+version: "2.0-llm"
 ---
 
-# 📖 Clean Code Handbook: Quy tắc viết mã sạch
+# 📖 Clean Code: Quy tắc viết mã sạch (LLM-Optimized)
 
-Mục tiêu: Mã nguồn phải **dễ đọc, dễ hiểu và dễ bảo trì**.
+## ⚡ Quick Reference Card (Dán vào não LLM)
 
----
-
-## 🚀 1. Đặt tên có ý nghĩa (Meaningful Names)
-
-| Tiêu chí | Bad (❌) | Good (✅) |
+| Quy tắc | Giới hạn | Hành động vi phạm |
 | :--- | :--- | :--- |
-| **Rõ ràng** | `int d;` | `int daysSinceCreation;` |
-| **Phát âm được** | `fName`, `genymdhms` | `firstName`, `generationTimestamp` |
-| **Class** | `DataProcess` (Mơ hồ) | `UserRegistrationService` |
-| **Method** | `input()` | `saveUserDetails()` |
+| Hàm | < 15 dòng | Tách sub-function ngay |
+| File | < 200 dòng | Extract module mới |
+| Tham số | ≤ 2 | Đóng gói vào Object |
+| Naming | Mô tả mục đích | Đổi tên + Refactor |
 
 ---
 
-## 🛠️ 2. Quy tắc về Hàm (Functions)
+## 1. NAMING LAWS (Luật đặt tên)
 
-- **Nguyên tắc "Do One Thing"**: Một hàm chỉ làm 1 việc duy nhất.
-- **Kích thước Hàm**: < 15 dòng code. Nếu quá 15 dòng, PHẢI tách hàm (Sub-function).
-- **Kích thước File**: < 200 dòng code. Nếu quá, PHẢI tách module.
-- **Tham số**: Lý tưởng là 0, tối đa 2. Nếu > 2, hãy đóng gói vào Object.
+❌ `int d;` → ✅ `int daysSinceCreation;`
+❌ `function handle(u)` → ✅ `function registerAdultUser(user)`
+❌ `DataProcess` (class mơ hồ) → ✅ `UserRegistrationService`
+❌ Magic numbers: `if (age > 18)` → ✅ `const ADULT_AGE = 18; if (age > ADULT_AGE)`
+
+## 2. FUNCTION LAWS (Luật hàm)
+
+- **Do One Thing**: Tên hàm phải là 1 động từ + 1 danh từ. Nếu cần giải thích thêm → vi phạm.
+- **Guard Clause**: Return early thay vì lồng `if-else` sâu.
+- **No Side Effects**: Hàm tên `get*` không được modify state.
 
 ```javascript
-// ❌ BAD: Làm quá nhiều việc, đặt tên mơ hồ
-function handle(u) {
-  if (u.age > 18) {
-    db.save(u);
-    email.send(u.email, "Welcome");
-  }
-}
+// ❌ BAD: 2 concerns + tên mơ hồ
+function process(u) { if (u.age > 18) { db.save(u); email.send(u.email); } }
 
-// ✅ GOOD: Tách biệt logic và đặt tên rõ ràng
+// ✅ GOOD: 1 concern each
 function registerAdultUser(user) {
   if (!isAdult(user)) return;
   saveUserToDatabase(user);
@@ -44,26 +43,16 @@ function registerAdultUser(user) {
 }
 ```
 
----
+## 3. DEBT MANAGEMENT (Quản lý Nợ)
 
-## 🧼 3. Quy tắc Hướng đạo sinh (Boy Scout Rule)
-> "Hãy luôn để lại bãi trại sạch hơn lúc bạn mới đến."
-
-Trước khi kết thúc task, hãy kiểm tra code cũ xung quanh và refactor nếu thấy:
-- Biến đặt tên chưa chuẩn.
-- Hàm quá dài.
-- Code lặp lại (DRY).
+- Phát hiện Code Smell → Gắn `[TECH_DEBT: mô tả ngắn]` comment ngay.
+- Dùng quick fix → PHẢI gắn tag và đặt deadline hoàn trả.
+- Boy Scout Rule: Refactor 1 đoạn code cũ liên quan mỗi khi chạm vào file.
 
 ---
 
-## 🛡️ 4. Quản lý Nợ kỹ thuật (Debt Management)
-- **Không để dành**: Nếu phát hiện Nợ kỹ thuật (Code Smells), hãy Refactor ngay trong Phase của DEV. Đừng đợi đến khi LEADER bắt lỗi.
-- **Ghi chú rủi ro**: Nếu buộc phải dùng một giải pháp "nhanh nhưng bẩn" do limit của Tool, PHẢI ghi rõ vào `Defensive Documentation`.
-
----
-
-## ✅ Agent Checklist (Bắt buộc cho LEADER)
-- [ ] Tên biến có tiết lộ mục đích không?
-- [ ] Có hàm nào dài quá 15 dòng không?
-- [ ] Có "Magic Numbers" hay "Hard-coded Strings" không? (Phải đưa vào Constant/Config).
-- [ ] Code có dễ đọc như một câu chuyện không?
+## ✅ LEADER Gate Checklist (Bắt buộc trước khi PASS)
+- [ ] Có biến nào tên là `data`, `temp`, `x`, `obj` không? → **FAIL**
+- [ ] Có hàm nào > 15 dòng không? → **FAIL**
+- [ ] Có magic number hoặc hardcoded string không? → **FAIL**
+- [ ] Code self-documenting không cần comment không? → **Must be YES**

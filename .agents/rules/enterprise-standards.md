@@ -1,6 +1,8 @@
 ---
+rule_id: ENTERPRISE-STANDARDS-001
 trigger: always_on
-rule_id: enterprise-standards-001
+applies_to: [SA, LEADER, CLOUD_ARCHITECT]
+version: "2.0-llm"
 ---
 
 # 🏢 Enterprise Standards: Tiêu chuẩn hệ thống quy mô lớn
@@ -35,3 +37,4 @@ Quy tắc này áp dụng cho các dự án phức tạp, có nhiều module/mic
 - [ ] API mới có làm hỏng các Client cũ đang sử dụng Version cũ không?
 - [ ] Log có đủ thông tin để debug mà không vi phạm bảo mật không?
 - [ ] Toàn bộ hạ tầng có được quản lý bằng Code (IaC) không?
+

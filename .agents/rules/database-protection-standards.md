@@ -1,36 +1,53 @@
-# 📜 RULE: DATABASE PROTECTION STANDARDS (DBS-001)
+---
+rule_id: DBS-001
+trigger: on_db_change
+applies_to: [SA, CLOUD_ARCHITECT, DEV, LEADER]
+severity: CRITICAL
+version: "2.0-llm"
+---
 
-| Thông số | Giá trị |
-| :--- | :--- |
-| **Mã hiệu** | DBS-001 |
-| **Đối tượng** | SA, CLOUD ARCHITECT, DEV, LEADER |
-| **Triết lý** | "Database là bộ não của dự án - Bảo vệ trước, can thiệp sau." |
+# 🛡️ Database Protection Standards (DBS-001)
+
+> **Activation**: Rule này kích hoạt ngay khi bất kỳ Agent nào nhắc đến: `ALTER`, `DROP`, `TRUNCATE`, `migration`, `schema change`, hay `database`.
+
+## ⚡ 3-Step Mandatory Protocol
+
+```
+1. SURVEY (SA) → Impact Analysis
+2. BACKUP (CLOUD ARCH) → Snapshot before ANY change  
+3. APPROVE (USER/PO) → Explicit "Approve DB Change" required
+```
+
+**Thiếu bất kỳ bước nào → LEADER BLOCK toàn bộ deployment.**
 
 ---
 
-## 🛡️ 1. Nguyên tắc Can thiệp (Intervention Principles)
+## ❌ HARD BLOCKS (Cấm tuyệt đối — không có ngoại lệ)
 
-1. **Ưu tiên Append-only**: Khuyến khích tạo bảng mới hoặc schema mới thay vì sửa đổi (Alter) các bảng hiện có đang hoạt động ổn định.
-2. **Backward Compatibility**: Mọi thay đổi cấu trúc DB cũ phải đảm bảo không làm gãy logic của phiên bản ứng dụng hiện tại.
-3. **Cấm tự ý sửa đổi (Strict No-Modification)**: Agent tuyệt đối không được tự ý thực hiện lệnh `DROP`, `TRUNCATE` hoặc `ALTER` trên các bảng có chứa dữ liệu thực tế mà không có báo cáo rủi ro.
+❌ `DROP TABLE` / `TRUNCATE` trên production data → Agent PHẢI dừng và báo cáo LEADER
+❌ `ALTER TABLE` trên bảng có dữ liệu thực mà không có PO Approval
+❌ Schema migration mà không có rollback script
+❌ Thay đổi DB mà không có backup snapshot
 
----
+## ✅ SAFE PATHS (Đường đi an toàn)
 
-## 🚦 2. Trạm kiểm soát phê duyệt (Approval Checkpoints)
-
-Mọi thay đổi cấu trúc Database phải tuân thủ quy trình Phê duyệt 3 bước:
-
-1. **Khảo sát (SA)**: Phân tích mức độ ảnh hưởng và đề xuất giải pháp (New vs Edit).
-2. **Báo cáo rủi ro (Risk Analysis)**: Liệt kê các Impact nếu thay đổi DB hiện có.
-3. **Phê duyệt từ User (PO Approval)**: **BẮT BUỘC** nhận được xác nhận "Approve DB Change" từ User (Người sử dụng thực tế) trước khi Cloud Architect hoặc DEV thực thi.
+✅ Thêm bảng MỚI thay vì sửa bảng cũ (Append-only pattern)
+✅ Thêm column nullable thay vì `ALTER` column hiện có
+✅ Backup → Migrate staging → Verify → PO Approval → Migrate production
 
 ---
 
-## 🛠️ 3. Quy trình thực thi an toàn (Safety Execution)
+## 🚦 [DB_CHECKPOINT] Protocol
 
-- **Backup First**: Luôn thực hiện Snapshot/Backup Database trước khi thực hiện các câu lệnh Migration trên môi trường Staging/Production.
-- **Rollback Plan**: Mọi bản thảo thiết kế DB phải đi kèm kịch bản khôi phục (Rollback) nếu xảy ra lỗi.
-- **Minimality**: Chỉ thay đổi những gì thực sự tối cần thiết. Tránh "dọn dẹp" (Clean-up) hoặc tái cấu trúc lớn trên DB đang hoạt động.
+Khi Agent nhận thấy cần thay đổi DB, phải thực hiện ngay:
+
+```
+🛑 [DB_CHECKPOINT] Phát hiện thay đổi DB yêu cầu.
+📋 Impact: [Bảng X sẽ bị ảnh hưởng]
+🔒 Action required: User phê duyệt trước khi tiếp tục.
+   → Nhập "Approve DB Change" để tiếp tục, hoặc "Reject" để dừng.
+```
 
 ---
-> **"Xây dựng tính năng mới trên nền tảng cũ là một nghệ thuật, phá vỡ nền tảng cũ là một sai lầm."** — _The Gatekeeper Leader_
+
+> **"Database là bộ não của dự án. Bảo vệ trước, can thiệp sau."**

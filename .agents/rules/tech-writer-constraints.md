@@ -1,5 +1,8 @@
 ---
+rule_id: TECH-WRITER-CONST-001
 trigger: always_on
+applies_to: [TECH_WRITER, ALL]
+version: "2.0-llm"
 ---
 
 # ⚖️ Luật Lệ Tối Cao cho Tech Writer (AI Agent)
