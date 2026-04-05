@@ -1,0 +1,36 @@
+{
+  "project_name": "Antigravity Multi-Agent",
+  "version": "2.0.0",
+  "terms": [
+    {
+      "original": "Endpoint",
+      "translation": "Endpoint",
+      "definition": "Điểm cuối của một API để thực hiện giao tiếp dữ liệu."
+    },
+    {
+      "original": "Middleware",
+      "translation": "Middleware",
+      "definition": "Phần mềm trung gian xử lý các Request/Response giữa Client và Server."
+    },
+    {
+      "original": "Refactor",
+      "translation": "Tái cấu trúc (Refactor)",
+      "definition": "Cải thiện mã nguồn mà không làm thay đổi hành vi bên ngoài."
+    },
+    {
+      "original": "Unit Test",
+      "translation": "Kiểm thử đơn vị (Unit Test)",
+      "definition": "Kiểm tra tính đúng đắn của từng khối mã nhỏ nhất (hàm, phương thức)."
+    },
+    {
+      "original": "Artifact",
+      "translation": "Tài liệu hệ thống (Artifact)",
+      "definition": "Sản phẩm đầu ra của AI Agent (Plan, Walkthrough, Task)."
+    },
+    {
+      "term": "Deployment",
+      "translation": "Triển khai (Deployment)",
+      "definition": "Đưa ứng dụng lên môi trường vận hành thực tế."
+    }
+  ]
+}
