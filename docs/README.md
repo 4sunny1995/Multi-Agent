@@ -9,10 +9,13 @@
 
 | Category | Tài liệu | Bản gốc (Original) | Tiếng Việt (VI) | English (EN) | 日本語 (JA) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Business** | Tài liệu nghiệp vụ v1.0 | [View](file:///docs/original/business/) | [Link](file:///docs/trans/vi/business/) | - | - |
-| **Architecture** | Kiến trúc hệ thống | [View](file:///docs/original/architecture/) | - | [Link](file:///docs/trans/en/architecture/) | - |
-| **Drafts** | Bản thảo & WIP | [Browse](file:///docs/drafts/) | - | - | - |
-| **Budget** | Dự toán hạ tầng | [View](file:///docs/original/budget/) | - | - | - |
+| **Business** | Quy trình & Logic | [BRD](file:///home/quoc/workspaces/ai/docs/original/business/brd_multi_agent.md) | [Link](file:///home/quoc/workspaces/ai/docs/business/brd_multi_agent.md) | - | - |
+| **Architecture** | Kiến trúc & Hạ tầng | [Design](file:///home/quoc/workspaces/ai/docs/original/architecture/system_architecture.md) | [Link](file:///home/quoc/workspaces/ai/docs/architecture/system_architecture.md) | - | - |
+| **UI/UX** | Giao diện & Trải nghiệm | [Style Guide](file:///home/quoc/workspaces/ai/docs/original/ui/style-guide.md) | [Link](file:///home/quoc/workspaces/ai/docs/ui/style-guide.md) | - | - |
+| **Testing** | Báo cáo QA | [Test Plan](file:///home/quoc/workspaces/ai/docs/original/testing/qa_test_plan.md) | [Link](file:///home/quoc/workspaces/ai/docs/testing/qa_test_plan.md) | - | - |
+| **Budget** | Dự toán hạ tầng | [Estimate](file:///home/quoc/workspaces/ai/docs/original/budget/cloud_cost_estimate.md) | [Link](file:///home/quoc/workspaces/ai/docs/budget/cloud_cost_estimate.md) | - | - |
+| **Release** | Changelog | [View](file:///home/quoc/workspaces/ai/docs/original/release/) | - | - | - |
+| **Drafts** | Bản thảo & WIP | [Browse](file:///home/quoc/workspaces/ai/docs/drafts/) | - | - | - |
 
 ---
 
@@ -20,6 +23,8 @@
 
 | Ngày | Sự kiện | Kết quả | Chi tiết |
 | :--- | :--- | :--- | :--- |
+| 2026-04-05 | **UI/UX Standard** | Thiết lập Workflow Design & Agent Designer | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
+| 2026-04-05 | **Team Meeting** | Quy hoạch lại cấu trúc tài liệu Docs | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
 | 2026-04-03 | **Sprint Retro 2** | Quy chuẩn Antigravity (Auto-Indexing) | [Retro Logs](file:///.agents/rules/team-retro.md) |
 | 2026-04-03 | Build Core Team | Khởi tạo 10 Agent chuyên biệt | [Roles Directory](file:///.agents/roles/) |
 

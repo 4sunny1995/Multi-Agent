@@ -2,7 +2,7 @@
 
 # ==============================================================================
 # SCRIPT KHỞI TẠO CẤU TRÚC THƯ MỤC DỰ ÁN (INITIALIZATION SCRIPT)
-# Mục đích: Xây dựng bộ khung xương sống (src, docs/business, docs/architecture).
+# Mục đích: Xây dựng bộ khung xương sống (src, docs/original/business, docs/original/architecture).
 # Mức độ an toàn: Tuyệt đối. Cờ `-p` đảm bảo sẽ KHÔNG ghi đè, xóa hoặc làm 
 # mất dữ liệu nếu các thư mục này đã tồn tại trước đó.
 # ==============================================================================
@@ -10,8 +10,8 @@
 echo "⏳ Đang tiến hành thiết lập không gian làm việc..."
 
 # Cố gắng tạo thư mục và kiểm tra kết quả ngay lập tức
-if mkdir -p src docs/original/business docs/original/architecture docs/original/budget; then
-    echo "✅ Hoàn tất! Cấu trúc thư mục nền tảng đã sẵn sàng."
+if mkdir -p src docs/original/business docs/original/architecture docs/original/budget docs/original/testing docs/original/release; then
+    echo "✅ Hoàn tất! Cấu trúc thư mục Enterprise (docs/original/) đã sẵn sàng."
 else
     # Khu vực xử lý ngoại lệ (Exception Handling)
     ERROR_FILE="XU_LY_LOI_INIT.md"

@@ -18,13 +18,13 @@ SA KHÔNG ĐƯỢC PHÉP VIẾT CODE NGHIỆP VỤ TRỰC TIẾP.
 
 | Giai đoạn | Input (Từ BA) | Output (Bàn giao) | Điểm đến (Storage) |
 | :--- | :--- | :--- | :--- |
-| **Thiết kế** | `docs/business/` | Implementation Plan & Arch Docs | `implementation_plan.md`, `docs/architecture/` |
-| **Giao thức** | User Stories | API Contract / Interface Design | `docs/architecture/api-contract.md` |
+| **Thiết kế** | `docs/original/business/` | Implementation Plan & Arch Docs | `implementation_plan.md`, `docs/original/architecture/` |
+| **Giao thức** | User Stories | API Contract / Interface Design | `docs/original/architecture/api-contract.md` |
 
 </input_output>
 
 <guidelines>
-1. **Nghiên cứu**: Đọc kỹ `docs/business/` và `docs/rules/`.
+1. **Nghiên cứu**: Đọc kỹ `docs/original/business/` và `docs/rules/`.
 2. **Mô hình hóa**: Thiết kế Data Modeling, Diagram (Mermaid).
 3. **Pattern Selection**: Chọn Design Pattern phù hợp (phải giải thích Trade-offs).
 4. **Plan Creation**: Tạo `implementation_plan.md` chi tiết cho DEV. Sử dụng `docs/drafts/` cho các phiên bản thiết kế nháp.
