@@ -1,6 +1,5 @@
 ---
 trigger: model_decision
-rule_id: team-retro-001
 ---
 
 # 🔄 Team Retrospective: Lessons Learned & System Evolution (V3.0)
@@ -30,6 +29,37 @@ Tài liệu này ghi lại các bài học kinh nghiệm từ quá trình vận 
 ---
 
 ## ✅ Retrospective Checklist 3.0
+- [x] Đã cập nhật `antigravity-standard.md` chưa?
+- [x] Đã thêm quy tắc "Verify" vào `operation-safety.md` chưa?
+- [x] Stakeholder đã phê duyệt hướng đi tự động hóa mục lục chưa?
+
+---
+
+## 📅 SPRINT 3: Xoay vòng Đánh giá & Tiêu chuẩn hóa (Current)
+
+### 🏆 Những gì đã làm tốt (Wins)
+1. **Algorithms & DS Documentation**: Hoàn thành `algorithms-handbook.md` với độ phủ cao về kiến thức hệ thống.
+2. **Directory Optimization**: Cấu trúc `.agents` đã được tinh gọn, dễ quản lý hơn.
+3. **Vietnamese First Policy**: Duy trì 100% tài liệu đầu ra bằng tiếng Việt chuẩn mực.
+
+### ⚠️ Những điểm cần cải thiện (Process Smells)
+1. **Consistency in Translation**: Một số thuật ngữ kỹ thuật vẫn bị dịch không đồng nhất (Ví dụ: Artifact vs Tài liệu hệ thống).
+   - *Khắc phục*: Triển khai `glossary.json` và Rule đồng bộ.
+2. **Clean Code Enforcement**: Rule "Hàm < 15 dòng" vẫn chưa được LEADER bắt lỗi triệt để.
+   - *Khắc phục*: Cập nhật `clean-code.md` để DEV có căn cứ thực thi.
+
+### 🚀 Hành động tiếp sau (Action Items)
+- **BA**: Duy trì và cập nhật `glossary.json` sau mỗi Task dịch thuật.
+- **DEV**: Refactor các hàm dài và phức tạp trong dự án hiện tại.
+- **TESTER**: Xây dựng bộ Test Cases mẫu cho các lỗi Logic phổ biến.
+- **SA**: Nghiên cứu đưa Docker/DevOps vào quy trình để chuẩn hóa môi trường.
+
+---
+
+## ✅ Retrospective Checklist 4.0
+- [ ] Đã tạo `glossary.json` chưa? (Xung quanh BA)
+- [ ] Đã thắt chặt Clean Code Rule chưa? (Xung quanh DEV)
+- [ ] Đã cập nhật TDD rule cho TESTER chưa?
 - [ ] Đã cập nhật `antigravity-standard.md` chưa?
 - [ ] Đã thêm quy tắc "Verify" vào `operation-safety.md` chưa?
 - [ ] Stakeholder đã phê duyệt hướng đi tự động hóa mục lục chưa?

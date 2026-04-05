@@ -23,7 +23,8 @@ Mục tiêu: Mã nguồn phải **dễ đọc, dễ hiểu và dễ bảo trì**
 ## 🛠️ 2. Quy tắc về Hàm (Functions)
 
 - **Nguyên tắc "Do One Thing"**: Một hàm chỉ làm 1 việc duy nhất.
-- **Kích thước**: < 15 dòng code.
+- **Kích thước Hàm**: < 15 dòng code. Nếu quá 15 dòng, PHẢI tách hàm (Sub-function).
+- **Kích thước File**: < 200 dòng code. Nếu quá, PHẢI tách module.
 - **Tham số**: Lý tưởng là 0, tối đa 2. Nếu > 2, hãy đóng gói vào Object.
 
 ```javascript

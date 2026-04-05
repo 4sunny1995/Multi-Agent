@@ -13,6 +13,7 @@ rule_id: unit-test-001
 - **Repeatable**: Chạy ở máy DEV hay CI/CD đều ra cùng kết quả.
 - **Self-Validating**: Chỉ có kết quả Pass hoặc Fail.
 - **Timely**: Viết test trước hoặc song song với code.
+- **Edge Case Coverage**: Mỗi User Story/Task phải có ít nhất 3 Edge Cases (Dữ liệu rỗng, dữ liệu cực đại, dữ liệu sai định dạng).
 
 ---
 
