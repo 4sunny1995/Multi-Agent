@@ -1,6 +1,6 @@
 {
   "project_name": "Antigravity Multi-Agent",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "terms": [
     {
       "original": "Endpoint",
@@ -28,9 +28,54 @@
       "definition": "Sản phẩm đầu ra của AI Agent (Plan, Walkthrough, Task)."
     },
     {
-      "term": "Deployment",
+      "original": "Deployment",
       "translation": "Triển khai (Deployment)",
       "definition": "Đưa ứng dụng lên môi trường vận hành thực tế."
+    },
+    {
+      "original": "BRD",
+      "translation": "BRD",
+      "definition": "Business Requirement Document (Tài liệu nghiệp vụ gốc)."
+    },
+    {
+      "original": "Edge Case",
+      "translation": "Trường hợp biên (Edge Case)",
+      "definition": "Các trường hợp biên, rủi ro, ngoại lệ cần xử lý."
+    },
+    {
+      "original": "TDD",
+      "translation": "TDD",
+      "definition": "Test-Driven Development (Viết test trước khi viết code)."
+    },
+    {
+      "original": "Red-Green-Refactor",
+      "translation": "Red-Green-Refactor",
+      "definition": "Chu trình: Test hỏng -> Code cho Pass -> Tái cấu trúc."
+    },
+    {
+      "original": "Loose Coupling",
+      "translation": "Khớp nối lỏng (Loose Coupling)",
+      "definition": "Giảm sự phụ thuộc giữa các module."
+    },
+    {
+      "original": "Gatekeeper",
+      "translation": "Gatekeeper",
+      "definition": "Vai trò của LEADER trong việc chặn/duyệt code dựa trên quy chuẩn."
+    },
+    {
+      "original": "Turbo",
+      "translation": "Turbo",
+      "definition": "Các bước thực thi tự động không cần hỏi ý kiến User (ls, mkdir, lint)."
+    },
+    {
+      "original": "Acceptance Criteria",
+      "translation": "Điều kiện nghiệm thu (Acceptance Criteria)",
+      "definition": "Criterias to accept a feature (Given-When-Then)."
+    },
+    {
+      "original": "Root Cause",
+      "translation": "Nguyên nhân gốc rễ (Root Cause)",
+      "definition": "Nguyên nhân gốc rễ của một vấn đề thay vì chỉ là triệu chứng bên ngoài."
     }
   ]
 }
