@@ -1,6 +1,5 @@
 ---
 trigger: model_decision
-rule_id: team-retro-001
 ---
 
 # 🔄 Team Retrospective: Lessons Learned & System Evolution (V3.0)
@@ -61,3 +60,6 @@ Tài liệu này ghi lại các bài học kinh nghiệm từ quá trình vận 
 - [ ] Đã tạo `glossary.json` chưa? (Xung quanh BA)
 - [ ] Đã thắt chặt Clean Code Rule chưa? (Xung quanh DEV)
 - [ ] Đã cập nhật TDD rule cho TESTER chưa?
+- [ ] Đã cập nhật `antigravity-standard.md` chưa?
+- [ ] Đã thêm quy tắc "Verify" vào `operation-safety.md` chưa?
+- [ ] Stakeholder đã phê duyệt hướng đi tự động hóa mục lục chưa?
