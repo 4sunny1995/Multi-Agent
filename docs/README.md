@@ -11,7 +11,8 @@
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Business** | Quy trình & Logic | [BRD](file:///home/quoc/workspaces/ai/docs/original/business/brd_multi_agent.md) | [Link](file:///home/quoc/workspaces/ai/docs/business/brd_multi_agent.md) | - | - |
 | **Architecture** | Kiến trúc & Hạ tầng | [Design](file:///home/quoc/workspaces/ai/docs/original/architecture/system_architecture.md) | [Link](file:///home/quoc/workspaces/ai/docs/architecture/system_architecture.md) | - | - |
-| **UI/UX** | Giao diện & Trải nghiệm | [Style Guide](file:///home/quoc/workspaces/ai/docs/original/ui/style-guide.md) | [Link](file:///home/quoc/workspaces/ai/docs/ui/style-guide.md) | - | - |
+| **UI/UX** | Giao diện & Trải nghiệm | [Style Guide](file:///home/quoc/workspaces/ai/docs/original/ui/style-guide_login.md) | [Link](file:///home/quoc/workspaces/ai/docs/ui/style-guide_login.md) | - | - |
+| **Login UI** | Giao diện đăng nhập (JP) | [Mockup](file:///home/quoc/workspaces/ai/docs/original/ui/mockups/login_japanese_finance.png) | [Specs](file:///home/quoc/workspaces/ai/docs/ui/specs_login.md) | [Test Report](file:///home/quoc/workspaces/ai/docs/original/testing/test_report_login.md) | - |
 | **Testing** | Báo cáo QA | [Test Plan](file:///home/quoc/workspaces/ai/docs/original/testing/qa_test_plan.md) | [Link](file:///home/quoc/workspaces/ai/docs/testing/qa_test_plan.md) | - | - |
 | **Budget** | Dự toán hạ tầng | [Estimate](file:///home/quoc/workspaces/ai/docs/original/budget/cloud_cost_estimate.md) | [Link](file:///home/quoc/workspaces/ai/docs/budget/cloud_cost_estimate.md) | - | - |
 | **Release** | Changelog | [View](file:///home/quoc/workspaces/ai/docs/original/release/) | - | - | - |
@@ -23,6 +24,7 @@
 
 | Ngày | Sự kiện | Kết quả | Chi tiết |
 | :--- | :--- | :--- | :--- |
+| 2026-04-05 | **Dev Cycle: Login** | Hoàn thiện mã nguồn Front-end (Mock Auth) | [Walkthrough](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/walkthrough.md) |
 | 2026-04-05 | **UI/UX Standard** | Thiết lập Workflow Design & Agent Designer | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
 | 2026-04-05 | **Team Meeting** | Quy hoạch lại cấu trúc tài liệu Docs | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
 | 2026-04-03 | **Sprint Retro 2** | Quy chuẩn Antigravity (Auto-Indexing) | [Retro Logs](file:///.agents/rules/team-retro.md) |

@@ -1,0 +1,226 @@
+/* 🎨 Design System: Japanese Finance Standard */
+:root {
+    --primary-color: #1A365D; /* Trust Navy */
+    --secondary-color: #E2E8F0; /* Soft Gray */
+    --text-color: #2D3748;
+    --background-color: #FFFFFF; /* Porcelain */
+    --error-color: #E53E3E; /* Alert Red */
+    --success-color: #38A169; /* Secure Green */
+    --font-main: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #F7FAFC; /* Light Gray Background */
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--background-color);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--secondary-color);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    max-width: 180px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #718096;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.required {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1.5px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    transition: all var(--transition-speed);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+}
+
+input.error {
+    border-color: var(--error-color);
+}
+
+.error-msg {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    height: 16px;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.btn-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.6;
+}
+
+.forgot-link {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.btn-primary {
+    width: 100%;
+    height: 52px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary:hover {
+    background-color: #1a3c7a;
+}
+
+.btn-outline {
+    width: 100%;
+    height: 44px;
+    background: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-outline:hover {
+    background-color: #F7FAFC;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+.form-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.card-footer {
+    border-top: 1px solid var(--secondary-color);
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #A0AEC0;
+}
+
+.footer-links a {
+    color: #718096;
+    text-decoration: none;
+}
+
+/* Utils */
+.hidden { display: none; }
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 400px) {
+    .login-card {
+        padding: 25px;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン | みずほキャピタル (Mock Finance JP)</title>
+    <meta name="description" content="みずほキャピタル株式会社のオンラインログインポータル。安全かつシンプルな操作であなたの資産を管理。">
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="login-container">
+        <section class="login-card">
+            <header class="login-header">
+                <img src="https://via.placeholder.com/150x50?text=MIZUHO" alt="Mizuho Capital Logo" class="logo">
+                <h1>ログイン</h1>
+                <p class="subtitle">安全な金融サービスへのアクセス</p>
+            </header>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">ユーザーIDまたはメールアドレス <span class="required">必須</span></label>
+                    <input type="text" id="username" name="username" placeholder="example@mizuho.jp" required aria-required="true">
+                    <span class="error-msg" id="usernameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">パスワード <span class="required">必須</span></label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" required aria-required="true">
+                        <button type="button" id="togglePassword" class="btn-toggle" aria-label="パスワードを表示">👁️</button>
+                    </div>
+                    <span class="error-msg" id="passwordError"></span>
+                    <a href="#" class="forgot-link">パスワードを忘れた場合</a>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <span class="btn-text">セキュアログイン</span>
+                    <span class="loader hidden"></span>
+                </button>
+
+                <div class="form-footer">
+                    <p>アカウントをお持ちでない方? <a href="#">新規登録</a></p>
+                    <div class="biometric-login">
+                        <button type="button" class="btn-outline">
+                            <i>🖐️</i> 指紋/顔認証でログイン
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <footer class="card-footer">
+                <nav class="footer-links">
+                    <a href="#">利用規約</a> | <a href="#">プライバシーポリシー</a>
+                </nav>
+                <p>&copy; 2026 Mizuho Capital. All Rights Reserved.</p>
+            </footer>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
