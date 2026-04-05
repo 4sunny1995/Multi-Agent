@@ -2,57 +2,52 @@
 workflow_id: TRN-001
 description: Quy trình dịch thuật, lưu trữ và đồng bộ hóa mục lục đa ngôn ngữ.
 role_lead: TRANSLATOR
+triggers: ["/trans", "dịch", "translate", "multilingual", "localization", "i18n", "en", "ja", "vi"]
+version: "2.0"
 ---
 
-# 🚀 Workflow: Dịch tài liệu & Quản lý Kho tri thức (/trans)
+# 🌐 Workflow: Dịch tài liệu & Quản lý Kho tri thức (/trans)
 
-Quy trình tự động hóa việc trích xuất, dịch thuật, lưu trữ bản gốc (Snapshot) và cập nhật mục lục tổng thể (`docs/README.md`). Mọi bước đi đều tuân thủ **TRL-IT-001**.
+> **Quy tắc bất biến**: File gốc trong `docs/` không bao giờ bị sửa đổi hay overwrite.
 
-## 🛠️ 1. Quy trình thực thi (Execution Steps)
+## ⚡ Luồng thực thi
 
-1. **Trích xuất & Discovery (TRANSLATOR):**
-   - **Hành động**: Đọc file từ `docs/<category>/`. Kiểm tra tính nhất quán với `glossary.json`.
-   - **Handoff**: Xác nhận với **BA** nếu có thuật ngữ nghiệp vụ mới chưa có trong từ điển.
+```
+TRANSLATOR (Discovery) → TRANSLATOR (Snapshot) → TRANSLATOR (Translate) → TRANSLATOR (Persist) → TRANSLATOR (Index)
+```
 
-2. **Lưu trữ bản gốc (Snapshot - TRANSLATOR):**
+---
+
+## 1. DISCOVERY & GLOSSARY CHECK (TRANSLATOR)
+- **Hành động**: `view_file` file cần dịch. Tra cứu `glossary.json` cho mọi thuật ngữ.
+- **BA Consultation**: Nếu gặp thuật ngữ nghiệp vụ mới chưa có trong glossary → hỏi BA trước.
+- **Output**: Danh sách terms cần handle + confirmed glossary entries.
+
+## 2. SNAPSHOT BẢN GỐC (TRANSLATOR)
 // turbo
-   - **Hành động**: Copy file gốc vào thư mục `docs/original/<category>/`. 
-   - **Mục đích**: Đảm bảo có bản đối chiếu (Source of Truth) không bao giờ bị thay đổi.
+- **Hành động**: Copy file gốc vào `docs/original/<category>/` trước khi làm bất cứ điều gì.
+- **Constraint**: Nếu snapshot đã tồn tại → skip, không overwrite.
+- **Output**: `docs/original/<category>/<filename>` — immutable source of truth.
 
-3. **Dịch thuật Chuyên sâu (Translate - TRANSLATOR):**
-   - **Hành động**: Kích hoạt **Polyglot Agent**. Dịch sang ngôn ngữ đích (EN, JA, VI). 
-   - **Quy tắc**: Giữ nguyên Code, định dạng Markdown và thuật ngữ IT chuẩn.
+## 3. TRANSLATION (TRANSLATOR)
+- **Hành động**: Dịch sang ngôn ngữ đích theo TRL-IT-001.
+- **Giữ nguyên**: Code blocks, IT terms (API, Middleware...), URL trong links, file paths.
+- **Quality check**: Back-translate 1 đoạn để verify nghĩa không bị lệch.
+- **Output**: Translated content (in-memory, chưa lưu).
 
-4. **Định dạng & Lưu trữ (Persist - TRANSLATOR):**
-   - **Hành động**: Ghi file vào `docs/trans/{lang}/{category}/{filename}`.
-   - **Handoff**: Thêm tag `> [!NOTE] Translated by AI Agent` để phân biệt.
+## 4. PERSIST (TRANSLATOR)
+- **Hành động**: Ghi file vào `docs/trans/{lang}/{category}/{filename}`.
+- **Dòng đầu tiên**: `> [!NOTE] Translated from: [link gốc] by AI Agent`.
+- **Output**: `docs/trans/<lang>/<category>/<filename>`.
 
-5. **Đồng bộ Mục lục (Indexing - TRANSLATOR):**
-   - **Hành động**: Tự động cập nhật bảng tra cứu tại [docs/README.md](file:///docs/README.md).
-   - **Mục đích**: User có thể truy cập mọi phiên bản ngôn ngữ chỉ từ một trang duy nhất.
-
----
-
-## 📂 2. Cấu trúc lưu trữ (Output Hierarchy)
-
-- **Bản gốc (Snapshot):** `docs/original/`
-- **Bản dịch:** `docs/trans/{lang}/`
-- **Mục lục:** `docs/README.md`
+## 5. INDEX UPDATE (TRANSLATOR)
+// turbo
+- **Hành động**: Thêm row mới vào bảng trong `docs/README.md` với link đến bản gốc + bản dịch.
+- **Output**: `docs/README.md` updated — 100% coverage.
 
 ---
 
-## 🛡️ 3. Quy tắc nghiêm ngặt (Strict Rules)
-
-- **Independent**: Không được phép ghi đè lên file gốc đang sử dụng.
-- **Traceability**: Link trong `README.md` phải luôn chính xác.
-- **Consistency**: Sử dụng duy nhất 1 bộ Glossary cho toàn bộ dự án.
-
----
-
-## 🚦 Chốt chặn chất lượng (Leader Review)
-
-- **Độ phủ mục lục**: 100% tài liệu được dịch phải xuất hiện trong README.
-- **Tính nhất quán**: Bản dịch không được làm sai lệch logic của bản gốc.
-
----
-> **Lệnh kích hoạt:** `/execute_workflow trans source="docs/business/brd.md" lang="en"`
+## 🚨 Failure Points (Điểm hay gặp lỗi)
+1. Dịch mà không snapshot bản gốc → **Giải pháp**: Bước 2 bắt buộc, không thể skip.
+2. Code snippet bị dịch nhầm → **Giải pháp**: Auto-check: backtick content phải giữ nguyên 100%.
+3. `docs/README.md` không được cập nhật → **Giải pháp**: Bước 5 là bắt buộc, không phải optional.
