@@ -14,7 +14,7 @@ Workflow này kích hoạt khi có yêu cầu mới về giao diện (UI) hoặc
 ## 🛠️ 1. Quy trình thực thi (Execution Steps)
 
 1. **Tiếp nhận & Phân tích (Discovery - PO & DESIGNER):**
-   - Đọc `docs/business/brd.md` và `docs/business/user-stories.md`.
+   - Đọc `docs/original/business/brd.md` và `docs/original/business/user-stories.md`. Nếu không có, yêu cầu khởi chạy `/audit` hoặc cung cấp Requirement thủ công.
    - PO làm rõ các yêu cầu về Branding, Đối tượng người dùng (Persona) và Phân vùng (Global/Japan).
 2. **Nghiên cứu & Ý tưởng (Concept - DESIGNER):**
    - Tạo Moodboard (Palette, Typography, Mood).

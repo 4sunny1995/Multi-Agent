@@ -8,6 +8,7 @@ Quy trình sửa lỗi nhanh nhưng an toàn tuyệt đối cho hệ thống Ent
 
 ## 2. SURGICAL FIX (DEV)
 - **Hành động**: DEV sửa lỗi để Pass bài test của TESTER.
+- **Ràng buộc [DBS-001]**: Nếu việc sửa lỗi yêu cầu thay đổi cấu trúc Database hiện có, PHẢI dừng lại để User (PO) phê duyệt thông qua **[DB_CHECKPOINT]**.
 - **Ràng buộc**: Sửa tối giản nhất (KISS).
 - **Phụ**: Cập nhật Unit Test tương ứng.
 

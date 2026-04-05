@@ -7,10 +7,11 @@
 
 ## 🗺️ Bản đồ tài liệu (Documentation Map)
 
-| Category | Tài liệu | Bản gốc (Original) | Tiếng Việt (VI) | English (EN) | 日本語 (JA) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Agent Roles** | Danh mục nhân sự AI | [README](file:///home/quoc/workspaces/ai/.agents/roles/README.md) | - | - | - |
+| **Agent Rules** | Quy chuẩn vận hành | [README](file:///home/quoc/workspaces/ai/.agents/rules/README.md) | - | - | - |
+| **Workflows** | Quy trình phối hợp | [README](file:///home/quoc/workspaces/ai/.agents/workflows/README.md) | - | - | - |
 | **Business** | Quy trình & Logic | [BRD](file:///home/quoc/workspaces/ai/docs/original/business/brd_multi_agent.md) | [Link](file:///home/quoc/workspaces/ai/docs/business/brd_multi_agent.md) | - | - |
-| **Architecture** | Kiến trúc & Hạ tầng | [Design](file:///home/quoc/workspaces/ai/docs/original/architecture/system_architecture.md) | [Link](file:///home/quoc/workspaces/ai/docs/architecture/system_architecture.md) | - | - |
+| **Architecture** | Kiến trúc & Hạ tầng | [Design](file:///home/quoc/workspaces/ai/docs/original/architecture/system_architecture.md) | [Link](file:///home/quoc/workspaces/ai/docs/architecture/system_architecture.md) | [DB Rules](file:///home/quoc/workspaces/ai/.agents/rules/database-protection-standards.md) | - |
 | **UI/UX** | Giao diện & Trải nghiệm | [Style Guide](file:///home/quoc/workspaces/ai/docs/original/ui/style-guide.md) | [Link](file:///home/quoc/workspaces/ai/docs/ui/style-guide.md) | - | - |
 | **Testing** | Báo cáo QA | [Test Plan](file:///home/quoc/workspaces/ai/docs/original/testing/qa_test_plan.md) | [Link](file:///home/quoc/workspaces/ai/docs/testing/qa_test_plan.md) | - | - |
 | **Budget** | Dự toán hạ tầng | [Estimate](file:///home/quoc/workspaces/ai/docs/original/budget/cloud_cost_estimate.md) | [Link](file:///home/quoc/workspaces/ai/docs/budget/cloud_cost_estimate.md) | - | - |
