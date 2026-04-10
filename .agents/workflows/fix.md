@@ -35,8 +35,8 @@ BUG_REPORT → TESTER (Isolate) → DEV (Fix) → SECURITY (Review) → LEADER (
 - **Output**: Approval / Block với evidence cụ thể.
 
 ## 4. GATE & LOG (LEADER)
-- **Hành động**: Verify test passes + regression không xảy ra. Ghi nhận Root Cause.
-- **Output**: `walkthrough.md` với Root Cause Analysis + Prevention Plan.
+- **Hành động**: Verify test passes. Ghi nhận Root Cause. Cập nhật nợ kỹ thuật (nếu có) vào `.agents/STATE.md`.
+- **Output**: `walkthrough.md` + `.agents/STATE.md` (Update).
 
 ---
 

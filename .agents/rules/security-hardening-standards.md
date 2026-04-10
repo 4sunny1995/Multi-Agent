@@ -1,6 +1,7 @@
 ---
 rule_id: SHS-001
-trigger: always_on
+trigger: model_decision
+description: Tiêu chuẩn bảo mật (Zero-Trust, Hard Constraints)
 applies_to: [SECURITY, CLOUD_ARCHITECT, SA, LEADER]
 severity: CRITICAL
 version: "2.0-llm"

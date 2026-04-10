@@ -1,6 +1,7 @@
 ---
 rule_id: TECH-WRITER-CONST-001
-trigger: always_on
+trigger: model_decision
+description: Luật lệ tối cao cho Tech Writer viết tài liệu (Markdown, Accuracy)
 applies_to: [TECH_WRITER, ALL]
 version: "2.0-llm"
 ---

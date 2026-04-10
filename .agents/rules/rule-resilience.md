@@ -1,5 +1,6 @@
 ---
-trigger: always_on
+trigger: model_decision
+description: Tính sẵn sàng và tự phục hồi, cơ chế retry (Resilience)
 ---
 
 # 📜 GOVERNANCE RULE: TÍNH SẴN SÀNG VÀ TỰ PHỤC HỒI (RESILIENCE)

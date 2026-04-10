@@ -1,6 +1,7 @@
 ---
 rule_id: SOLID-001
-trigger: always_on
+trigger: model_decision
+description: 5 Nguyên tắc thiết kế hướng đối tượng SOLID
 applies_to: [SA, DEV, LEADER]
 version: "2.0-llm"
 ---

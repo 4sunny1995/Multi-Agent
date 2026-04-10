@@ -1,6 +1,7 @@
 ---
 rule_id: BUDGET-001
-trigger: always_on
+trigger: model_decision
+description: Quản lý ngân sách Cloud & ước tính chi phí hạ tầng
 applies_to: [OPS, SA, LEADER]
 version: "2.0-llm"
 ---

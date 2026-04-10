@@ -1,7 +1,8 @@
 ---
 rule_id: LPE-001
 role: ALL
-trigger: always_on
+trigger: model_decision
+description: Tiêu chuẩn Prompt Engineering cho AI Agent (XML tags, Token budget)
 version: "1.0"
 ---
 

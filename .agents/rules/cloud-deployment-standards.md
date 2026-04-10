@@ -1,6 +1,7 @@
 ---
 rule_id: CLD-001
-trigger: always_on
+trigger: model_decision
+description: Tiêu chuẩn triển khai Cloud (Docker, CI/CD, Containerization)
 applies_to: [CLOUD_ARCHITECT, SA, LEADER]
 version: "2.0-llm"
 ---

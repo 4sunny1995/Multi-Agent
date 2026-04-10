@@ -1,6 +1,7 @@
 ---
 rule_id: SSA-001
-trigger: always_on
+trigger: model_decision
+description: Chiến lược Thích ứng Quy mô (S/M/L) tránh phân rã quá mức
 applies_to: [LEADER, SA, BA, DEV]
 version: "1.0-llm"
 ---

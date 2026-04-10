@@ -1,6 +1,7 @@
 ---
 rule_id: SDC-001
-trigger: always_on
+trigger: model_decision
+description: Quản lý Bảo mật & Bí mật, Cấu hình Động (SDC-001)
 applies_to: [ALL]
 version: "2.0-llm"
 ---
