@@ -1,6 +1,7 @@
 ---
 rule_id: CLEAN-CODE-001
-trigger: always_on
+trigger: model_decision
+description: Quy tắc viết mã sạch (Naming, Function laws, Tech Debt)
 applies_to: [DEV, LEADER, SA]
 version: "2.0-llm"
 ---

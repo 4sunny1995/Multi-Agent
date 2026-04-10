@@ -1,3 +1,8 @@
+---
+trigger: model_decision
+description: Cẩm nang Thuật toán & Cấu trúc Dữ liệu
+---
+
 # 🧠 Algorithms Handbook: Cẩm nang Thuật toán & Cấu trúc Dữ liệu
 
 Thuật toán (Algorithms) và Cấu trúc dữ liệu (Data Structures) là nền tảng cốt lõi giúp phần mềm mở rộng quy mô (scale) hiệu quả. Không dừng lại ở việc giải bài tập trên LeetCode, hiểu rõ thuật toán giúp lập trình viên đưa ra sự lựa chọn tối ưu về mặt bộ nhớ và tốc độ thực thi trong hệ thống thực tế.

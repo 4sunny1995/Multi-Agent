@@ -1,6 +1,7 @@
 ---
 rule_id: ENTERPRISE-STANDARDS-001
-trigger: always_on
+trigger: model_decision
+description: Tiêu chuẩn hệ thống quy mô lớn (Microservices, API, Logging)
 applies_to: [SA, LEADER, CLOUD_ARCHITECT]
 version: "2.0-llm"
 ---

@@ -50,8 +50,8 @@ USER_REQUEST → BA → [DESIGNER] → SA+CLOUD → SECURITY → DEV → TESTER+
 - **Output**: `docs/testing/reports.md` + `docs/business/user-guide.md`.
 
 ## 7. FINAL GATE (LEADER — 7 Gates)
-- **Hành động**: Review qua 7 Gates. PASS → tag Git. FAIL → gửi lại Agent cụ thể.
-- **Output**: `walkthrough.md` + `git tag vX.Y.Z`.
+- **Hành động**: Review qua 7 Gates. Cập nhật trạng thái kiến trúc mới nhất vào `.agents/STATE.md`. PASS → tag Git.
+- **Output**: `walkthrough.md` + `git tag vX.Y.Z` + `.agents/STATE.md`.
 
 ---
 
