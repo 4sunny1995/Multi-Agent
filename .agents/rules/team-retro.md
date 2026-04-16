@@ -9,105 +9,52 @@ Tài liệu này ghi lại các bài học kinh nghiệm từ quá trình vận 
 ---
 
 ## 🗄️ Khối lưu trữ (Archived)
-- Lịch sử từ **Sprint 2 đến Sprint 4.3** đã được nén lại (để tiết kiệm Token Context).
-- **Thành tựu chính**: Thiết lập hệ thống 13 Roles, 12 Workflows chuyên sâu, quy chuẩn Database/Security/Cloud, và chuyển hóa LEADER sang tư duy cấu trúc CTO.
-
+> Lịch sử từ **Sprint 2 đến Sprint 5.3** đã được nén lại và chuyển nhượng sang file `team-retro-archive.md` (Giải phóng 60% Token Context).
+- **Thành tựu lõi**: Thiết lập hệ thống 13 Roles, 12 Workflows chuyên sâu, LPE-001 Enforcement, và tái cấu trúc hệ thống Rules thành các Logic Gates tuyệt đối.
 ---
 
-## 📅 SPRINT 5.3: Rules Optimization (Current)
+## 📅 SPRINT 6.0: The Intelligent Autonomous Era (Current)
+
+### 📊 Phân tích Hành vi Đại cục: SWC Matrix
+Nhằm chuẩn bị giải quyết các giới hạn nền tảng tiếp theo của hệ thống (*Token Context, Scalability và Destructive Over-engineering*), hội đồng Agent đã thiết lập bảng phân tích năng lực:
+
+| Hạng mục | Khái niệm cốt lõi | Biểu diễn trong hệ thống thực tế |
+| :--- | :--- | :--- |
+| **Strengths** (Sức mạnh) | Tính chuyên môn sâu & Phân quyền rành mạch | 13 Roles, 12 Workflows chặn Gate tuyệt đối. Các Rule nén siêu mỏng (SWE-001, CLD-002) giảm thiểu Token vắt kiệt. |
+| **Weaknesses** (Điểm yếu) | Nạn "Over-Engineering" & Rào cản Context | Tư duy hệ thống rập khuôn kiểu Enterprise, khiến các ứng dụng "đồ chơi" (MVP, học thuật) bị ngộp tài liệu. Rào cản đọc file > 800 LOC. |
+| **Challenges** (Thách thức) | Vượt ngưỡng Giới hạn LLM Vận hành | 1. **Mù Codebase quá khổ**: Không có Semantic Vector Search sẽ khiến LLM bó tay với Source Code triệu dòng. <br> 2. **Rủi ro tự trị (Auto-run)**: Chưa có cơ chế Safe-Backup tự động trước khi `replace_file_content` bị lỗi. |
 
 ### 🏆 Thành tựu (Design Wins)
-1. **LPE-001 Enforcement**: 100% Rules cốt lõi đã được tái cấu trúc thành XML-like, giúp LLM parse context nhanh và chính xác hơn.
-2. **Consolidation**: Gộp thành công Security & Environment rules vào các mã hiệu thống nhất (SDC-001, CLD-001).
-3. **Execution Readiness**: Các quy định lý thuyết được chuyển đổi thành các "Gates" và "Checklists" có thể thực thi ngay lập tức.
+1. **Diệt Over-Engineering**: Xây dựng luồng nhánh của `/dev` chia làm 2 cấp `[ENTERPRISE]` và `[MVP-MICRO]`.
+2. **Khắc phục Mù Ngữ cảnh**: Cấy ghép "Semantic Knowledge Map" và "Business Domain" vào `STATE.md`, ép BA phải Thấu cảm trước khi phân tích dữ liệu.
+3. **Chống Rủi ro Tự trị**: Thiết lập `LAW 4: Safe-Backup` trong `operation-safety.md`, ngăn Agent tự động phá source.
+4. **Đồng bộ Hoá Bản năng (100%)**: Cập nhật Role files của BA, SA, TESTER, LEADER giúp toàn bộ đội ngũ cốt lõi hành động theo triết lý "Thấu cảm" và "Tối ưu quy mô" một cách tự nhiên.
 
-### 💡 Bài học (Knowledge Upgrade)
-> **"Rules không phải là câu chữ để đọc, mà là các hàm điều kiện (Logic Gates) để chạy."**
-> - Một Rule mơ hồ là một rủi ro hỏng hóc hệ thống.
-> - Cấu trúc thẻ XML giúp AI phân tách rõ ràng giữa "Tôi là ai" và "Tôi không được làm gì".
-
-### ✅ Final Verification Sprint 5
-- [x] Roles: Optimized
-- [x] Workflows: Optimized
-- [x] Rules: Optimized
-- [x] Master Config: Ready
-
----
-
-## 📅 SPRINT 5.0: The Autonomous Era (Current)
-- **Mục tiêu**: Nâng cao tính tự chủ, tự vận hành và tự hoàn thiện của đội ngũ Agent.
-- **Chiến lược**:
-    - Tích hợp 7 Gates vào bản năng thiết kế (CTO-001).
-    - Tự động hóa trích xuất báo cáo kỹ thuật (/report).
-    - Duy trì tiêu chuẩn bảo mật SHS-001 xuyên suốt.
-- **Checkpoint**: Hệ thống có khả năng tự phát hiện nợ kỹ thuật (Technical Debt) mà không cần User nhắc nhở.
+### 📚 Cross-Team Lessons Learned Table
+| Vấn đề / Tech Debt | Nguyên nhân gốc rễ (Root Cause) | Giải pháp đã áp dụng & Rule mới |
+| :--- | :--- | :--- |
+| Nợ kỹ thuật âm thầm | Do lười refactor, thiếu nhận diện sớm | Nâng cấp `inspect.md` với AI Pattern Recognition |
+| Quên kiểm soát chi phí | Chỉ có dự toán, không có alert | Ép buộc CloudWatch/Billing alarms trong `BUDGET-001` |
+| Lọt lỗi bảo mật từ thư viện | Quét 1 lần lúc deploy là không đủ | Bổ sung 24/7 scanning vào `SHS-001` & `/secure` |
+| Gây vỡ tính năng cũ (Regression) | BA phân tích requirements như xây mới | Cập nhật `/dev` thêm "Feature Impact Classification" (FIC). |
+| Over-Engineering lãng phí Token | Agent bị dính tư duy Enterprise cho dự án bé | Bổ sung Bypass `[MVP-MICRO]` vào luồng `/dev` |
+| BA thiết kế luồng vô dụng | Thiếu context người dùng và Pain points thực tế | Nhúng `BUSINESS DOMAIN` vào `STATE.md`, ép BA đọc trước khi viết BRD |
+| AI phá hoại source code (Destructive) | Replace lầm file khi chạy Auto-run | Ban hành `LAW 4: Safe-Backup` bắt buộc tạo `.bak` trước khi đè nội dung |
+| Bị phân mảnh cấu hình (Tồn tại 2 file glossary.json ở config và rules) | Thiếu góc nhìn toàn cảnh, lọc file theo Single Directory (`list_dir` cục bộ). | Nâng cấp `AGS-001` (Global Context Discovery), ép buộc dùng `grep_search` trên toàn dự án khi xử lý thay đổi kiến trúc/tài liệu cấu hình nền tảng. |
 
 ---
 
-## 📅 SPRINT 5.1: LLM-First Architecture (Current)
+## 📅 SPRINT 5.6: The Predictive Era
 
-### 🏆 Thành tựu về Thiết kế (Design Wins)
-1. **LLM Behavioral Anchoring**: Bổ sung `<activation>` và `<thinking_pattern>` vào 100% Roles — LLM giờ biết *khi nào* hoặc *nghĩ gì* trước khi hành động.
-2. **Anti-pattern Codification**: Mỗi Role có ít nhất 4 điều cấm rõ ràng — loại bỏ "hallucination" về scope của từng Agent.
-3. **Master Config (LLM-MASTER-001)**: Tạo System Prompt đầu nguồn — mọi Agent đọc file này trước để "cộng não" đúng context.
-4. **LPE-001 Standard**: Thiết lập tiêu chuẩn viết tài liệu `.agents` tối ưu cho LLM (Token Budget, XML Tags, Few-shot).
-
-### 💡 Bài học (Knowledge Upgrade)
-> **"Tài liệu viết cho người đọc ≠ Tài liệu viết cho LLM."**
-> - Người đọc cần đoạn văn mạch lạc.
-> - LLM cần **constraints rõ ràng, activation conditions cụ thể, và anti_patterns tường minh**.
-
-### 🚀 Hành động tiếp theo (Next Sprint)
-- Xem xét few-shot examples cho các Role phức tạp (SA, LEADER).
-- Thiết lập cơ chế tự động kiểm tra LPE-001 compliance khi tạo Role mới.
+### 🏆 Thành tựu (System Wins)
+1. **AI-Driven RCA**: Nâng cấp `/inspect` với khả năng dùng LLM truy vết Root Cause thay vì chỉ dò regex độ dài file.
+2. **Predictive Security**: Tích hợp quy chuẩn dò tìm 24/7 CVE (Dependencies) vào `secure.md` và `SHS-001`.
+3. **Cost Auto-Alerting**: Đưa cảnh báo ngân sách Cloud tự động vào `BUDGET-001`.
+4. **Cross-Team Intelligence**: Thiết lập Bảng bài học kinh nghiệm dùng chung để các Agent và Human cùng học hỏi.
 
 ---
 
-## 📅 SPRINT 5.2: Workflow Optimization (Current)
 
-### 🏆 Thành tựu (Design Wins)
-1. **12/12 Workflows chuẩn hóa LPE-001**: Mọi workflow có frontmatter, triggers, flow diagram, failure points.
-2. **Failure Points Codification**: Mỗi workflow có ≥ 3 điểm thất bại phổ biến và giải pháp phòng ngừa.
-3. **Trigger Keywords**: LLM giờ tự động nhận diện workflow phù hợp từ keywords của User.
-4. **Atomic Flow**: Mỗi bước trong workflow có Input/Output rõ ràng + Block conditions tường minh.
-
-### 💡 Bài học (Knowledge Upgrade)
-> **"Workflow không phải là checklist — là tập hợp các Block Conditions ngăn Agent đi sai đường."**
-> - Thiếu Failure Points → Agent không biết dừng ở đâu.
-> - Thiếu Triggers → LLM không biết workflow nào phù hợp.
-> - Thiếu Block Conditions → Mọi bước đều "pass" kể cả khi sai.
-
-### ✅ Retrospective Checklist 6.0
-- [x] 100% Roles có `<activation>`, `<thinking_pattern>`, `<anti_patterns>`?
-- [x] 100% Workflows có `triggers`, `failure_points`, `block_conditions`?
-- [x] Master Config (LLM-MASTER-001) đã được tạo?
-- [x] LPE-001 Standard đã được khai báo trong rules/?
-- [x] Team Retro đã ghi nhận Sprint 5.1 và 5.2?
-
----
-> [!IMPORTANT]
-> **"Hệ thống không thể tự tiến hóa nếu không có cơ chế phản tư. /retro là DNA của sự tiến hóa."**
-
----
-> **"LLM-First. Human-Verified. Enterprise-Ready."** — _Antigravity AI Team v5.2_
-
-
----
-> [!IMPORTANT]
-> **"AI Team mạnh không phải vì từng thành viên thông minh — mà vì mọi thành viên biết giới hạn của mình và tuân thủ nó."**
-
----
-> **"Design for the LLM. Engineer for the Human."** — _Antigravity AI Team_
-
-
----
-> [!IMPORTANT]
-> **"Tự do của AI nằm trong khuôn khổ của sự kỷ luật kỹ thuật."** — _Antigravity Strategic Leader_
-
----
-> **"Building an autonomous future, one retrospective at a time."** — _Antigravity AI Team_
-
----
 
 ## 📅 SPRINT 5.4: Tiết Kiệm Token & Context Optimization (Current)
 
@@ -138,3 +85,15 @@ Tài liệu này ghi lại các bài học kinh nghiệm từ quá trình vận 
 
 ### 🚀 Hành động tiếp theo
 - **LEADER**: Chú ý thực thi ghi dữ liệu vào `.agents/STATE.md` ở bước 7 (FINAL GATE).
+
+---
+
+## 📅 SPRINT 5.6: The Discovery & Analysis Era (Current)
+
+### 🏆 Thành tựu (System Wins)
+1. **Khởi tạo `/analyse` (ANA-001)**: Thiết lập chốt chặn nghiên cứu chuyên sâu, ép buộc quy trình Discovery (BA) và Technical Assessment (SA) trước khi triển khai.
+2. **Failure Point Prevention**: Tích hợp các rào cản chống "Shallow Research" và "Assumption of Greenfield" ngay trong workflow định nghĩa.
+
+### 💡 Bài học (Knowledge Upgrade)
+> **"Thấu cảm là chìa khóa của Giải pháp."**
+> - Một hệ thống không có pha phân tích rõ ràng thường dẫn đến lãng phí 30-50% công sức lập trình do sai lệch yêu cầu.

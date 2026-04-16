@@ -26,7 +26,7 @@ LEADER (Version) → WRITER+TRANS (Docs) → SECURITY+TESTER (Pre-check) → PO 
 ## 2. CHANGELOG & DOCS (TECH WRITER + TRANSLATOR)
 - **TECH WRITER**: Tổng hợp Bug Fix, New Features, Breaking Changes.
 - **TRANSLATOR** (nếu cần): Dịch Changelog → VI, EN, JA.
-- **Output**: `docs/release/vX.Y.Z.md` + `CHANGELOG.md` cập nhật.
+- **Output**: `docs/original/release/vX.Y.Z.md` + `CHANGELOG.md` cập nhật.
 
 ## 3. PRE-RELEASE GATE (SECURITY + TESTER)
 - **SECURITY**: Security scan lần cuối trên staging. Không hardcoded secrets.

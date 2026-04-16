@@ -27,7 +27,7 @@ version: "2.0-llm"
 
 * **Giữ nguyên thuật ngữ chuyên ngành (Keep Original):** Tuyệt đối không dịch các thuật ngữ đã trở thành tiêu chuẩn quốc tế trừ khi có yêu cầu đặc biệt.
     * *Ví dụ:* `Middleware`, `Back-end`, `Front-end`, `Full-stack`, `API`, `Framework`, `Microservices`, `Latency`, `Throughput`.
-* **Sử dụng bảng thuật ngữ (Glossary):** Phải truy xuất `Technical_Glossary.db` trước khi dịch. 
+* **Sử dụng bảng thuật ngữ (Glossary):** Phải truy xuất `glossary.json` trước khi dịch. 
     * *Ví dụ:* `Thread` -> `Luồng`, `Process` -> `Tiến trình`, `Instance` -> `Thực thể/Instance`.
 * **Tránh dịch sai ngữ cảnh:** Từ `Bank` trong IT thường là `Data Bank` (Kho dữ liệu) hoặc `Memory Bank`, không phải "Ngân hàng".
 

@@ -18,16 +18,19 @@ LEADER (Scan) → LEADER (Compliance) → DEV (Refactor) → LEADER (Verify)
 
 ---
 
-## 1. STATIC ANALYSIS (LEADER)
+## 1. AI-DRIVEN ROOT CAUSE ANALYSIS (LEADER)
 // turbo
-- **Hành động**: `list_dir src/` + tìm file > 200 dòng. `grep_search` các pattern nguy hiểm.
-- **Pattern cần tìm**: Hàm > 15 dòng, `if-else > 3 levels`, magic numbers, hardcoded strings.
-- **Output**: Danh sách "Suspects" với file:line reference.
+- **Hành động 1 (Static)**: `list_dir src/` tìm file lớn, `grep_search` pattern cơ bản (hàm > 15 dòng, if-else > 3 mức).
+- **Hành động 2 (AI Pattern Recognition)**: Đọc nội dung module nghi ngờ (qua `view_file`) và dò tìm "vi khuẩn" thiết kế: 
+  - Khối mã có Tight-coupling hay không?
+  - Dòng dữ liệu (data flow) có mâu thuẫn dẫn đến state leak không?
+  - Xác định Root Cause sâu xa tạo ra Tech Debt (VD: sai Pattern, nhồi nhét Feature).
+- **Output**: Danh sách "Suspects" kèm lý giải AI-Driven Root Cause.
 
-## 2. COMPLIANCE CHECK (LEADER)
+## 2. COMPLIANCE & SEVERITY TAGGING (LEADER)
 - **Đối chiếu** với `clean-code.md`, `solid.md`, `design-pattern.md`.
-- **Phân loại** mỗi vấn đề: `[CRITICAL]` / `[HIGH]` / `[MEDIUM]` / `[LOW]`.
-- **Output**: Debt Register với severity và đề xuất fix cụ thể.
+- **AI Tagging**: Đánh giá độ nghiêm trọng không dựa trên độ dài file, mà dựa trên "Bán kính lây lan bug" nếu logic hỏng: `[CRITICAL]` / `[HIGH]` / `[MEDIUM]` / `[LOW]`.
+- **Output**: Debt Register với mã phân loại và hướng refactor.
 
 ## 3. BOY SCOUT REFACTOR (DEV)
 - **Hành động**: DEV xử lý các debt theo thứ tự CRITICAL → HIGH.

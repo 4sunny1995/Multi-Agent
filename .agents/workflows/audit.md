@@ -21,23 +21,23 @@ CODEBASE → AUDITOR (Discovery) → AUDITOR (Mapping) → AUDITOR+BA (Logic) �
 ## 1. DISCOVERY (AUDITOR)
 - **Hành động**: `list_dir` toàn bộ project. Identify files lớn nhất (> 200 dòng).
 // turbo
-- **Output**: `docs/architecture/discovery.md` — System Map với file sizes + entry points.
+- **Output**: `docs/original/architecture/discovery.md` — System Map với file sizes + entry points.
 - **Constraint**: Chỉ đọc — tuyệt đối không sửa.
 
 ## 2. DEPENDENCY MAPPING (AUDITOR)
 - **Hành động**: `grep_search` tìm imports, API calls, DB queries. Vẽ dependency graph Mermaid.
 - **Tìm**: God Objects, circular dependencies, N+1 query patterns.
-- **Output**: Mermaid diagram trong `docs/architecture/discovery.md`.
+- **Output**: Mermaid diagram trong `docs/original/architecture/discovery.md`.
 
 ## 3. LOGIC EXTRACTION (AUDITOR + BA)
 - **AUDITOR**: Đọc code, chuyển logic phức tạp thành plain-language description.
 - **BA**: Validate xem logic đọc được có khớp với nghiệp vụ thực tế không.
-- **Output**: `docs/business/legacy-logic.md` — Viết cho non-technical stakeholders.
+- **Output**: `docs/original/business/legacy-logic.md` — Viết cho non-technical stakeholders.
 
 ## 4. MODERNIZATION ROADMAP (SA + LEADER)
 - **SA**: Đề xuất kiến trúc target và migration strategy.
 - **LEADER**: Ưu tiên hóa theo Business Value và Risk.
-- **Output**: `docs/architecture/roadmap.md` với 3 tier: Quick Wins / Medium / Long-term.
+- **Output**: `docs/original/architecture/roadmap.md` với 3 tier: Quick Wins / Medium / Long-term.
 
 ---
 

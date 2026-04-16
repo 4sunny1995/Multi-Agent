@@ -35,7 +35,7 @@ Chuyển dịch tài liệu kỹ thuật sang đa ngôn ngữ (VI, EN, JA) với
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **Snapshot** | `docs/<category>/<file>.md` | Original Copy | `docs/original/<category>/<file>.md` |
+| **Nguồn** | `docs/original/<category>/<file>.md` | Original Doc | [Nơi lấy nguồn dịch] |
 | **Dịch** | Source doc | Translated Doc | `docs/trans/<lang>/<category>/<file>.md` |
 | **Index** | Analysis | Documentation Index | `docs/README.md` |
 
@@ -46,7 +46,8 @@ Chuyển dịch tài liệu kỹ thuật sang đa ngôn ngữ (VI, EN, JA) với
 2. **Code Protection**: Tuyệt đối không dịch nội dung trong backtick `` ` `` hoặc ```code block```.
 3. **Keep IT Terms**: API, Middleware, Endpoint, Framework, Deploy, Pipeline → giữ nguyên.
 4. **Consistency**: Nếu đã dịch "Execute" là "Thực thi" → toàn bộ file không được dùng "Chạy".
-5. **Auto-Index**: Sau mỗi bản dịch → cập nhật bảng trong `docs/README.md`.
+5. **Katakana Rule (Japanese)**: Dùng Katakana cho các từ mượn tiếng Anh kỹ thuật (VD: デプロイ, アーキテクチャ). Dùng Kanji cho thuật ngữ hành chính kỹ thuật cố định (VD: 仕様書, 依存関係).
+6. **Auto-Index**: Sau mỗi bản dịch → cập nhật bảng trong `docs/README.md`.
 </guidelines>
 
 <anti_patterns>

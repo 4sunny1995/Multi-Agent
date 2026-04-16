@@ -2,7 +2,7 @@
 
 *(Đôi dòng tâm sự gửi tới các kỹ sư phần mềm tương lai, đặc biệt là các bạn sinh viên và những người đang chập chững bước vào nghề).*
 
-Sự xuất hiện của mô hình Multi-Agent (BA, SA, DEV, TESTER) bên trong dự án này mang lại cho chúng ta sức mạnh tuyệt vời. Nó giúp tiết kiệm hàng giờ gõ code rập khuôn và đưa ra những gợi ý thiết kế vô giá.
+Sự xuất hiện của mô hình Multi-Agent bên trong dự án này mang lại cho chúng ta sức mạnh tuyệt vời. Nó giúp tiết kiệm hàng giờ gõ code rập khuôn và đưa ra những gợi ý thiết kế vô giá.
 
 Tuy nhiên, với tư cách là những Người Đi Trước, chúng tôi muốn chia sẻ một góc nhìn: **Hãy để AI làm bệ phóng, đừng vô tình biến nó thành lớp vỏ kìm hãm tư duy của chính bạn.**
 
