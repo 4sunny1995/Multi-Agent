@@ -1,80 +1,185 @@
 {
   "project_name": "Antigravity Multi-Agent",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "terms": [
     {
+      "original": "Architecture",
+      "vi": "Kiến trúc",
+      "ja": "アーキテクチャ",
+      "definition": "Cấu trúc hệ thống"
+    },
+    {
+      "original": "Authentication",
+      "vi": "Xác thực",
+      "ja": "認証 (Ninshou)",
+      "definition": "Kiểm tra danh tính"
+    },
+    {
+      "original": "Authorization",
+      "vi": "Ủy quyền",
+      "ja": "認可 (Ninka)",
+      "definition": "Kiểm tra quyền hạn"
+    },
+    {
+      "original": "Backend / Frontend",
+      "vi": "Backend / Frontend",
+      "ja": "バックエンド / フロントエンド",
+      "definition": "Giữ nguyên phiên âm"
+    },
+    {
+      "original": "Cloud Computing",
+      "vi": "Điện toán đám mây",
+      "ja": "クラウドコンピューティング",
+      "definition": "Thường gọi tắt là クラウド"
+    },
+    {
+      "original": "Deployment",
+      "vi": "Triển khai (Deployment)",
+      "ja": "デプロイ (Depuroi)",
+      "definition": "Đưa ứng dụng lên môi trường vận hành thực tế / Đưa code lên server."
+    },
+    {
+      "original": "Dependency",
+      "vi": "Sự phụ thuộc",
+      "ja": "依存関係 (Izon kankei)",
+      "definition": "Thư viện phụ thuộc"
+    },
+    {
+      "original": "Environment",
+      "vi": "Môi trường",
+      "ja": "環境 (Kankyou)",
+      "definition": "Dev/Staging/Prod"
+    },
+    {
+      "original": "Infrastructure",
+      "vi": "Hạ tầng",
+      "ja": "インフラ (Infura)",
+      "definition": "Hạ tầng kỹ thuật"
+    },
+    {
+      "original": "Interface",
+      "vi": "Giao diện",
+      "ja": "インターフェース",
+      "definition": "UI hoặc Code Interface"
+    },
+    {
+      "original": "Latency",
+      "vi": "Độ trễ",
+      "ja": "レイテンシ (Reitenshi)",
+      "definition": "Phản hồi hệ thống"
+    },
+    {
+      "original": "Microservices",
+      "vi": "Vi dịch vụ",
+      "ja": "マイクロサービス",
+      "definition": "Kiến trúc phần mềm"
+    },
+    {
+      "original": "Optimization",
+      "vi": "Tối ưu hóa",
+      "ja": "最適化 (Saitekika)",
+      "definition": "Tăng hiệu suất"
+    },
+    {
+      "original": "Scalability",
+      "vi": "Tính mở rộng",
+      "ja": "拡張性 (Kakuchousei)",
+      "definition": "Khả năng nâng cấp"
+    },
+    {
+      "original": "Specification",
+      "vi": "Đặc tả / Yêu cầu",
+      "ja": "仕様書 (Shiyousho)",
+      "definition": "Tài liệu kỹ thuật"
+    },
+    {
+      "original": "Vulnerability",
+      "vi": "Lỗ hổng bảo mật",
+      "ja": "脆弱性 (Zeijakusei)",
+      "definition": "Điểm yếu hệ thống"
+    },
+    {
       "original": "Endpoint",
-      "translation": "Endpoint",
+      "vi": "Endpoint",
+      "ja": "エンドポイント",
       "definition": "Điểm cuối của một API để thực hiện giao tiếp dữ liệu."
     },
     {
       "original": "Middleware",
-      "translation": "Middleware",
+      "vi": "Middleware",
+      "ja": "ミドルウェア",
       "definition": "Phần mềm trung gian xử lý các Request/Response giữa Client và Server."
     },
     {
       "original": "Refactor",
-      "translation": "Tái cấu trúc (Refactor)",
+      "vi": "Tái cấu trúc (Refactor)",
+      "ja": "リファクタリング",
       "definition": "Cải thiện mã nguồn mà không làm thay đổi hành vi bên ngoài."
     },
     {
       "original": "Unit Test",
-      "translation": "Kiểm thử đơn vị (Unit Test)",
+      "vi": "Kiểm thử đơn vị (Unit Test)",
+      "ja": "単体テスト (Tantai tesuto)",
       "definition": "Kiểm tra tính đúng đắn của từng khối mã nhỏ nhất (hàm, phương thức)."
     },
     {
       "original": "Artifact",
-      "translation": "Tài liệu hệ thống (Artifact)",
+      "vi": "Tài liệu hệ thống (Artifact)",
+      "ja": "成果物 (Seikabutsu)",
       "definition": "Sản phẩm đầu ra của AI Agent (Plan, Walkthrough, Task)."
     },
     {
-      "original": "Deployment",
-      "translation": "Triển khai (Deployment)",
-      "definition": "Đưa ứng dụng lên môi trường vận hành thực tế."
-    },
-    {
       "original": "BRD",
-      "translation": "BRD",
+      "vi": "BRD",
+      "ja": "BRD",
       "definition": "Business Requirement Document (Tài liệu nghiệp vụ gốc)."
     },
     {
       "original": "Edge Case",
-      "translation": "Trường hợp biên (Edge Case)",
+      "vi": "Trường hợp biên (Edge Case)",
+      "ja": "エッジケース",
       "definition": "Các trường hợp biên, rủi ro, ngoại lệ cần xử lý."
     },
     {
       "original": "TDD",
-      "translation": "TDD",
+      "vi": "TDD",
+      "ja": "TDD",
       "definition": "Test-Driven Development (Viết test trước khi viết code)."
     },
     {
       "original": "Red-Green-Refactor",
-      "translation": "Red-Green-Refactor",
+      "vi": "Red-Green-Refactor",
+      "ja": "レッド・グリーン・リファクター",
       "definition": "Chu trình: Test hỏng -> Code cho Pass -> Tái cấu trúc."
     },
     {
       "original": "Loose Coupling",
-      "translation": "Khớp nối lỏng (Loose Coupling)",
+      "vi": "Khớp nối lỏng (Loose Coupling)",
+      "ja": "疎結合 (Soketsugou)",
       "definition": "Giảm sự phụ thuộc giữa các module."
     },
     {
       "original": "Gatekeeper",
-      "translation": "Gatekeeper",
+      "vi": "Gatekeeper",
+      "ja": "ゲートキーパー",
       "definition": "Vai trò của LEADER trong việc chặn/duyệt code dựa trên quy chuẩn."
     },
     {
       "original": "Turbo",
-      "translation": "Turbo",
+      "vi": "Turbo",
+      "ja": "ターボ",
       "definition": "Các bước thực thi tự động không cần hỏi ý kiến User (ls, mkdir, lint)."
     },
     {
       "original": "Acceptance Criteria",
-      "translation": "Điều kiện nghiệm thu (Acceptance Criteria)",
+      "vi": "Điều kiện nghiệm thu (Acceptance Criteria)",
+      "ja": "受け入れ基準 (Ukeire kijun)",
       "definition": "Criterias to accept a feature (Given-When-Then)."
     },
     {
       "original": "Root Cause",
-      "translation": "Nguyên nhân gốc rễ (Root Cause)",
+      "vi": "Nguyên nhân gốc rễ (Root Cause)",
+      "ja": "根本原因 (Konpon gen'in)",
       "definition": "Nguyên nhân gốc rễ của một vấn đề thay vì chỉ là triệu chứng bên ngoài."
     }
   ]

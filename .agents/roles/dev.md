@@ -37,7 +37,7 @@ Hiện thực hóa Implementation Plan thành code sạch, có unit test, và v�
 | :--- | :--- | :--- | :--- |
 | **Thực thi** | `implementation_plan.md` | Source Code + Unit Tests | `src/`, `tests/` |
 | **Kiểm tra** | Unit Test Rules | Test Results + Coverage | Terminal / `walkthrough.md` |
-| **Báo cáo** | Source Code | Code Snippets + Structure (TRS-001) | `docs/architecture/technical_report.md` |
+| **Báo cáo** | Source Code | Code Snippets + Structure (TRS-001) | `docs/original/architecture/technical_report.md` |
 
 </input_output>
 

@@ -1,52 +1,43 @@
 # ⚖️ Agent Rules Registry: Hiến chương vận hành AI
 
-Thư mục này chứa "Luật lệ" tối cao của hệ thống. Mỗi tệp tin định nghĩa các tiêu chuẩn kỹ thuật và đạo đức mà mọi Agent phải tuân thủ tuyệt đối.
+Thư mục này chứa "Luật lệ" tối cao của hệ thống. Mỗi tệp tin định nghĩa các chuyên gia, tiêu chuẩn kỹ thuật và đạo đức mà mọi Agent phải tuân thủ tuyệt đối.
 
 ---
 
-## 🏗️ Phân loại Quy chuẩn (28)
+## 🏗️ Phân loại Quy chuẩn (Nâng cấp 7.0)
 
-### 1. 📂 Core Development (Phát triển cốt lõi)
-- [CLEAN-CODE](file:///clean-code.md): Viết mã sạch, dễ đọc.
-- [SOLID](file:///solid.md): 5 nguyên tắc thiết kế hướng đối tượng.
-- [UNIT-TEST](file:///unit-test.md): Quy chuẩn TDD & Testing.
-- [DESIGN-PATTERN](file:///design-pattern.md): Các mẫu thiết kế hệ thống GOF.
-- [ALGORITHMS](file:///algorithms-handbook.md): Cẩm nang thuật toán & tối ưu.
+### 1. 🚀 Core Engineering & Development
+- [**SWE-001**](software-engineering-standards.md): Chuẩn Kỹ nghệ Phần mềm (Clean Code, SOLID, TDD, Patterns).
+- [**ALGO-001**](algorithms-handbook.md): Cẩm nang thuật toán, Data Structures & System Design.
+- [**ENT-001**](enterprise-standards.md): Tiêu chuẩn hệ thống quy mô lớn (Microservices, gRPC, API).
 
-### 2. 🤖 LLM Engineering (Thiết kế cho AI Models)
-- [LPE-001](file:///llm-prompt-engineering.md): Chuẩn viết `.agents` tối ưu cho LLM.
-- [MASTER-CFG](file:///.agents/config/llm-agent-config.md): System Prompt đầu nguồn cho mọi Agent.
+### 2. 🏗️ Infrastructure & Operations
+- [**INF-001**](infrastructure-standards.md): Chuẩn Hạ tầng (Detection, Cloud Ops, FinOps).
+- [**OPS-001**](operations-standards.md): Vận hành an toàn, Sao lưu và Tự phục hồi.
+- [**SCALE-001**](system-scale-alignment.md): Chiến lược thích ứng quy mô (S/M/L).
+- [**VER-001**](versioning-standards.md): Quản lý phiên bản SemVer.
 
-### 2. 🛡️ Security & Environment (Bảo mật & Môi trường)
-- [SECURE](file:///security-hardening-standards.md): Cường hóa hệ thống.
-- [SDC-001](file:///external-secret.md): Quản lý cấu hình động & Secret Manager.
-- [DBS-001](file:///database-protection-standards.md): Bảo vệ Database Registry.
+### 3. 🛡️ Security & Environment
+- [**SEC-001**](security-hardening-standards.md): Cường hóa bảo mật hệ thống.
+- [**SDC-001**](external-secret.md): Quản lý Bí mật & Cấu hình Động (Secure Dynamic Config).
+- [**DBS-001**](database-protection-standards.md): Bảo vệ Database Registry & Migration.
 
-### 3. 🏗️ Architecture & Cloud (Kiến trúc & Hạ tầng)
-- [CTO-VISION](file:///cto-strategic-vision.md): Tầm nhìn chiến lược 2-5 năm.
-- [CLD-001](file:///cloud-deployment-standards.md): Tiêu chuẩn triển khai Cloud.
-- [HOT-SWAP](file:///hot-swapping-standards.md): Cấu hình động & Hot-swapping.
-- [INF-DET](file:///infra-detection-standards.md): Khảo sát hạ tầng hiện có.
-- [BUDGET-001](file:///cloud-budget.md): Quản lý dự toán & FinOps.
+### 4. 📝 Documentation & Communication
+- [**DOC-001**](documentation-standards.md): Quy chuẩn Tài liệu & Báo cáo kỹ thuật (Accuracy, Structure).
+- [**TRL-001**](translate-language.md): Quy chuẩn dịch thuật chuyên ngành IT.
+- [**UIX-001**](ui-ux-design-principles.md): Nguyên tắc thiết kế UI/UX & Thẩm mỹ Nhật Bản.
 
-### 4. 📝 Operations & Reporting (Vận hành & Báo cáo)
-- [TRL-IT-001](file:///translate-language.md): Quy chuẩn đa ngôn ngữ IT Specialization.
-- [TRS-001](file:///technical-reporting-standards.md): Báo cáo kỹ thuật.
-- [VER-001](file:///versioning-standards.md): Quản lý phiên bản SemVer.
-- [TW-CONST-001](file:///tech-writer-constraints.md): Luật lệ cho Tech Writer.
-
-### 5. 🛸 Antigravity Standards (Quy chuẩn Hệ thống)
-- [AGS-001](file:///antigravity-standard.md): Quy chuẩn vận hành AI Assistant.
-- [RESP-AI](file:///home/quoc/workspaces/ai/RESPONSIBLE_AI.md): Đạo đức & An toàn AI.
-- [ADV-PRIN](file:///ADVANCED_PRINCIPLES.md): Tư duy lập trình hiện đại.
-- [OPER-SAFE-001](file:///operation-safety.md): Vận hành an toàn.
+### 5. 🛸 Antigravity Framework
+- [**AGS-001**](antigravity-standard.md): Quy chuẩn vận hành Antigravity (Tiếng Việt-First).
+- [**LPE-001**](llm-prompt-engineering.md): Tiêu chuẩn Prompt Engineering cho Agent.
+- [**LEGACY-001**](legacy-principles.md): Quy tắc xử lý & Audit hệ thống cũ.
 
 ---
 
-## 🚦 Quy trình tiến hóa (Evolution)
-
-Bộ quy tắc này không cố định. Sau mỗi lần chạy lệnh `@[/retro]`, các bài học kinh nghiệm sẽ được đúc rút và cập nhật vào:
-- [RETRO-LOG](file:///team-retro.md): Nhật ký tiến hóa của đội ngũ Agent.
+### 🧠 Strategic Knowledge & Evolution
+- [**CTO-VISION**](cto-strategic-vision.md): Tầm nhìn chiến lược và kiến trúc dài hạn.
+- [**GLOSSARY**](glossary.json): Từ điển thuật ngữ kỹ thuật thống nhất.
+- [**RETRO-LOG**](team-retro.md): Nhật ký tiến hóa của đội ngũ Agent. ([Archive](team-retro-archive.md))
 
 ---
 > **"Luật lệ là xi măng gắn kết các viên gạch mã nguồn thành một tòa lâu đài bền vững."** 

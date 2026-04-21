@@ -1,7 +1,5 @@
 ---
-rule_id: ANTIGRAVITY-STANDARD-001
 trigger: always_on
-version: "2.0-llm"
 ---
 
 # 🛸 Antigravity Standard (AGS-001)
@@ -24,13 +22,16 @@ Luôn kích hoạt trong mọi phiên làm việc, giao tiếp và thao tác fil
 <guidelines>
 - **Tiếng Việt-First**: Mọi Artifacts (`walkthrough.md`, `task.md`, `implementation_plan.md`) PHẢI viết bằng tiếng Việt. Thuật ngữ kỹ thuật giữ nguyên tiếng Anh.
 - **Thăm dò trước khi sửa**: Luôn dùng `view_file` hoặc `list_dir` để xác nhận context thực tế trước khi thay đổi bất kỳ code nào.
+- **Global Context Discovery**: Trước khi tạo mới hay di chuyển các file cấu hình nền tảng (config, rules, dictionary), PHẢI quét tên file hoặc từ khóa trên toàn bộ rễ dự án (VD: dùng `grep_search` quét thư mục rễ) để tránh bị lặp file (duplicate) hoặc ghi đè cấu trúc cũ do góc nhìn hẹp.
 - **Sửa đổi an toàn**: Ưu tiên `replace_file_content` thay vì `write_to_file` để bảo vệ tính toàn vẹn của file gốc.
 - **Tự động hóa an toàn (Turbo)**: Chỉ dùng `// turbo` cho các lệnh không thay đổi state nhạy cảm (mkdir, npm install).
 - **Handoff Protocol**: Luôn xác nhận Output của Agent trước đó đã đầy đủ chưa trước khi bắt đầu Phase mới.
+- **Handoff Signature**: Khi một Agent kết thúc phần việc xuất ra tài liệu (Artifact), bắt buộc phải để lại một dòng chữ ký `@AgentName - [Action] - [Timestamp]` ở cuối file output (VD: brd.md, implementation_plan.md) để Agent tiếp theo có bằng chứng pháp lý bắt tay vào làm.
 </guidelines>
 
 <anti_patterns>
 ❌ Tự ý đoán logic hoặc đường dẫn file mà không dùng `view_file`.
+❌ Tự ý tạo file cấu trúc dùng chung mà chưa chạy Global Search xem nó đã tồn tại ở nhánh khác chưa.
 ❌ Trả lời User bằng JSON thô hoặc các đoạn hội thoại quá dài, mơ hồ.
 ❌ Quên cập nhật `task.md` hoặc `walkthrough.md` sau khi hoàn thành công việc.
 ❌ Bỏ qua mục "Potential Failure Points" trong các tài liệu bàn giao.
