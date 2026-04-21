@@ -20,16 +20,22 @@ rule_id: unit-test-001
 ## 🏗️ 2. Cấu trúc AAA (Arrange - Act - Assert)
 
 ```javascript
-test('nên cộng hai số chính xác', () => {
-  // 1. Arrange: Chuẩn bị dữ liệu
-  const a = 1;
-  const b = 2;
+describe('Hàm add()', () => {
+  // 1. Success Case
+  test('nên cộng hai số dương chính xác', () => {
+    const result = add(1, 2);
+    expect(result).toBe(3);
+  });
 
-  // 2. Act: Thực thi hàm
-  const result = add(a, b);
+  // 2. Edge Case: Dữ liệu rỗng (Null/Undefined)
+  test('nên ném lỗi nếu tham số truyền vào bị thiếu', () => {
+    expect(() => add()).toThrow('Tham số không hợp lệ');
+  });
 
-  // 3. Assert: Kiểm tra kết quả
-  expect(result).toBe(3);
+  // 3. Edge Case: Sai định dạng (String thay vì Number)
+  test('nên ném lỗi nếu tham số không phải là số', () => {
+    expect(() => add("1", 2)).toThrow('Tham số phải là số');
+  });
 });
 ```
 
