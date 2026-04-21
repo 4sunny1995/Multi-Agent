@@ -1,24 +1,21 @@
----
-description: Quy trình sửa lỗi an toàn (Safe Fix) với bộ 3 Agent TESTER, DEV, LEADER.
----
+# 🩹 Workflow: Sửa Lỗi Kiên Cố (/fix)
 
-# 🩹 Workflow: Sửa Lỗi (/fix)
+Quy trình sửa lỗi nhanh nhưng an toàn tuyệt đối cho hệ thống Enterprise.
 
-Quy trình sửa lỗi nhanh nhưng an toàn.
-
-## 1. ISOLATE (TESTER)
+## 1. ISOLATE BUG (TESTER)
 - **Hành động**: Tái hiện lỗi bằng một bài Test thất bại (RED).
-// turbo
-- **Tự động**: Chạy suite test hiện tại để xác nhận lỗi bị tái hiện.
-- **Bàn giao**: File test gây lỗi.
+- **Kết quả**: Xác định Root Cause và Edge Case bị bỏ sót.
 
 ## 2. SURGICAL FIX (DEV)
 - **Hành động**: DEV sửa lỗi để Pass bài test của TESTER.
+- **Ràng buộc [DBS-001]**: Nếu việc sửa lỗi yêu cầu thay đổi cấu trúc Database hiện có, PHẢI dừng lại để User (PO) phê duyệt thông qua **[DB_CHECKPOINT]**.
 - **Ràng buộc**: Sửa tối giản nhất (KISS).
-// turbo
-- **Tự động**: Chạy lại bài test sau khi sửa (VD: `npm test <file>`).
-- **Bàn giao**: Code đã được sửa (GREEN).
+- **Phụ**: Cập nhật Unit Test tương ứng.
 
-## 3. AUDIT GATE (LEADER)
-- **Hành động**: LEADER kiểm tra Root Cause và Regression.
+## 3. SECURITY REVIEW (SECURITY)
+- **Hành động**: Rà soát xem bản sửa lỗi có vô tình tạo ra lỗ hổng bảo mật mới nào không (Regressions).
+- **Bàn giao**: Phê chuẩn sơ bộ cho bản vá.
+
+## 4. AUDIT & LOG (LEADER)
+- **Hành động**: LEADER kiểm duyệt toàn bộ quá trình và Regression tests.
 - **Kết xuất**: `walkthrough.md`.
