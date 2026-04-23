@@ -1,6 +1,8 @@
 ---
+rule_id: UNIT-TEST-001
 trigger: always_on
-rule_id: unit-test-001
+applies_to: [DEV, TESTER, LEADER]
+version: "2.0-llm"
 ---
 
 # 🧪 Unit Test: Nền tảng của chất lượng phần mềm

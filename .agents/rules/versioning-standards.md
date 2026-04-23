@@ -1,33 +1,56 @@
 ---
 rule_id: VER-001
-role: LEADER
-trigger: release, versioning
+trigger: on_release
+applies_to: [LEADER, TECH_WRITER, CLOUD_ARCHITECT]
+version: "2.0-llm"
 ---
 
-# 📦 Semantic Versioning & Release Standards (AI-Ready)
+# 📦 Versioning & Release Standards (VER-001)
 
-Mục tiêu: Đảm bảo tiến trình phát hành (Release) luôn minh bạch, có thể truy vết (Traceability) và an toàn tuyệt đối.
+> **Activation**: Kích hoạt khi LEADER chuẩn bị `git tag`, `CHANGELOG`, hoặc `/release`.
 
-## 1. Định nghĩa Phiên bản (SemVer X.Y.Z)
-- **MAJOR (X)**: Thay đổi lớn về kiến trúc, phá vỡ tính tương thích ngược (Breaking changes), hoặc thay đổi toàn bộ mục tiêu của Agent.
-- **MINOR (Y)**: Thêm tính năng mới (New Story), thêm Rule mới hoặc nâng cấp Model (e.g., Flash -> Pro) mà không làm hỏng logic hiện có.
-- **PATCH (Z)**: Sửa lỗi (Fix bug), cập nhật tài liệu hoặc tối ưu hóa hiệu năng (Refactor) không thay đổi hành vi.
+## ⚡ SemVer Decision Tree
 
-## 2. Quy chuẩn Release Notes (TECH WRITER)
-- **What's New**: Liệt kê các tính năng/Story mới từ BA.
-- **Technical Changes**: Các thay đổi về hạ tầng, cấu hình từ SA/CLOUD.
-- **Fixed Issues**: Danh sách các Bug ID đã được sửa từ TESTER.
-- **Security Check**: Xác nhận trạng thái "Green" từ SECURITY.
+```
+Thay đổi phá vỡ backward compatibility? → MAJOR (X+1.0.0)
+Thêm tính năng mới, không phá vỡ gì? → MINOR (X.Y+1.0)
+Sửa bug / refactor / docs? → PATCH (X.Y.Z+1)
+```
 
-## 3. Chốt chặn Phát hành (Gatekeeper Approval)
-- **Digital Approval**: Mọi bản Release phải có tệp `approval_signature.md` được ký bởi **PO/CTO (User)**.
-- **Rollback Test**: Phải thử nghiệm quy trình khôi phục phiên bản cũ trước khi thực hiện Deploy Production.
-- **Snapshot/Backup**: Bắt buộc tạo bản sao lưu Database toàn vẹn trước khi Migrate.
-
-## 4. Tầm nhìn CTO (Scalability & Feedback)
-- **Monitoring Integration**: Tự động kích hoạt các Dashboards giám sát sau khi Release thành công.
-- **Team Retro**: Mỗi bản Release (Major/Minor) phải đi kèm một buổi `/retro` để thu hoạch bài học kinh nghiệm.
+**Examples**:
+- Thêm endpoint mới → `1.1.0`
+- Sửa null pointer bug → `1.1.1`  
+- Đổi auth schema → `2.0.0`
 
 ---
+
+## ✅ Release Gate Checklist (LEADER phải pass trước git tag)
+
+- [ ] `/dev` hoặc `/fix` đã pass tất cả 7 LEADER Gates?
+- [ ] TESTER xác nhận regression tests PASS?
+- [ ] SECURITY xác nhận "Green" (không có Critical/High open)?
+- [ ] TECH WRITER đã hoàn thành Changelog và Release Notes?
+- [ ] DB backup/snapshot đã được tạo?
+- [ ] Rollback plan đã được document và test?
+- [ ] PO/User đã ký "Digital Approval"?
+
+---
+
+## 📝 Changelog Format (TECH WRITER)
+
+```markdown
+## [1.2.0] - YYYY-MM-DD
+### Added
+- [Feature] User Story #X: Mô tả ngắn gọn.
+### Fixed  
+- [Fix] Bug #Y: Root cause và giải pháp.
+### Security
+- [Security] CVE-XXXX: Mô tả và patch.
+### Breaking Changes ⚠️
+- [Breaking] API endpoint /v1/X không còn hỗ trợ.
+```
+
+---
+
 > [!IMPORTANT]
-> **"Release không phải là kết thúc, Release là sự bắt đầu của một chu kỳ vận hành mới."** — _Antigravity CTO_
+> **Không có /release nào được thực thi nếu chưa có PO Digital Approval.**

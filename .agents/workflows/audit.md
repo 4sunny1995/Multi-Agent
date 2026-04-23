@@ -1,26 +1,47 @@
 ---
-description: Sơ đồ Workflow Phân tích Hệ thống Cũ (Legacy Audit).
+workflow_id: AUD-001
+description: Quy trình phân tích hệ thống cũ (Legacy Audit) và lập lộ trình hiện đại hóa.
+role_lead: AUDITOR
+triggers: ["/audit", "legacy", "hệ thống cũ", "khảo sát", "reverse engineer"]
+version: "2.0"
 ---
 
 # 🕵️ Workflow: Phân Tích Hệ Thống Cũ (/audit)
 
-Quy trình này sử dụng Agent **AUDITOR** để khám phá và giải mã các hệ thống cũ, phục vụ cho việc maintain hoặc hiện đại hóa.
+> **Quy tắc vàng**: DO NO HARM — Không sửa một dòng code nào trong suốt quá trình audit.
 
-## 1. DISCOVERY (Khám phá)
-- **Hành động**: AUDITOR thực hiện mapping toàn bộ cấu trúc codebase.
+## ⚡ Luồng thực thi
+
+```
+CODEBASE → AUDITOR (Discovery) → AUDITOR (Mapping) → AUDITOR+BA (Logic) → SA+LEADER (Roadmap)
+```
+
+---
+
+## 1. DISCOVERY (AUDITOR)
+- **Hành động**: `list_dir` toàn bộ project. Identify files lớn nhất (> 200 dòng).
 // turbo
-- **Tự động**: Tạo báo cáo `docs/architecture/discovery.md` liệt kê cây thư mục và các file core.
-- **Kết xuất**: Danh sách các module chính và các điểm lồng ghép (Entry points).
+- **Output**: `docs/architecture/discovery.md` — System Map với file sizes + entry points.
+- **Constraint**: Chỉ đọc — tuyệt đối không sửa.
 
-## 2. DEPENDENCY MAPPING (Bản đồ phụ thuộc)
-- **Hành động**: AUDITOR tìm kiếm các liên kết giữa các module (Imports, API calls, Database queries).
-- **Bàn giao**: Sơ đồ Mermaid mô tả sự liên kết của hệ thống. Chế độ đọc: `view_file`.
+## 2. DEPENDENCY MAPPING (AUDITOR)
+- **Hành động**: `grep_search` tìm imports, API calls, DB queries. Vẽ dependency graph Mermaid.
+- **Tìm**: God Objects, circular dependencies, N+1 query patterns.
+- **Output**: Mermaid diagram trong `docs/architecture/discovery.md`.
 
-## 3. LOGIC EXTRACTION (Giải mã Logic)
-- **Hành động**: Chuyển đổi code cũ sang User Stories và Acceptance Criteria.
-- **Mục tiêu**: Đưa "Logic thực tế" về lại dạng "Yêu cầu nghiệp vụ" để BA có thể thẩm định.
-- **Kết xuất**: `docs/business/legacy-logic.md`.
+## 3. LOGIC EXTRACTION (AUDITOR + BA)
+- **AUDITOR**: Đọc code, chuyển logic phức tạp thành plain-language description.
+- **BA**: Validate xem logic đọc được có khớp với nghiệp vụ thực tế không.
+- **Output**: `docs/business/legacy-logic.md` — Viết cho non-technical stakeholders.
 
-## 4. MODERNIZATION ROADMAP (Lộ trình hiện đại hóa)
-- **Hành động**: LEADER và SA cùng AUDITOR đề xuất các bước Refactor hoặc Re-architect.
-- **Kết xuất**: `docs/architecture/roadmap.md` với các ưu tiên (High/Medium/Low priority).
+## 4. MODERNIZATION ROADMAP (SA + LEADER)
+- **SA**: Đề xuất kiến trúc target và migration strategy.
+- **LEADER**: Ưu tiên hóa theo Business Value và Risk.
+- **Output**: `docs/architecture/roadmap.md` với 3 tier: Quick Wins / Medium / Long-term.
+
+---
+
+## 🚨 Failure Points (Điểm hay gặp lỗi)
+1. AUDITOR đưa ra kết luận không có evidence → **Giải pháp**: Mọi phát hiện phải có file:line reference.
+2. BA không validate legacy logic → **Giải pháp**: Bước 3 yêu cầu BA sign-off trước khi tiếp tục.
+3. SA đề xuất "rewrite từ đầu" → **Giải pháp**: Phải có cost-benefit analysis trước khi LEADER approve.

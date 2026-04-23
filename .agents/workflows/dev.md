@@ -1,33 +1,61 @@
-# 🚀 Workflow: Phát Triển Tính Năng Enterprise (/dev)
+---
+workflow_id: DEV-001
+description: Quy trình phát triển tính năng Enterprise end-to-end.
+role_lead: LEADER
+triggers: ["/dev", "phát triển", "tính năng mới", "implement"]
+version: "2.0"
+---
 
-Quy trình chuẩn hóa cho các hệ thống lớn, yêu cầu sự phối hợp chặt chẽ giữa 8 vai trò khác nhau.
+# 🚀 Workflow: Phát Triển Tính Năng (/dev)
+
+> **Pre-condition**: Mọi Agent đọc [llm-agent-config.md](file:///.agents/config/llm-agent-config.md) trước khi bắt đầu.
+
+## ⚡ Luồng thực thi (Happy Path)
+
+```
+USER_REQUEST → BA → [DESIGNER] → SA+CLOUD → SECURITY → DEV → TESTER+WRITER → LEADER
+```
+
+---
 
 ## 1. STRATEGIC RESEARCH (BA)
-- **Hành động**: BA phân tích yêu cầu từ USER_REQUEST. Nếu đã có tài liệu sẵn (Discovery-INF-001), hãy phân tích tính kế thừa.
-- **Bàn giao**: `docs/original/business/brd.md` và `docs/original/business/user-stories.md` (chuẩn INVEST). Ghi rõ phần "Inherited" (Kế thừa) và "New" (Mới).
+- **Kích hoạt**: Nhận USER_REQUEST có mô tả tính năng mới.
+- **Hành động**: Phân tích yêu cầu. Chạy INF-001 Discovery nếu là Legacy project.
+- **[DB_CHECKPOINT]**: Nếu cần thay đổi DB cũ → DỪNG và hỏi User ngay.
+- **Output**: `docs/original/business/brd.md` + `user-stories.md` (chuẩn INVEST, có 5+ Edge Cases).
 
-## 2. UI/UX DESIGN (DESIGNER)
-- **Hành động**: Designer tạo Mockup & UI Specs dựa trên User Stories. Nếu thiết kế đã tồn tại ([/design]), hãy tập trung vào Specs kỹ thuật chi tiết.
-- **Bàn giao**: `docs/original/ui/style-guide.md` và `docs/original/ui/specs.md`.
+## 2. UI/UX DESIGN (DESIGNER) — *optional nếu không có UI*
+- **Hành động**: Chuyển User Stories thành Mockup + UI Specs.
+- **Output**: `docs/original/ui/style-guide.md` + `specs.md`.
 
-## 3. ARCHITECTURAL BLUEPRINT (SA & CLOUD ARCHITECT)
-- **Hành động**: SA thực hiện **Infra Discovery** (Dựa trên INF-001) trước khi thiết kế Core Logic. Cloud Architect thiết kế Infra & Dự toán.
-- **Ràng buộc [DBS-001]**: Nếu có thay đổi Database hiện có, PHẢI kích hoạt trạm kiểm soát **[DB_CHECKPOINT]** để yêu cầu User phê duyệt trực tiếp.
-- **Bàn giao**: `docs/original/architecture/` (Sequence, Schema) và `docs/original/budget/` (Cost Estimation). Ghi rõ trạng thái: **New** hoặc **Legacy**.
+## 3. ARCHITECTURAL BLUEPRINT (SA + CLOUD ARCHITECT)
+- **SA**: INF-001 Discovery bắt buộc → Thiết kế Sequence + Schema. 
+- **CLOUD**: Dự toán hạ tầng 3-tier (Low/Medium/High traffic).
+- **[DB_CHECKPOINT]**: Schema cũ bị sửa → User approval bắt buộc.
+- **Output**: `docs/original/architecture/` + `implementation_plan.md` + `docs/budget/`.
 
 ## 4. SECURITY GATEWAY (SECURITY)
-- **Hành động**: Đánh giá thiết kế của SA về phương diện bảo mật, phân quyền (RBAC) và quản lý bí mật (Secrets).
-- **Bàn giao**: Phê duyệt trong `implementation_plan.md`.
+- **Hành động**: Review Plan về RBAC, Secrets management, Input validation.
+- **Block condition**: Phát hiện hardcoded credential hoặc SQL injection risk → Block Plan.
+- **Output**: Approval comment trong `implementation_plan.md`.
 
 ## 5. CORE EXECUTION & TDD (DEV)
-- **Hành động**: DEV thực thi theo Plan của SA. Tuân thủ Clean Code & SOLID.
-- **Ràng buộc**: Viết Test trước khi viết Code.
-- **Bàn giao**: Source code (`src/`) và Unit tests (`tests/`).
+- **Hành động**: Implement theo Plan. TDD flow: RED → GREEN → REFACTOR.
+- **Constraint**: Không viết code trước khi có failing test.
+- **Output**: `src/` + `tests/` — coverage ≥ 80% core logic.
 
-## 6. REINFORCEMENT & DOCS (TESTER & TECH WRITER)
-- **Hành động**: TESTER chạy Acceptance/Integration tests. Tech Writer viết tài liệu hướng dẫn.
-- **Bàn giao**: `docs/original/testing/reports.md` và `docs/original/release/user-guide.md`.
+## 6. QA + DOCUMENTATION (TESTER + TECH WRITER)
+- **TESTER**: Acceptance tests + Security test + Edge cases từ BRD.
+- **TECH WRITER**: User Guide + API Docs.
+- **Output**: `docs/testing/reports.md` + `docs/business/user-guide.md`.
 
-## 7. FINAL AUDIT & RELEASE (LEADER)
-- **Hành động**: LEADER kiểm duyệt toàn bộ Artifacts qua 7 chặng kiểm soát.
-- **Kết xuất**: `walkthrough.md` và lệnh `% git tag <version>`.
+## 7. FINAL GATE (LEADER — 7 Gates)
+- **Hành động**: Review qua 7 Gates. PASS → tag Git. FAIL → gửi lại Agent cụ thể.
+- **Output**: `walkthrough.md` + `git tag vX.Y.Z`.
+
+---
+
+## 🚨 Failure Points (Điểm hay gặp lỗi)
+1. SA không chạy INF-001 Discovery → **Giải pháp**: LEADER block Plan nếu thiếu Discovery section.
+2. DEV bỏ qua TDD → **Giải pháp**: TESTER phải có failing test trước khi DEV bắt đầu.
+3. Context không được bàn giao đủ giữa các Agent → **Giải pháp**: Handoff Contract bắt buộc.
