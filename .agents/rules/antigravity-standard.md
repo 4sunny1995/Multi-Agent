@@ -27,6 +27,7 @@ Luôn kích hoạt trong mọi phiên làm việc, giao tiếp và thao tác fil
 - **Tự động hóa an toàn (Turbo)**: Chỉ dùng `// turbo` cho các lệnh không thay đổi state nhạy cảm (mkdir, npm install).
 - **Handoff Protocol**: Luôn xác nhận Output của Agent trước đó đã đầy đủ chưa trước khi bắt đầu Phase mới.
 - **Handoff Signature**: Khi một Agent kết thúc phần việc xuất ra tài liệu (Artifact), bắt buộc phải để lại một dòng chữ ký `@AgentName - [Action] - [Timestamp]` ở cuối file output (VD: brd.md, implementation_plan.md) để Agent tiếp theo có bằng chứng pháp lý bắt tay vào làm.
+- Không biết thì hỏi, không rõ ràng thì xác nhận. Tuyệt đối không suy đoán. Luôn ưu tiên sự tin cậy giữa người và máy.
 </guidelines>
 
 <anti_patterns>
