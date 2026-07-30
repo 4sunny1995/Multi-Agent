@@ -1,68 +1,82 @@
 # 🚀 Antigravity Multi-Agent Enterprise Ecosystem
 
-Chào mừng bạn đến với hệ sinh thái phát triển phần mềm chuẩn mực trên nền tảng **Google Antigravity**. Đây không chỉ là một kho mã nguồn, mà là một **Trung tâm Điều hành Kỹ thuật** nơi con người và các Tác nhân AI phối hợp theo mô hình Lãnh đạo Chiến lược.
+Chào mừng bạn đến với hệ sinh thái phát triển phần mềm chuẩn mực trên nền tảng **Google Antigravity**. Đây là một **Trung tâm Điều hành Kỹ thuật (Technical Operations Center)**, nơi bộ não con người và sức mạnh của các Tác nhân AI phối hợp theo mô hình Lãnh đạo Chiến lược và chuẩn mực quy mô Enterprise.
 
 ---
 
 ## 🏛️ Kiến trúc & Tầm nhìn (The CTO Vision)
-Công nghệ phục vụ Kinh doanh, Bảo mật bảo vệ Tương lai. Hệ thống của chúng ta được vận hành bởi đội ngũ AI đa vai trò, chịu sự giám sát của **LEADER** (dual-identity: **Gatekeeper** an toàn & **CTO** chiến lược).
 
-- **An Toàn Tuyệt Đối**: Mọi dòng code phải vượt qua 7 Gates kiểm soát (SOLID, Clean Code, Security).
-- **Phân Tích Bằng AI (AI-Driven)**: Từ phiên bản 5.6, hệ thống tự động dò tìm nguyên nhân gốc rễ (Root Cause) của nợ kỹ thuật thay vì chỉ đếm thủ công.
-- **Dự Đoán Rủi Ro (Predictive)**: Giám sát bảo mật Dependency 24/7 và theo dõi cảnh báo chi phí Cloud tự động không cần lệnh.
-- **Bảo Vệ Dữ Liệu**: Chuẩn **DBS-001** (Database Protection) đảm bảo "bộ não" của dự án luôn được bảo quản an toàn.
-- **Tầm Nhìn Dài Hạn**: Xây dựng để mở rộng, không chỉ để chạy đúng.
+Hệ thống được vận hành bởi đội ngũ AI chuyên biệt (BA, SA, DEV, TESTER, LEADER, SECURITY, CLOUD, TECH WRITER) và tuân thủ định hướng cốt lõi:
+
+- **Antigravity Standard (AGS-001)**: Mọi tài liệu hệ thống bắt buộc áp dụng chính sách "Tiếng Việt-First". Kiến thức được hệ thống hóa tự động và kiểm chứng toàn vẹn. Thao tác có bằng chứng pháp lý thông qua Handoff Signature.
+- **Tối Ưu Hóa Ngữ Cảnh (Token Efficiency)**: Cơ chế Trigger theo Điều kiện (Model-decision trigger) thay cho "Always-on" để tối giản overhead xử lý, tăng tốc độ và chất lượng suy luận.
+- **An Toàn Tuyệt Đối**: Mọi thay đổi tuân thủ 7 Gates kiểm soát (SOLID, Clean Code, Enterprise Patterns). Thay đổi mã nguồn đi qua quy trình phòng vệ nghiêm ngặt (Replace over Write).
+- **Tự Động Hóa Kỹ Sư (AI-Driven Engineering)**: Dò tìm triệt để nợ kỹ thuật (Root Cause Analysis), quản lý vòng đời hạ tầng (IaC) tự động, đánh giá bảo mật Zero-Trust 24/7.
 
 ---
 
-## 🏗️ Cấu Trúc Dự Án (Project Hierarchy)
+## 🏗️ Cấu Trúc Dự Án Nội Sinh (Project Hierarchy)
 
-- **[/.agents/](file:///.agents/README.md)**: **Bộ não điều phối**. Chứa định nghĩa 12 Role, 23 Rule và các Workflow tự động.
-- **[/docs/](file:///docs/README.md)**: **Kho tàng tri thức**. Lưu trữ toàn bộ BRD, Architecture Docs, và User Guides.
-- **[/src/](file:///src/)**: **Xưởng chế tác**. Nơi hiện thực hóa các ý tưởng thành mã nguồn chuyên nghiệp.
-- **[/tests/](file:///tests/)**: **Lá chắn sinh mệnh**. Chứa Unit/Integration test bao phủ các kịch bản rủi ro.
+Cấu trúc được chuẩn hóa cho sự tương tác độc lập giữa các Multi-Agent (tham khảo chi tiết trong `.agents/config/project-structure.md`):
+
+- **[/.agents/](file:///.agents/)**: **Bộ não điều phối**. Chứa định nghĩa System Prompts (Roles), các Bộ luật vận hành (Rules), Quy trình tác nghiệp (Workflows) và Kỹ năng chuyên sâu (Skills).
+- **[/docs/](file:///docs/)**: **Kho tàng tri thức**.
+  - `original/`: Nơi lưu trữ tài liệu gốc, định dạng chuẩn phục vụ quá trình làm việc của AI.
+  - `trans/`: Hệ thống lưu trữ đa ngôn ngữ, tự động phân loại ngôn ngữ bản dịch.
+- **[/src/](file:///src/)**: **Xưởng chế tác**. Lõi mã nguồn ứng dụng đang được phát triển.
+- **[/tests/](file:///tests/)**: **Lá chắn sinh mệnh**. Chứa kịch bản Unit/Integration tests tự động và Continuous Testing.
 
 ---
 
 ## ⚡ Khởi Tạo Lần Đầu (Setup Guide)
 
-Khi vừa Clone dự án, bạn cần khởi tạo các thư mục xương sống bằng script an toàn:
+Khi vừa Clone dự án, bạn cần khởi tạo các thư mục xương sống bằng script hệ thống được viết với cơ chế phòng thủ (Defensive Programming):
 
 - **Linux / macOS**: `sh init.sh`
 - **Windows**: `init.bat`
 
 > [!TIP]
-> Các script này được viết theo cơ chế phòng thủ (**Defensive Programming**), sẽ không bao giờ ghi đè lên dữ liệu hiện có của bạn.
+> Các script sẽ không bao giờ ghi đè hoặc thay đổi trái phép dữ liệu hiện có trong Local Repository của bạn.
 
 ---
 
-## ⚒️ Bộ Công Cụ Vận Hành (Slash Commands)
+## ⚒️ Bộ Công Cụ Vận Hành Enterprise (Slash Commands)
 
-Tương tác với đội ngũ Ảo thông qua 10 lệnh "Thần chú" trực tiếp tại khung chat Antigravity để giải quyết bài toán từ A-Z:
+Toàn bộ quy trình phát triển và vận hành hệ thống được đóng gói thành các Workflow tự động. Sử dụng các lệnh sau trong khung chat để kích hoạt các Đội hình Đặc nhiệm AI:
 
-| Lệnh | Mục đích | Luồng Phối Hợp (Orchestration) |
+| Lệnh | Quy trình Đặc nhiệm | Vai trò và Mục tiêu |
 | :--- | :--- | :--- |
-| `/audit` | Khám phá hệ thống cũ | **Auditor** rà soát toàn bộ Legacy Code & DB. |
-| `/design` | Thiết kế UX/UI [JP] | **Designer** tạo Mockup & Specs chuẩn thẩm mỹ Nhật. |
-| `/dev` | Phát triển tính năng mới | **BA** -> **SA** -> **DEV** -> **TESTER** -> **LEADER**. |
-| `/fix` | Sửa lỗi hệ thống | **TESTER** cô lập lỗi -> **DEV** trị tận gốc -> **LEADER** duyệt. |
-| `/secure` | Quét bảo mật 24/7 | **SECURITY** scan code cứng & rà soát dependency chặn CVEs. |
-| `/report` | Báo cáo kỹ thuật | **BA**, **SA**, **DEV** trích xuất dữ liệu -> **TECH WRITER** tổng hợp. |
-| `/inspect` | Diệt nợ kỹ thuật AI | **LEADER** ML dò tìm "Root Cause" -> **DEV** refactor chuẩn SOLID. |
-| `/retro` | Nâng cấp cộng đồng | **Team** họp tự động tạo bảng *Lessons Learned* & Rules mới. |
+| `/analyse` | Phân tích & Kế hoạch | BA / SA khảo sát thực trạng, định vị tính khả thi (Feasibility) và yêu cầu kinh doanh. |
+| `/audit` | Kế thừa & Hiện đại hóa| Khám phá, phân tích hệ thống cũ (Legacy Code), đánh giá rủi ro và lập lộ trình nâng cấp. |
+| `/design` | Đồ họa & Trải nghiệm | Thiết kế cơ sở UX/UI cho sản phẩm Enterprise. |
+| `/dev` | Lập trình (Tinh gọn) | Phối hợp BA -> DEV -> TESTER -> LEADER để phát triển tính năng cơ sở. |
+| `/enterprise-dev`| Lập trình (Enterprise)| Quy trình end-to-end cho luồng tính năng quy mô lớn, liên kết các lớp Microservices khắt khe. |
+| `/fix` | Cô lập & Sửa lỗi | Vá lỗi khẩn cấp, an toàn tuyệt đối cho hệ thống Production qua rà soát đa tầng. |
+| `/infra` | Kiến trúc Đám mây | Thiết lập hạ tầng tự code (IaC) và môi trường vận hành chiến lược. |
+| `/inspect` | Diệt Nợ Kỹ Thuật | AI tự động dò quét và tái cấu trúc (Refactoring) triệt để các mã nguồn có cấu trúc yếu. |
+| `/release` | Đóng gói & Phát hành | Quy trình chuẩn bị Release an toàn bằng Pipeline tự động. |
+| `/report` | Báo cáo Kỹ thuật | Phối hợp BA/SA/DEV và Tech Writer trích xuất & cấu trúc hóa dữ liệu toàn hệ thống. |
+| `/retro` | Cải tiến Liên tục | Máy học qua Retrospective: Đội AI rút kinh nghiệm, tối ưu Rules và cập nhật hệ sinh thái. |
+| `/secure` | Cường hóa Bảo mật | Áp dụng Zero-Trust, rà soát chiến dịch mã cứng và lộ bộ Secret định kỳ. |
+| `/trans` | Dịch thuật Động | Dịch chuyên ngành IT, lưu trữ khoa học và đồng bộ hóa mục lục đa ngôn ngữ tự động. |
 
-> --- Xem toàn bộ danh sách lệnh tại **[Workflows Registry](file:///.agents/workflows/README.md)**.
+---
+
+## 📚 Trí Tuệ Tập Thể (Knowledge Bases & Skills)
+
+Mọi dòng lệnh hay quyết định của dự án đều dựa trên các kho tri thức được lưu trữ cô đọng trong folder `.agents/rules/` và `.agents/skills/`:
+- **Cẩm nang Kiến trúc**: Các cuốn cẩm nang thuật toán kỹ năng cao (`algorithms-handbook.md`), tiêu chuẩn kỹ nghệ (`software-engineering-standards.md`), chuẩn mở rộng kiến trúc (`system-scale-alignment.md`).
+- **Skills Chuyên sâu**: Kỹ năng Review Code toàn diện vòng lặp (`ags-skill-code-review`) và Audit Kiến trúc mức chuyên gia (`ags-skill-system-audit`).
 
 ---
 
-## ⚖️ Nguyên Tắc & Đạo Đức
+## ⚖️ Nguyên Tắc Đạo Đức & Tuân Thủ
 
-Mọi sự phát triển đều phải tuân thủ **[Những Lời Khuyên Chân Thành (RESPONSIBLE_AI.md)](./RESPONSIBLE_AI.md)**.
-- **Human-in-the-loop**: Bạn (CTO/PO) luôn là người giữ vô lăng và đưa ra quyết định cuối cùng [Digital Approval].
-- **Clean Code & SOLID**: Không chấp nhận "Mã nguồn rác" hay các giải pháp tình thế gây nợ kỹ thuật lâu dài.
+Sự tiến hóa của phần mềm tuân thủ hoàn toàn **[Những Lời Khuyên Chân Thành (RESPONSIBLE_AI.md)](./RESPONSIBLE_AI.md)**:
 
----
-*Mọi chuyên gia đều từng là một người lính mới. Hãy dùng AI làm bệ phóng để chinh phục những đỉnh cao công nghệ lớn hơn!* 🚀
+- **Human-in-the-loop**: Developer (CTO/PO) có quyền kiểm soát, phê duyệt cuối cùng trong mọi bước tiến lớn.
+- **Audit & Truy vết**: Kiến thức không được lưu trữ là kiến thức chết. Thông qua chuẩn AGS-001, các ghi nhận trên file `task.md` và `walkthrough.md` chính là hồ sơ sinh mệnh minh bạch của hệ thống.
 
 ---
-> **"Bền vững là chìa khóa của tốc độ."** — _Antigravity Core Team_
+> **"Kiến thức không được hệ thống hóa là kiến thức chết. Bền vững là chìa khóa thăng tiến của tốc độ."**
+> — *Antigravity Core Team* 🚀
