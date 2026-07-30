@@ -1,30 +1,60 @@
 ---
+rule_id: BUDGET-001
 trigger: always_on
+applies_to: [OPS, SA, LEADER]
+version: "2.0-llm"
 ---
 
 # 📊 Hạ Tầng & Dự Toán Chi Phí (Cloud Budgeting)
 
-Quy tắc này áp dụng cho việc tính toán chi phí linh hoạt dựa trên lưu lượng truy cập thực tế.
+<identity>
+Quy tắc quản lý chi phí linh hoạt (FinOps) dựa trên lưu lượng thực tế, đảm bảo hiệu quả đầu tư hạ tầng cao nhất.
+</identity>
 
-## 1. Phân Loại Quy Mô Truy Cập (Traffic Tiers)
-Mọi bản dự toán phải chia làm 3 kịch bản:
-- **Low Traffic (Ít):** < 1.000 requests/ngày (Giai đoạn MVP/Dev).
-- **Medium Traffic (Vừa):** 1.000 - 50.000 requests/ngày (Giai đoạn tăng trưởng).
-- **High Traffic (Nhiều):** > 50.000 requests/ngày hoặc có đột biến (Scaling).
+<activation>
+Kích hoạt khi lập kế hoạch hạ tầng, dự toán chi phí hàng tháng/năm, hoặc khi đề xuất scaling.
+</activation>
 
-## 2. Công Thức Ước Tính Chi Phí (Calculation Formula)
-Báo cáo phải trình bày rõ chi phí theo 3 cột mốc thời gian:
-- **Theo Ngày (Daily):** Chi phí tài nguyên tiêu thụ thực tế + phí API gọi theo đợt.
-- **Theo Tháng (Monthly):** (Daily x 30) + Phí duy trì cố định (Database, Domain, SSL, Static Hosting).
-- **Theo Năm (Yearly):** (Monthly x 12) - Chiết khấu (nếu thanh toán trước hoặc dùng Reserved Instances).
+<thinking_pattern>
+1. Quy mô traffic hiện tại và dự kiến là bao nhiêu?
+2. Dịch vụ serverless có rẻ hơn instance cố định không?
+3. Đã có cảnh báo chi phí (Alert) chưa?
+</thinking_pattern>
 
-## 3. Các Thành Phần Chi Phí Bắt Buộc (Cost Components)
-- **Compute:** CPU/RAM (Lambda, EC2, Cloud Run).
-- **Storage:** Database (Read/Write units) và File Storage (S3/Cloud Storage).
-- **Egress:** Chi phí băng thông truyền tải dữ liệu ra ngoài.
-- **AI/Third-party:** Chi phí Token (Gemini/OpenAI) hoặc các dịch vụ bên thứ 3.
+<guidelines>
 
-## 4. Ràng Buộc Tối Ưu (Optimization Rules)
-- Ưu tiên các dịch vụ **Serverless (Pay-as-you-go)** cho kịch bản "Ít truy cập" để đưa chi phí về gần mức $0.
-- Đề xuất giải pháp **Auto-scaling** cho kịch bản "Nhiều truy cập" để tránh lãng phí khi thấp điểm.
-- Luôn gắn nhãn **[COST_EFFICIENCY_ALERT]** nếu có phương án thay thế rẻ hơn 20% mà vẫn giữ nguyên hiệu năng.
+### 1. Phân Loại Quy Mô Truy Cập (Traffic Tiers)
+- **Low Traffic (Ít)**: < 1.000 requests/ngày (MVP/Dev). Ưu tiên Serverless $0.
+- **Medium Traffic (Vừa)**: 1.000 - 50.000 requests/ngày (Growth). Cân nhắc Auto-scaling.
+- **High Traffic (Nhiều)**: > 50.000 requests/ngày (Scale). Sử dụng Reserved Instances/Spot Instances.
+
+### 2. Công Thức Ước Tính Chi Phí (Calculation Formula)
+- **Daily (Ngày)**: Tài nguyên thực tế + API calls.
+- **Monthly (Tháng)**: (Daily x 30) + Phí cố định (Domain, SSL, Storage).
+- **Yearly (Năm)**: (Monthly x 12) - Chiết khấu thanh toán trước.
+
+### 3. Các Thành Phần Chi Phí Bắt Buộc (Cost Components)
+- **Compute**: CPU/RAM (Lambda, EC2, Cloud Run).
+- **Storage**: Database (R/W units) + File Storage (S3).
+- **Egress**: Chi phí băng thông truyền tải dữ liệu ra ngoài.
+- **AI/Third-party**: Token dự kiến (Gemini/OpenAI).
+
+</guidelines>
+
+<anti_patterns>
+❌ Sử dụng Dedicated Instances cho môi trường Dev/Staging có traffic thấp.
+❌ Thiếu dự toán chi phí băng thông (Egress) - dẫn đến chi phí phát sinh bất ngờ.
+❌ Không thiết lập Billing Alerts.
+❌ Bỏ qua chi phí lưu trữ tích lũy (Storage retention policies).
+</anti_patterns>
+
+<checklist>
+- [ ] Đã chia kịch bản Traffic theo 3 cấp độ chưa?
+- [ ] Báo cáo đã trình bày rõ chi phí theo Ngày/Tháng/Năm chưa?
+- [ ] Đã đề xuất phương án Serverless cho giai đoạn MVP chưa?
+- [ ] Đã gắn nhãn **[COST_EFFICIENCY_ALERT]** cho các phương án rẻ hơn 20% chưa?
+</checklist>
+
+---
+> [!TIP]
+> **"Tối ưu hóa chi phí không phải là cắt giảm, mà là chi tiêu thông minh để đạt hiệu năng tối đa."**

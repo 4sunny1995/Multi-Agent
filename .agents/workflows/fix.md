@@ -1,21 +1,46 @@
+---
+workflow_id: FIX-001
+description: Quy trình sửa lỗi nhanh, an toàn tuyệt đối cho hệ thống Enterprise.
+role_lead: TESTER
+triggers: ["/fix", "bug", "lỗi", "fix", "sửa"]
+version: "2.0"
+---
+
 # 🩹 Workflow: Sửa Lỗi Kiên Cố (/fix)
 
-Quy trình sửa lỗi nhanh nhưng an toàn tuyệt đối cho hệ thống Enterprise.
+> **Nguyên tắc cốt lõi**: TESTER cô lập trước — DEV sửa sau. Không bao giờ ngược lại.
+
+## ⚡ Luồng thực thi
+
+```
+BUG_REPORT → TESTER (Isolate) → DEV (Fix) → SECURITY (Review) → LEADER (Gate)
+```
+
+---
 
 ## 1. ISOLATE BUG (TESTER)
-- **Hành động**: Tái hiện lỗi bằng một bài Test thất bại (RED).
-- **Kết quả**: Xác định Root Cause và Edge Case bị bỏ sót.
+- **Hành động**: Tái hiện lỗi bằng failing test (RED). Xác định Root Cause và scope ảnh hưởng.
+- **Block condition**: Không tái hiện được lỗi → Yêu cầu thêm info, KHÔNG đoán.
+- **Output**: Failing test + Bug Report (Severity + Steps to Reproduce + Expected vs Actual).
 
 ## 2. SURGICAL FIX (DEV)
-- **Hành động**: DEV sửa lỗi để Pass bài test của TESTER.
-- **Ràng buộc [DBS-001]**: Nếu việc sửa lỗi yêu cầu thay đổi cấu trúc Database hiện có, PHẢI dừng lại để User (PO) phê duyệt thông qua **[DB_CHECKPOINT]**.
-- **Ràng buộc**: Sửa tối giản nhất (KISS).
-- **Phụ**: Cập nhật Unit Test tương ứng.
+- **Hành động**: Sửa lỗi tối giản nhất để pass failing test của TESTER. Không "gold plate".
+- **[DB_CHECKPOINT]**: Sửa lỗi yêu cầu thay đổi DB schema cũ → DỪNG, hỏi User.
+- **Constraint (KISS)**: Nếu fix cần > 50 dòng code → dấu hiệu Root Cause sai, quay lại bước 1.
+- **Output**: Code fix + Updated unit test + `[TECH_DEBT]` tag nếu dùng workaround.
 
-## 3. SECURITY REVIEW (SECURITY)
-- **Hành động**: Rà soát xem bản sửa lỗi có vô tình tạo ra lỗ hổng bảo mật mới nào không (Regressions).
-- **Bàn giao**: Phê chuẩn sơ bộ cho bản vá.
+## 3. SECURITY REGRESSION (SECURITY)
+- **Hành động**: Scan bản fix xem có tạo ra lỗ hổng mới không (regression vulnerabilities).
+- **Focus**: Input validation, auth logic, data exposure.
+- **Output**: Approval / Block với evidence cụ thể.
 
-## 4. AUDIT & LOG (LEADER)
-- **Hành động**: LEADER kiểm duyệt toàn bộ quá trình và Regression tests.
-- **Kết xuất**: `walkthrough.md`.
+## 4. GATE & LOG (LEADER)
+- **Hành động**: Verify test passes + regression không xảy ra. Ghi nhận Root Cause.
+- **Output**: `walkthrough.md` với Root Cause Analysis + Prevention Plan.
+
+---
+
+## 🚨 Failure Points (Điểm hay gặp lỗi)
+1. DEV fix mà không có failing test → **Giải pháp**: TESTER phải bàn giao RED test trước bước 2.
+2. Fix "rộng" hơn cần thiết → **Giải pháp**: LEADER yêu cầu scope giới hạn trong failing test.
+3. Bug tái xuất sau 1 tuần → **Giải pháp**: Nếu fix > 2 lần → trigger `/retro` để phân tích pattern.

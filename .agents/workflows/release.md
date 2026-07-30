@@ -2,56 +2,52 @@
 workflow_id: REL-001
 description: Quy trình đóng gói và phát hành (Release) an toàn tuyệt đối.
 role_lead: LEADER
+triggers: ["/release", "phát hành", "release", "deploy production", "ship", "go-live"]
+version: "2.0"
 ---
 
 # 📦 Workflow: Quản Lý Phát Hành Chiến Lược (/release)
 
-Quy trình đóng gói và bàn giao hệ thống lên môi trường vận hành thực tế. Mọi bước đi đều phải tuân thủ **CTO Vision** và **DBS-001**.
+> **Quy tắc vàng**: Không có Release nào được phép xảy ra nếu chưa có Rollback Plan đã được kiểm chứng.
 
-## 🛠️ 1. Quy trình thực thi (Execution Steps)
+## ⚡ Luồng thực thi
 
-1. **Versioning & Manifest (LEADER - CTO):**
-   - **Hành động**: Chốt Version theo **VER-001** (SemVer), gắn Tag Git (`vX.Y.Z`).
-   - **Handoff**: Xác nhận với **SA** và **DEV** về tính sẵn sàng của mã nguồn.
-
-2. **Changelog & Documentation (TECH WRITER & TRANSLATOR):**
-   - **Hành động**: Tổng hợp Bug Fix, New Feature và Technical Changes. Dịch sang VI, EN, JA.
-   - **Handoff**: Bàn giao bộ hồ sơ phát hành trong thư mục `docs/release/`.
-
-3. **Pre-Release Check (SECURITY & TESTER):**
-   - **Hành động**: Chạy Regression Tests và Security Scan lần cuối trên môi trường Staging.
-   - **Handoff**: **Gatekeeper** xác nhận trạng thái "Green" (An toàn) trong `walkthrough.md`.
-
-4. **Digital Approval (PO/CTO - User):**
-   - **Hành động**: PO/User ký duyệt nội dung phát hành.
-   - **Handoff**: Kích hoạt lệnh Deploy thực tế của **CLOUD ARCHITECT**.
-
-5. **Deployment & Rollback (CLOUD ARCHITECT):**
-   - **Hành động**: Triển khai và thiết lập điểm phục hồi (Snapshot/Backup).
-   - **Handoff**: Báo cáo vận hành hoàn tất (Deployment Success).
+```
+LEADER (Version) → WRITER+TRANS (Docs) → SECURITY+TESTER (Pre-check) → PO (Sign-off) → CLOUD ARCH (Deploy)
+```
 
 ---
 
-## 📂 2. Cấu trúc lưu trữ (Output Hierarchy)
+## 1. VERSIONING & MANIFEST (LEADER)
+- **Hành động**: Chốt SemVer theo VER-001 (Major.Minor.Patch). `git tag vX.Y.Z`.
+- **Pre-condition**: `/dev` hoặc `/fix` đã qua LEADER Gate và QA approved.
+- **Output**: Git tag + Release manifest.
 
-- **Release Artifacts**: `docs/release/`
-- **Changelog**: `docs/README.md` và `CHANGELOG.md`
-- **Archive**: `docs/original/release/`
+## 2. CHANGELOG & DOCS (TECH WRITER + TRANSLATOR)
+- **TECH WRITER**: Tổng hợp Bug Fix, New Features, Breaking Changes.
+- **TRANSLATOR** (nếu cần): Dịch Changelog → VI, EN, JA.
+- **Output**: `docs/release/vX.Y.Z.md` + `CHANGELOG.md` cập nhật.
+
+## 3. PRE-RELEASE GATE (SECURITY + TESTER)
+- **SECURITY**: Security scan lần cuối trên staging. Không hardcoded secrets.
+- **TESTER**: Full regression test suite. Coverage không giảm so với release trước.
+- **Block condition**: Bất kỳ CRITICAL/HIGH security finding → Hard block.
+- **Output**: Green/Red status + evidence trong `walkthrough.md`.
+
+## 4. DIGITAL APPROVAL (PO / USER)
+- **Hành động**: User xem xét và phê duyệt release manifest + Changelog.
+- **Constraint**: Đây là chốt chặn không thể tự động hóa — cần human sign-off.
+- **Output**: Approval confirmation → Trigger bước 5.
+
+## 5. DEPLOY & VERIFY (CLOUD ARCHITECT)
+- **Pre-deploy**: Backup DB snapshot. Document rollback command.
+- **Deploy**: Thực thi deployment. Monitor health checks 5 phút đầu.
+- **Rollback trigger**: Nếu error rate > 5% trong 5 phút → Tự động rollback.
+- **Output**: Deployment success report + Incident runbook nếu có vấn đề.
 
 ---
 
-## 🛡️ 3. Quy tắc nghiêm ngặt (Strict Rules)
-
-- **Rollback Guarantee**: Không được phép Release nếu quy trình Rollback chưa được kiểm chứng.
-- **DBS-001 Enforcement**: Mọi Migration Database phải đi kèm với Backup toàn vẹn.
-- **Independence**: Workflow này là bước cuối cùng sau khi `/dev` hoặc `/fix` đã được QA xác nhận "Passed".
-
----
-
-## 🚦 Chốt chặn chất lượng (Leader Review)
-
-- **Traceability**: Mọi thay đổi có nguồn gốc rõ ràng (Feature ID / Bug ID) không?
-- **Stability**: Hệ thống có khả năng tự phục hồi nếu bước Deploy gặp lỗi không?
-
----
-> **Lệnh kích hoạt:** `/execute_workflow release version="3.0.0" target="prod"`
+## 🚨 Failure Points (Điểm hay gặp lỗi)
+1. TESTER skip regression → **Giải pháp**: LEADER không sign-off nếu không có test evidence.
+2. Deploy mà không có DB backup → **Giải pháp**: Script tự động backup trước `docker-compose up`.
+3. Không có Rollback Plan → **Giải pháp**: Block bước 5 cho đến khi rollback command được document.

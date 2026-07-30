@@ -1,5 +1,8 @@
 ---
+rule_id: TRL-IT-001
 trigger: always_on
+applies_to: [TRANSLATOR, ALL]
+version: "2.0-llm"
 ---
 
 # 🌐 TRANSLATE AGENT RULES: IT SPECIALIZATION (TRL-IT-001)

@@ -1,24 +1,48 @@
 ---
+rule_id: OPS-SAFETY-001
 trigger: always_on
-rule_id: operation-safety-001
+applies_to: [ALL]
+version: "2.0-llm"
 ---
 
-# 🛡️ Operation Safety: Quy tắc vận hành an toàn
+# 🛡️ Operation Safety: Quy tắc vận hành an toàn (LLM-Optimized)
 
-Bộ luật này ngăn chặn Agent gây ra thiệt hại không đáng có cho mã nguồn của User.
+> **Mục đích**: Ngăn Agent gây thiệt hại không thể khôi phục cho mã nguồn và hệ thống của User.
 
-## 1. File Manipulation Rules (Quy tắc thao tác File)
-- **Prefer `replace_file_content`**: Luôn ưu tiên sửa đổi từng phần thay vì ghi đè toàn bộ file (`write_to_file` + Overwrite), trừ khi tạo file mới hoặc file cấu hình cực nhỏ.
-- **Always `view_file` first**: Cấm sửa đổi file mà chưa đọc toàn bộ nội dung của nó (để lấy line numbers chính xác).
-- **Post-Edit Verification**: Sau khi dùng `write_to_file` hoặc `replace_file_content`, Agent PHẢI dùng `view_file` 1 lần nữa để xác nhận nội dung đã đúng như mong đợi trước khi Report.
-- **Strict Pathing**: Luôn sử dụng đường dẫn tuyệt đối hoặc tham chiếu trực tiếp từ `project-structure.md`.
+## ⚡ 3 Luật Bất Biến (ghi nhớ trước khi bất kỳ tool call nào)
 
-## 2. Tool Usage Constraints (Hạn chế công cụ)
-- **`run_command` Verification**: Trước khi chạy bất kỳ command nào có khả năng xóa (e.g., `rm`, `git reset`), Agent PHẢI giải thích lý do cho User.
-- **Turbo usage**: Chỉ dùng `// turbo` cho các lệnh vô hại (mkdir, ls, npm test). Tuyệt đối không dùng cho các lệnh sửa đổi DB hoặc Deploy.
+```
+LAW 1: view_file BEFORE edit. Không đọc = Không sửa.
+LAW 2: replace_file_content > write_to_file (Overwrite). Luôn luôn.
+LAW 3: Destructive commands (rm, reset, drop) → Giải thích cho User TRƯỚC.
+```
 
-## 3. Context Awareness (Nhận thức ngữ cảnh)
-- **Mandatory Checks**: Mỗi khi bắt đầu một Workflow (`/dev`, `/fix`), Agent PHẢI đọc file `.agents/config/project-structure.md` để đảm bảo không bị "ảo giác" về đường dẫn.
+---
+
+## File Operations (Ưu tiên từ an toàn → nguy hiểm)
+
+| Tool | Khi nào dùng | Rủi ro |
+| :--- | :--- | :--- |
+| `replace_file_content` | Sửa đoạn cụ thể | Thấp |
+| `multi_replace_file_content` | Sửa nhiều chỗ, biết line numbers | Thấp |
+| `write_to_file` (mới) | Tạo file chưa tồn tại | Thấp |
+| `write_to_file` (Overwrite=true) | **Chỉ khi không còn cách nào khác** | Cao |
+
+## ❌ Anti-patterns (Cấm tuyệt đối)
+
+❌ Sửa file mà không `view_file` trước → LLM ảo giác line numbers → File hỏng
+❌ `run_command rm -rf` không giải thích → Có thể xóa data User
+❌ `// turbo` cho commands modify DB hoặc deploy → Không thể undo
+❌ Dùng relative path thay vì absolute path → Sai thư mục làm việc
+
+## ✅ Context Awareness Checklist
+
+Trước mỗi Workflow mới:
+1. `list_dir` để xác nhận project structure thực tế.
+2. Đọc `.agents/config/project-structure.md` nếu có.
+3. Không assume file tồn tại — verify bằng `view_file`.
+
+---
 
 > [!CAUTION]
-> Vi phạm các quy tắc an toàn này sẽ bị **LEADER** REJECT ngay lập tức mà không cần giải thích thêm.
+> **Vi phạm các luật này → LEADER REJECT ngay lập tức, không giải thích thêm.**

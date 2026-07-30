@@ -1,32 +1,67 @@
 ---
 rule_id: SHS-001
-role: SECURITY
-trigger: security_audit, hardening, go_live
+trigger: always_on
+applies_to: [SECURITY, CLOUD_ARCHITECT, SA, LEADER]
+severity: CRITICAL
+version: "2.0-llm"
 ---
 
-# 🛡️ Security Hardening Standards: Quy chuẩn Cường hóa Hệ thống
+# 🛡️ Security Hardening Standards (SHS-001)
 
-Mục tiêu: Xây dựng lớp phòng thủ đa tầng (Defense in Depth) để bảo vệ dự án khỏi các cuộc tấn công và rò rỉ dữ liệu.
+> **Activation**: Rule này kích hoạt khi Agent review code, IaC, hoặc chuẩn bị deploy.
 
-## 1. Zero Trust Architecture (Kiến trúc không tin cậy)
-- **Principle of Least Privilege**: Mọi Agent và Service chỉ được cấp quyền tối thiểu cần thiết để thực thi nhiệm vụ.
-- **Identity Verification**: Mọi truy cập vào tài nguyên nhạy cảm (DB, Secrets) phải có định danh và ghi log (Audit Log).
+## ⚡ Zero-Trust Checklist (Chạy trước mỗi release)
 
-## 2. Data Encryption & Integrity (Bảo mật Dữ liệu)
-- **Encryption at Rest**: Mọi dữ liệu nhạy cảm trong Database phải được mã hóa (DBS-001).
-- **Encryption in Transit**: Bắt buộc sử dụng SSL/TLS cho mọi giao tiếp bên ngoài.
-- **Payload Validation**: Tuyệt đối không tin tưởng dữ liệu từ người dùng (Sanitizing Inputs).
-
-## 3. Vulnerability Management (Quản lý Lỗ hổng)
-- **SCA (Software Composition Analysis)**: Tự động quét các thư viện bên thứ 3 để tìm lỗ hổng bảo mật.
-- **DAST (Dynamic Analysis)**: Chạy các cuộc quét tự động trên môi trường Staging/Production mẫu.
-- **Patch Management**: Cập nhật Model và Framework ngay khi có bản vá bảo mật mới.
-
-## 4. Tầm nhìn CTO (Proactive Defense)
-- **Incident Response Plan**: Phải có quy trình phản ứng nhanh khi phát hiện xâm nhập (Isolation, Log Analysis, Remediation).
-- **Security as Code**: Tích hợp các chốt chặn bảo mật trực tiếp vào CI/CD Pipeline.
-- **Red Team Awareness**: Khuyến khích tinh thần "Tự tấn công hệ thống của mình" để tìm ra kẽ hở trước kẻ xấu.
+```
+□ Không có hardcoded secret trong code/IaC?
+□ Tất cả external input đều được sanitized?
+□ HTTPS/TLS bắt buộc cho mọi external call?
+□ Least Privilege: Mọi service chỉ có quyền tối thiểu?
+□ Audit log cho mọi truy cập tài nguyên nhạy cảm?
+```
 
 ---
+
+## ❌ HARD BLOCKS (Phát hiện = Block ngay)
+
+❌ Hardcoded password, API key, token trong source code → `grep_search "secret=|password=|Bearer"`
+❌ HTTP (không có S) cho production API calls → Enforce HTTPS/TLS
+❌ SQL query dùng string concatenation → SQL Injection risk → REJECT
+❌ User input được `eval()` hoặc `exec()` trực tiếp → Remote Code Execution risk
+
+## ✅ SAFE PATTERNS
+
+✅ Secrets qua environment variables hoặc Secret Manager
+✅ Parameterized queries cho SQL
+✅ Content Security Policy headers cho web endpoints
+✅ Input validation với whitelist approach (không phải blacklist)
+
+---
+
+## 🔍 Scanning Protocol (SECURITY Agent phải chạy)
+
+```bash
+# Scan cho hardcoded secrets
+grep -r "password=\|secret=\|api_key=\|Bearer " src/
+
+# Scan cho dangerous functions  
+grep -r "eval(\|exec(\|system(" src/
+```
+
+---
+
+## STRIDE Threat Matrix (SA + SECURITY review)
+
+| Threat | Mitigation |
+| :--- | :--- |
+| **S**poofing | JWT validation, MFA |
+| **T**ampering | HMAC signatures, checksums |
+| **R**epudiation | Immutable audit logs |
+| **I**nfo Disclosure | Encryption at rest + transit |
+| **D**enial of Service | Rate limiting, circuit breaker |
+| **E**levation of Privilege | RBAC + Least Privilege |
+
+---
+
 > [!CAUTION]
-> **"Bảo mật là một quá trình, không phải là một điểm đến."** — _The Security Gatekeeper_
+> **"Bảo mật là quá trình liên tục — không phải checkbox một lần."**

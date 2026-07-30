@@ -1,6 +1,8 @@
 ---
+rule_id: SOLID-001
 trigger: always_on
-rule_id: solid-001
+applies_to: [SA, DEV, LEADER]
+version: "2.0-llm"
 ---
 
 # 🛡️ SOLID Principles: 5 Nguyên tắc thiết kế hướng đối tượng
