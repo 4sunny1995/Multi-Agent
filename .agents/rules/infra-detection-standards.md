@@ -1,3 +1,8 @@
+---
+trigger: model_decision
+description: Chuẩn nhận diện hạ tầng (Infra Detection, Greenfield vs Legacy)
+---
+
 # 📜 RULE: INFRASTRUCTURE DETECTION STANDARDS (INF-001)
 
 | Thông số | Giá trị |
@@ -26,10 +31,10 @@
 
 ## 🛠️ 2. Quy trình kiểm tra bắt buộc (Standard Procedure)
 
-1. **Scan Root Directory**: Sử dụng `list_dir` để lấy danh sách file cấp 1.
-2. **Deep Scan Config**: Nếu nghi ngờ là dự án cũ, dùng `view_file` để kiểm tra nội dung `docker-compose.yaml` hoặc `package.json` để xác định công nghệ và DB đang dùng.
+1. **Kiểm tra Bộ nhớ (Check STATE.md)**: BẮT BUỘC dùng `view_file` đọc `.agents/STATE.md` đầu tiên. Nếu file tồn tại, Agent sẽ dùng thông tin trên đó làm context và BỎ QUA bước quét thủ công.
+2. **Quét thủ công (Fallback Scan)**: CHỈ KHI `STATE.md` không tồn tại, dùng `list_dir` tại root và đọc cấu hình lõi (`docker-compose.yaml`, `package.json`) để tự định hình hệ thống.
 3. **Report Phase**: Agent phải ghi rõ trong `implementation_plan.md` ở mục "Context Audit":
-    - `Detected State: [New Project / Legacy System]`
+    - `Detected State: [Read from STATE.md / Legacy Manual Scan]`
     - `Action Mode: [Initial Infrastructure / Infrastructure Evolution]`
 
 ---

@@ -1,5 +1,6 @@
 ---
 trigger: model_decision
+description: Quy tắc xử lý hệ thống cũ (Legacy Code, Audit)
 rule_id: legacy-principles-001
 ---
 

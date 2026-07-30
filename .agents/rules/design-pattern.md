@@ -1,5 +1,6 @@
 ---
-trigger: always_on
+trigger: model_decision
+description: Design Patterns Handbook (Creational, Structural, Behavioral)
 ---
 
 # 🏗️ Kiến trúc Phần mềm: Design Patterns Handbook

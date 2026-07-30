@@ -1,6 +1,7 @@
 ---
 rule_id: TRL-IT-001
-trigger: always_on
+trigger: model_decision
+description: Quy định dịch thuật chuyên ngành IT tiếng Việt
 applies_to: [TRANSLATOR, ALL]
 version: "2.0-llm"
 ---

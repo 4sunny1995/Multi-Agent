@@ -1,5 +1,6 @@
 ---
-trigger: always_on
+trigger: model_decision
+description: Tư duy lập trình hiện đại (KISS, DRY, YAGNI, SoC)
 ---
 
 # 🚀 Advanced Development Principles: Tư duy lập trình hiện đại

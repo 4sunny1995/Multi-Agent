@@ -1,6 +1,7 @@
 ---
 rule_id: UNIT-TEST-001
-trigger: always_on
+trigger: model_decision
+description: Quy tắc viết Unit Test (F.I.R.S.T, AAA, Mocking)
 applies_to: [DEV, TESTER, LEADER]
 version: "2.0-llm"
 ---

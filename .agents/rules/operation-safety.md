@@ -1,6 +1,7 @@
 ---
 rule_id: OPS-SAFETY-001
-trigger: always_on
+trigger: model_decision
+description: Quy tắc vận hành an toàn (Operation Safety, File modifications)
 applies_to: [ALL]
 version: "2.0-llm"
 ---
