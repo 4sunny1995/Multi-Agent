@@ -1,0 +1,8 @@
+{
+  "port": 3000,
+  "publicFolder": "docs/original",
+  "routes": {
+    "/about": "README.md",
+    "/api-v1": "api.md"
+  }
+}
