@@ -1,0 +1,13 @@
+{
+  "name": "markdown-convert",
+  "version": "1.0.0",
+  "description": "Convert markdown to HTML, PNG, SVG, and CSV with hierarchical headings",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "convert": "node ./scripts/markdown-convert.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}

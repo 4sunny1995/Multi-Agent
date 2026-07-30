@@ -1,60 +1,50 @@
 ---
-rule_id: DOC-001
 trigger: model_decision
 description: Quy chuẩn Tài liệu và Báo cáo Kỹ thuật (Accuracy, Structure, Reporting)
-applies_to: [TECH_WRITER, BA, SA, DEV, LEADER]
-version: "7.0-llm"
 ---
 
 # 📝 Documentation & Reporting Standards (DOC-001)
 
 <identity>
-Mục tiêu: Đảm bảo tài liệu kỹ thuật và báo cáo đạt độ chính xác tuyệt đối, cấu trúc chuyên nghiệp và dễ tiếp cận cho mọi đối tượng.
+Mục tiêu: Đảm bảo tài liệu kỹ thuật & báo cáo đạt độ chính xác tuyệt đối, cấu trúc chuyên nghiệp.
 Triết lý: "Tài liệu không có bằng chứng (evidence) = Tài liệu không tồn tại."
 </identity>
 
 <activation>
-Kích hoạt khi viết BRD, Implementation Plan, API Docs, User Guide, hoặc thực hiện `/report`.
+Kích hoạt khi viết BRD, Implementation Plan, API Docs, User Guide hoặc thực hiện `/report`. Phân rã yêu cầu thành User Story có mã định danh rõ ràng.
 </activation>
 
 <thinking_pattern>
-1. Tài liệu này viết cho ai? (Developer, Admin, hay End-user).
-2. Tôi có đang "sáng tạo" ra thông tin không hay đã verify với code thực tế (`src/`)?
-3. Các khẳng định trong báo cáo đã có dẫn chứng (File path:Line number) chưa?
-4. Câu văn có súc tích và dùng thể chủ động không?
+1. Độc giả là ai (Dev, Admin, End-user)?
+2. Đã verify với mã nguồn thực tế (`src/`) chưa?
+3. Các nhận định có dẫn chứng (File:Line) chưa?
+4. Câu văn đã súc tích, chủ động chưa?
 </thinking_pattern>
 
 <guidelines>
-## 1. ACCURACY & EVIDENCE (Ràng buộc về Sự thật)
-- **Zero-Hallucination**: Không bao giờ sáng tạo ra tính năng hoặc tham số không tồn tại trong mã nguồn.
-- **Link Evidence**: Mọi khẳng định về code phải đính kèm link cụ thể: `[file.ts:L23](file_path)`.
-- **Verify-First**: Mọi Code Snippet trích dẫn phải được lấy từ bản thực thi mới nhất của DEV, không copy từ Plan cũ.
+## 1. ACCURACY & EVIDENCE
+- **Zero-Hallucination**: Không sáng tạo tính năng/tham số ngoài mã nguồn.
+- **Link Evidence**: Mọi nhận định về code phải gắn link `[file.ts:L23](file_path)`.
+- **Verify-First**: Trích dẫn code từ bản thực thi mới nhất, không copy từ plan cũ.
 
 ## 2. REPORTING STRUCTURE (TRS-001)
-Báo cáo kỹ thuật chuẩn phải bao quát đủ 5 tầng:
-1. **Overview**: Mục tiêu + Phạm vi dự án.
-2. **Feature Catalog**: User Stories + Acceptance Criteria thực tế.
-3. **Architecture**: Diagrams (Mermaid) + ERD + Infra topology.
-4. **Implementation**: Cấu trúc thư mục + Core logic snippets.
-5. **Quality**: Test coverage + Security sign-off.
+Đủ 5 tầng: (1) Overview, (2) Feature Catalog, (3) Architecture (Diagrams/ERD), (4) Implementation (Folder/Core logic), (5) Quality (Coverage/Security).
 
 ## 3. LINGUISTIC & FORMATTING
-- **Active Voice**: Sử dụng câu chủ động. Loại bỏ từ mơ hồ ("có lẽ", "hình như").
-- **Minimalist Writing**: 1 câu < 25 từ, 1 đoạn < 4 dòng. Loại bỏ 100% từ thừa.
-- **Visual-First**: Ưu tiên dùng Mermaid diagram cho luồng logic phức tạp.
-- **Hierarchy**: Tuân thủ thứ tự Heading (H1 > H2 > H3), không nhảy cấp.
+- **Active Voice & Minimalist**: Câu chủ động, 1 câu < 25 từ, 1 đoạn < 4 dòng.
+- **Visual & Hierarchy**: Ưu tiên Mermaid diagram; tuân thủ thứ tự Heading (H1 > H2 > H3).
 </guidelines>
 
 <anti_patterns>
-❌ Copy-paste từ BRD vào report mà không đối chiếu với Code thực tế.
-❌ Dùng từ ngữ mơ hồ hoặc trạng từ thừa thãi.
-❌ Viết tài liệu cồng kềnh cho dự án quy mô nhỏ [MVP-MICRO].
-❌ Thiếu dẫn chứng (file path, line number) cho các nhận định kỹ thuật.
+❌ Copy BRD vào report không đối chiếu code thực tế.
+❌ Dùng từ ngữ mơ hồ hoặc trạng từ thừa.
+❌ Viết tài liệu cồng kềnh cho dự án nhỏ.
+❌ Thiếu dẫn chứng (file path, line number).
 </anti_patterns>
 
 <checklist>
-- [ ] Mọi Code Snippet đã được `view_file` để verify chưa?
-- [ ] Báo cáo đã đủ 5 tầng thông tin chuẩn TRS-001 chưa?
-- [ ] Đã có dẫn chứng cụ thể cho các khẳng định chính chưa?
-- [ ] Ngôn ngữ đã súc tích và nhất quán thuật ngữ chưa?
+- [ ] Code Snippet đã được `view_file` verify?
+- [ ] Báo cáo đủ 5 tầng TRS-001?
+- [ ] Có dẫn chứng cụ thể cho các khẳng định?
+- [ ] Ngôn ngữ súc tích, nhất quán thuật ngữ?
 </checklist>
