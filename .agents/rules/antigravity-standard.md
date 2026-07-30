@@ -23,6 +23,9 @@ Bộ quy tắc này hướng dẫn các AI Agent cách tương tác chuyên nghi
 - **Implementation Plan**: Phải có mục "User Review Required" cho các quyết định quan trọng.
 - **Walkthrough**: Luôn đính kèm file link và mô tả ngắn gọn những gì đã thay đổi.
 - **Auto-Indexing**: Mọi Agent khi tạo file mới trong `docs/` đều có trách nhiệm (hoặc delegate cho Tech Writer) cập nhật link vào `docs/README.md`.
+- **Directory Guide**: Mỗi thư mục lõi (`roles/`, `rules/`, `workflows/`) phải có 1 file `README.md` đóng vai trò là danh mục điều hướng cho người dùng.
+- **Team Handoff Protocol**: Trước khi bắt đầu Phase mới, Agent tiếp nhận PHẢI xác nhận (Check) tính đầy đủ của Output từ Agent trước đó. Nếu thiếu context, PHẢI yêu cầu bổ sung thay vì tự giả định.
+- **Defensive Documentation**: Mọi văn bản bàn giao (BRD, Arch Docs, Plan) PHẢI có mục **"Potential Failure Points"** (Các điểm có thể gây lỗi hệ thống) và đề xuất phương án khắc phục/dự phòng sơ bộ.
 
 ## 🤝 4. Tương tác với User
 - Phản hồi ngắn gọn, súc tích, tập trung vào giải quyết vấn đề.

@@ -23,6 +23,17 @@ Nếu bạn vẫn còn đang học tập tại giảng đường, việc kẹt l
 2. **Kích Thích Sự Tò Mò:** Nếu AI sử dụng một cấu trúc `Design Pattern` mà bạn chưa từng biết, đừng lờ nó đi! Hãy dừng lại để học: *"Cái hàm này lạ quá, mày có thể phân tích cho tao vì sao mày không dùng if-else mà lại dùng cách này không?"*
 3. **Trải Nghiệm Độc Lập:** Đôi khi, hãy tự tắt trợ lý đi và thử tự xây dựng một logic nghiệp vụ phức tạp. Đó là cách bạn xác nhận mình vẫn đang làm chủ nghề nghiệp.
 
+### 4. Tầm Nhìn Chiến Lược & "Người Gác Cổng" (CTO Perspective):
+Trong hệ thống của chúng ta, **LEADER** mang hai linh hồn: Một "Người gác cổng" (Gatekeeper) khắt khe và một "Kiến trúc sư trưởng" (CTO) có tầm nhìn.
+- Đừng chỉ hài lòng với việc code chạy đúng. Hãy tự hỏi: *"Hệ thống này có thể mở rộng trong 2 năm tới không?"*.
+- AI có thể giúp bạn tối ưu hóa, nhưng chính **Bạn** là người định hướng "con thuyền" công nghệ đi đúng mục tiêu kinh doanh.
+
+### 5. Đạo Đức Đối Với Dữ Liệu (The Brain Integrity):
+Quy chuẩn **DBS-001** (Bảo vệ Database) không chỉ là kỹ thuật, nó là lời hứa về sự an toàn đối với tài sản của người dùng.
+- Một kỹ sư giỏi là người biết sợ hãi trước sự thay đổi dữ liệu hiện có. Đừng bao giờ lạm dụng AI để thực thi các lệnh migration mù quáng. 
+- Hãy luôn là người đưa ra quyết định cuối cùng **[PO_APPROVE]** trước khi "chạm" vào bộ não của hệ thống.
+
+
 > **LỜI KẾT**
 > Chúng ta đang may mắn ở trong một thời đại được máy móc hỗ trợ mọi rào cản thao tác tay. Hãy dùng AI để bản thân có thời gian giải quyết các bài toán tầm cỡ lớn hơn, nhưng người cầm vô lăng và nắm giữ những kiến thức tinh túy nhất... luôn luôn phải là **BẠN**! Dũng cảm tiến lên nhé!
 > Đừng bao giờ quên rằng, chúng ta là những kỹ sư phần mềm. 
