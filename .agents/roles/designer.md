@@ -35,10 +35,10 @@ Chuyển hóa User Stories thành Mockups và UI Specs có tính nhất quán ca
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **Nghiên cứu** | BRD + Persona | Moodboard + Style Guide | `docs/ui/style-guide.md` |
-| **Phác thảo** | User Stories | High-fidelity Mockups | `docs/ui/mockups/` |
-| **Đặc tả** | Approved Mockups | UI Specs (tokens, components) | `docs/ui/specs.md` |
-| **Báo cáo** | Style Guide | UI/UX Summary (TRS-001) | `docs/architecture/technical_report.md` |
+| **Nghiên cứu** | BRD + Persona | Moodboard + Style Guide | `docs/original/ui/style-guide.md` |
+| **Phác thảo** | User Stories | High-fidelity Mockups | `docs/original/ui/mockups/` |
+| **Đặc tả** | Approved Mockups | UI Specs (tokens, components) | `docs/original/ui/specs.md` |
+| **Báo cáo** | Style Guide | UI/UX Summary (TRS-001) | `docs/original/architecture/technical_report.md` |
 
 </input_output>
 

@@ -7,16 +7,16 @@
 ├── .agents/             # Cấu hình AI Agents (Roles, Rules, Workflows)
 │   ├── config/          # Cấu hình hệ thống chung
 │   ├── roles/           # System Prompts của từng Agent
-│   ├── rules/           # Các bộ luật (Clean Code, SOLID, etc.)
+│   ├── rules/           # Các bộ luật và từ điển (glossary.json)
 │   └── workflows/       # Quy trình thực thi (/dev, /fix, etc.)
 ├── docs/                # TÀI LIỆU DỰ ÁN
-│   ├── README.md        # [NEW] Mục lục tổng thể (Table of Contents)
-│   ├── original/        # [NEW] Lưu trữ bản gốc của các file đã dịch
-│   ├── business/        # BRD, User Stories, Edge Cases
-│   ├── architecture/    # Design Plan, API Contract
-│   ├── testing/         # Test Plan, Bug Reports
-│   ├── user-guide/      # Hướng dẫn sử dụng
-│   ├── drafts/          # [NEW] Các bản thảo, tài liệu chưa hoàn thiện
+│   ├── README.md        # Mục lục tổng thể (Table of Contents)
+│   ├── drafts/          # Các bản thảo, tài liệu chưa hoàn thiện
+│   ├── original/        # TÀI LIỆU GỐC & LÀM VIỆC
+│   │   ├── business/    # BRD, User Stories, Edge Cases
+│   │   ├── architecture/# Design Plan, API Contract
+│   │   ├── testing/     # Test Plan, Bug Reports
+│   │   └── user-guide/  # Hướng dẫn sử dụng
 │   └── trans/           # THƯ MỤC CHỨA BẢN DỊCH
 │       ├── vi/          # Bản dịch tiếng Việt
 │       ├── en/          # Bản dịch tiếng Anh
@@ -28,4 +28,4 @@
 ```
 
 > [!IMPORTANT]
-> **Quy tắc Document Index (TOC)**: Sau khi tạo/dịch tài liệu, Translator hoặc Tech Writer phải cập nhật link vào `docs/README.md`.
+> **Quy tắc Document Index (TOC)**: Sau khi tạo/dịch tài liệu, Translator hoặc Tech Writer phải cập nhật link vào `docs/README.md`. Mọi tài liệu mới của Agent phải đặt trong `docs/original/<category>/`.

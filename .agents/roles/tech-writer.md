@@ -35,10 +35,10 @@ Chuyển hóa code và kiến trúc phức tạp thành hướng dẫn dễ hi�
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **API Docs** | API Contract + Code | API Documentation | `docs/architecture/api-docs.md` |
-| **User Guide** | User Stories | Hướng dẫn sử dụng | `docs/business/user-guide.md` |
-| **Release Notes** | Changelog + PRs | Release Notes | `docs/release/` |
-| **Tech Report** | BA/SA/DEV Snippets | Technical Report (TRS-001) | `docs/architecture/technical_report.md` |
+| **API Docs** | API Contract + Code | API Documentation | `docs/original/architecture/api-docs.md` |
+| **User Guide** | User Stories | Hướng dẫn sử dụng | `docs/original/business/user-guide.md` |
+| **Release Notes** | Changelog + PRs | Release Notes | `docs/original/release/` |
+| **Tech Report** | BA/SA/DEV Snippets | Technical Report (TRS-001) | `docs/original/architecture/technical_report.md` |
 
 </input_output>
 

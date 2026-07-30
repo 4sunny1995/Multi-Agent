@@ -36,8 +36,8 @@ LEADER (Facilitate) → ALL AGENTS (Reflect) → LEADER (Synthesize) → LEADER 
 - **Hành động**: Ghi trực tiếp các tiêu chuẩn mới vào `.agents/rules/` hoặc role files.
 // turbo
 - **Ưu tiên**: Cập nhật rule hiện có > Tạo rule mới (tránh bloat).
-- **Mandatory write**: Luôn cập nhật `team-retro.md` với Sprint summary.
-- **Output**: Các rule files đã được cập nhật. Danh sách thay đổi.
+- **Mandatory write**: Luôn cập nhật `team-retro.md` với Sprint summary và Render **"Cross-Team Lessons Learned Table"** để cộng đồng học hỏi.
+- **Output**: Các rule files đã được cập nhật + Bảng Lessons Learned.
 
 ## 4. CLOSE & COMMIT (LEADER)
 - **Hành động**: Tóm tắt thành walkthrough. Đặt câu hỏi kiểm tra: "Nếu lỗi này xảy ra lần nữa, Rule mới có ngăn được không?"

@@ -18,7 +18,8 @@
 ## 3. CẤU TRÚC THƯ MỤC CỐT LÕI (CORE DIRECTORIES)
 *(Ghi chú các thư mục quan trọng để AI biết nên xem code ở đâu)*
 - `.agents/`: Chứa định nghĩa Agent, Rule, Workflow, và STATE.md (đây).
-- `docs/`: Chứa các tài liệu BRD, kiến trúc, test report.
+- `docs/original/`: Chứa các tài liệu BRD, kiến trúc, test report do Agent tạo ra.
+- `docs/trans/`: Chứa các bản dịch đa ngôn ngữ do Translator tạo ra.
 - `...`: `[Chờ cập nhật]`
 
 ## 4. BẢO MẬT & QUYỀN TRUY CẬP (SECURITY PROTOCOL)
@@ -29,3 +30,15 @@
 - **Nhánh / Phiên bản hiện tại**: `[Ví dụ: v1.0.0]`
 - **Nợ kỹ thuật cần xử lý (Tech Debt)**: `[Các phần code bẩn hoặc giải pháp tạm thời cần refactor]`
 - **Blockers hiện hành**: `[Phần nào đang vướng/chờ giải quyết]`
+
+## 6. SƠ ĐỒ NGỮ NGHĨA (SEMANTIC KNOWLEDGE MAP)
+> **Mục đích**: Chống lại Điểm mù 800-loc của LLM. Mọi sơ đồ Call Graph giữa các service, module quan trọng phải được tường thuật lại dưới dạng tóm tắt văn bản.
+- **Data Flow**: `[Ví dụ: Auth Controller -> User Service -> MySQL]`
+- **Dependency Map**: `[Ví dụ: Module Payment KHÔNG ĐƯỢC gọi chéo sang Module Chat]`
+- **Core Abstractions**: `[Liệt kê các Base Classes / Interfaces chủ đạo]`
+
+## 7. MÔ HÌNH KINH DOANH & KHÁCH HÀNG (BUSINESS DOMAIN)
+> **Mục đích**: Nhồi ngữ cảnh kinh doanh cho BA Agent để không viết ra các Requirement và thiết kế vô dụng.
+- **Core Value Proposition (Giá trị cốt lõi)**: `[Ví dụ: Ứng dụng này giúp nông dân bán trực tiếp nông sản mà không qua môi giới]`
+- **User Personas (Chân dung Khách hàng)**: `[Ví dụ: Người từ 40-60 tuổi, mắt kém, hầu như không am hiểu công nghệ]`
+- **Business Rules (Luật kinh doanh sắt)**: `[Ví dụ: Nông sản hư hỏng phải được hoàn tiền trong tích tắc, cấm dùng font chữ nhỏ hơn 16px]`

@@ -18,16 +18,16 @@ SECURITY (Discovery) → SECURITY+SA (Risk) → SA (Hardening) → TESTER (PenTe
 
 ---
 
-## 1. SECURITY DISCOVERY (SECURITY)
+## 1. PREDICTIVE DISCOVERY & SEC-SCAN (SECURITY)
 // turbo
-- **Hành động**: `grep_search` toàn bộ repo cho: `password=`, `secret=`, `AIza`, `Bearer`, `api_key`.
-- **Check**: `.env` trong `.gitignore`? Exposed ports trong docker-compose?
-- **Output**: Raw findings list với file:line.
+- **Hành động 1 (Static Analysis)**: `grep_search` toàn bộ repo tìm: `password=`, `secret=`, `AIza`, `Bearer`, `api_key`. Check ports `docker-compose`.
+- **Hành động 2 (Predictive 24/7 Dependencies)**: Tự động phân tích hệ sinh thái dự án (Node/Python/Go) để áp dụng quét thư viện (Dependencies). Agent sẽ quyết định công cụ tương ứng (như `npm audit`, `pip-audit`, Trivy, Dependabot) để dò tìm CVE chưa phát nổ.
+- **Output**: Raw findings list với file:line + Báo cáo các cấu phần có rủi ro phụ thuộc (Dependency risks).
 
 ## 2. ATTACK SURFACE ANALYSIS (SECURITY + SA)
 - **Hành động**: Phân tích kiến trúc — entry points, trust boundaries, auth flows.
 - **STRIDE model**: Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation.
-- **Output**: `docs/testing/security-reports.md` — Risk matrix (Critical/High/Medium/Low).
+- **Output**: `docs/original/testing/security-reports.md` — Risk matrix (Critical/High/Medium/Low).
 
 ## 3. HARDENING IMPLEMENTATION (SA + CLOUD ARCH)
 - **SA**: Thiết kế encryption at rest + in transit, RBAC model.

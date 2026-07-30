@@ -1,61 +1,53 @@
 ---
 workflow_id: DEV-001
-description: Quy trình phát triển tính năng Enterprise end-to-end.
+description: Quy trình phát triển tính năng tinh gọn (Chỉ dành cho BA, DEV, TESTER, LEADER).
 role_lead: LEADER
-triggers: ["/dev", "phát triển", "tính năng mới", "implement"]
+triggers: ["/dev", "phát triển", "tính năng tinh gọn", "lập trình"]
 version: "2.0"
 ---
 
-# 🚀 Workflow: Phát Triển Tính Năng (/dev)
+# 🚀 Workflow: Phát Triển Tinh Gọn (/dev)
 
 > **Pre-condition**: Mọi Agent đọc [llm-agent-config.md](file:///.agents/config/llm-agent-config.md) trước khi bắt đầu.
 
 ## ⚡ Luồng thực thi (Happy Path)
 
 ```
-USER_REQUEST → BA → [DESIGNER] → SA+CLOUD → SECURITY → DEV → TESTER+WRITER → LEADER
+USER_REQUEST → BA → DEV → TESTER → LEADER
 ```
 
 ---
 
-## 1. STRATEGIC RESEARCH (BA)
-- **Kích hoạt**: Nhận USER_REQUEST có mô tả tính năng mới.
-- **Hành động**: Phân tích yêu cầu. Chạy INF-001 Discovery nếu là Legacy project.
-- **[DB_CHECKPOINT]**: Nếu cần thay đổi DB cũ → DỪNG và hỏi User ngay.
-- **Output**: `docs/original/business/brd.md` + `user-stories.md` (chuẩn INVEST, có 5+ Edge Cases).
+## 1. REQUIREMENT ANALYSIS (BA)
+// turbo
+- **Kích hoạt**: Nhận USER_REQUEST có mô tả tính năng. `view_file` các thông tin liên quan.
+- **Hành động 1 (Phân loại FIC)**: Xác định Tính năng độc lập (`[FIC: ISOLATED]`) hay có chạm module cũ (`[FIC: INTEGRATED]`).
+- **Hành động 2 (Xác định Scope)**: Viết User Stories chi tiết, tập trung vào giá trị người dùng và các ràng buộc nghiệp vụ.
+- **Hành động 3 (Bàn giao kịch bản)**: Phác thảo sơ bộ các tiêu chí chấp nhận (Acceptance Criteria) để TESTER có cơ sở chuẩn bị.
+- **Output**: `docs/original/business/brd.md` + `user-stories.md`.
 
-## 2. UI/UX DESIGN (DESIGNER) — *optional nếu không có UI*
-- **Hành động**: Chuyển User Stories thành Mockup + UI Specs.
-- **Output**: `docs/original/ui/style-guide.md` + `specs.md`.
+## 2. CORE EXECUTION & TDD (DEV)
+- **Hành động 1 (Thiết kế nhanh)**: Tự thiết kế logic/DB schema đơn giản dựa trên BRD (không cần qua SA).
+- **Hành động 2 (Thực thi code)**: Tuân thủ quy trình TDD (RED → GREEN → REFACTOR). Đảm bảo code sạch, đúng convention.
+- **Hành động 3 (Unit Test)**: Đảm bảo coverage cho các logic nghiệp vụ quan trọng.
+- **Output**: Source code (`src/`) + Unit tests (`tests/`).
+- **Gate Check (Handoff)**: Bố trí chốt chặn xác nhận (TESTER verify xem đoạn Unit Test đã được include ở trên chưa trước khi chạy regression).
 
-## 3. ARCHITECTURAL BLUEPRINT (SA + CLOUD ARCHITECT)
-- **SA**: INF-001 Discovery bắt buộc → Thiết kế Sequence + Schema. 
-- **CLOUD**: Dự toán hạ tầng 3-tier (Low/Medium/High traffic).
-- **[DB_CHECKPOINT]**: Schema cũ bị sửa → User approval bắt buộc.
-- **Output**: `docs/original/architecture/` + `implementation_plan.md` + `docs/budget/`.
+## 3. QA & ACCEPTANCE TEST (TESTER)
+- **Hành động 1 (Kiểm thử chức năng)**: Chạy các kịch bản dựa trên User Stories và Acceptance Criteria từ BA.
+- **Hành động 2 (Kiểm thử hồi quy)**: Nếu là `[FIC: INTEGRATED]`, bắt buộc kiểm tra các module liên quan để đảm bảo không có lỗi phát sinh (Side-effects).
+- **Hành động 3 (Báo cáo)**: Ghi nhận kết quả kiểm thử, log lỗi nếu có.
+- **Output**: `docs/original/testing/reports.md`.
 
-## 4. SECURITY GATEWAY (SECURITY)
-- **Hành động**: Review Plan về RBAC, Secrets management, Input validation.
-- **Block condition**: Phát hiện hardcoded credential hoặc SQL injection risk → Block Plan.
-- **Output**: Approval comment trong `implementation_plan.md`.
-
-## 5. CORE EXECUTION & TDD (DEV)
-- **Hành động**: Implement theo Plan. TDD flow: RED → GREEN → REFACTOR.
-- **Constraint**: Không viết code trước khi có failing test.
-- **Output**: `src/` + `tests/` — coverage ≥ 80% core logic.
-
-## 6. QA + DOCUMENTATION (TESTER + TECH WRITER)
-- **TESTER**: Acceptance tests + Security test + Edge cases từ BRD.
-- **TECH WRITER**: User Guide + API Docs.
-- **Output**: `docs/testing/reports.md` + `docs/business/user-guide.md`.
-
-## 7. FINAL GATE (LEADER — 7 Gates)
-- **Hành động**: Review qua 7 Gates. Cập nhật trạng thái kiến trúc mới nhất vào `.agents/STATE.md`. PASS → tag Git.
-- **Output**: `walkthrough.md` + `git tag vX.Y.Z` + `.agents/STATE.md`.
+## 4. FINAL APPROVAL (LEADER)
+- **Hành động 1 (Review 7 Gates)**: Kiểm tra tính nguyên vẹn, bảo mật, hiệu năng và tài liệu.
+- **Hành động 2 (Nghiệm thu)**: Xác nhận tính năng đã hoàn thiện và sẵn sàng merge/release.
+- **Hành động 3 (Tổng kết)**: Cập nhật `STATE.md` và tạo walkthrough cho người dùng.
+- **Output**: `walkthrough.md` + Cập nhật `.agents/STATE.md`.
 
 ---
 
 ## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. SA không chạy INF-001 Discovery → **Giải pháp**: LEADER block Plan nếu thiếu Discovery section.
-2. DEV bỏ qua TDD → **Giải pháp**: TESTER phải có failing test trước khi DEV bắt đầu.
-3. Context không được bàn giao đủ giữa các Agent → **Giải pháp**: Handoff Contract bắt buộc.
+1. **DEV tự ý đổi DB schema lớn** mà không báo cáo -> LEADER sẽ block nếu phát hiện thay đổi kiến trúc nhạy cảm.
+2. **Thiếu Acceptance Criteria từ BA** -> TESTER không có căn cứ để đánh giá đạt/không đạt.
+3. **Bỏ qua Regression Test** ở module Integrated -> Gây lỗi tiềm ẩn cho hệ thống hiện tại.

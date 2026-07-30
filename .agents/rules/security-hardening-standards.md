@@ -19,6 +19,7 @@ version: "2.0-llm"
 □ HTTPS/TLS bắt buộc cho mọi external call?
 □ Least Privilege: Mọi service chỉ có quyền tối thiểu?
 □ Audit log cho mọi truy cập tài nguyên nhạy cảm?
+□ 24/7 Dependency Security: Đã có cơ chế auto-scan CVE liên tục ở mức CI/CD chưa?
 ```
 
 ---

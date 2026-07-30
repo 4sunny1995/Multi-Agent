@@ -34,7 +34,7 @@ storage_paths:
   architecture: "docs/original/architecture/"
   testing:     "docs/original/testing/"
   ui:          "docs/original/ui/"
-  reports:     "docs/architecture/"
+  reports:     "docs/original/reports/"
   artifacts:   "docs/"
   drafts:      "docs/drafts/"
 ```

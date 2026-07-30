@@ -26,7 +26,7 @@ CLOUD ARCH (Discovery) → OPS (Cost) → CLOUD ARCH (IaC) → SECURITY (Scan) �
 
 ## 2. COST PLANNING (OPS / FIND-OPS)
 - **Hành động**: Lập bảng chi phí Low/Medium/High traffic. So sánh ít nhất 2 provider.
-- **PO Approval Gate**: Gửi `docs/budget/cloud_cost_estimate.md` cho User duyệt trước khi mua.
+- **PO Approval Gate**: Gửi `docs/original/budget/cloud_cost_estimate.md` cho User duyệt trước khi mua.
 - **Output**: Phê duyệt ngân sách.
 
 ## 3. IaC DESIGN (CLOUD ARCHITECT)
@@ -43,7 +43,7 @@ CLOUD ARCH (Discovery) → OPS (Cost) → CLOUD ARCH (IaC) → SECURITY (Scan) �
 ## 5. PROVISION & HEALTH CHECK (CLOUD ARCHITECT)
 - **Hành động**: Khởi chạy services. Verify health checks pass. Document rollback command.
 - **DBS-001**: Backup DB snapshot trước khi provision production.
-- **Output**: `docs/architecture/infra-discovery.md` — Live environment status.
+- **Output**: `docs/original/architecture/infra-discovery.md` — Live environment status.
 
 ---
 
