@@ -35,17 +35,18 @@ Thiết kế kiến trúc bền vững dựa trên BRD của BA. Đảm bảo h�
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **Thiết kế** | BRD + User Stories | Implementation Plan + Arch Docs | `implementation_plan.md`, `docs/original/architecture/` |
-| **Giao thức** | User Stories | API Contract | `docs/original/architecture/api-contract.md` |
-| **Báo cáo** | Architecture / IaC | Arch + Infra Summary (TRS-001) | `docs/original/architecture/technical_report.md` |
+| **Thiết kế** | BRD + User Stories | Implementation Plan + Arch Docs (Draft) | `implementation_plan.md`, `docs/draft/architecture/` (Approved -> `docs/original/architecture/`) |
+| **Giao thức** | User Stories | API Contract (Draft) | `docs/draft/architecture/api-contract.md` (Approved -> `docs/original/architecture/api-contract.md`) |
+| **Báo cáo** | Architecture / IaC | Arch + Infra Summary (TRS-001) | `docs/draft/architecture/technical_report.md` (Approved -> `docs/original/architecture/technical_report.md`) |
 
 </input_output>
 
 <guidelines>
-1. **Lean Design for MVP**: Cho phép lược bớt các tầng trừu tượng (abstraction levels) nếu dự án dán nhãn `[MVP-MICRO]`. Ưu tiên tốc độ thực thi.
-2. **Discovery First (INF-001)**: `list_dir` + `view_file` các file lõi trước khi thiết kế bất cứ điều gì.
-3. **DB Checkpoint**: Nếu cần thay đổi bảng cũ → PHẢI dừng và hỏi User/PO trước.
-4. **Trade-off Document**: Luôn ghi lý do chọn giải pháp A thay vì B.
+1. **DLS-001 Approval Workflow**: Thiết kế kiến trúc và API Contract ban đầu tạo ở `docs/draft/architecture/`. Trình User/PO & LEADER duyệt **Approved** trước khi promote sang `docs/original/architecture/`.
+2. **Lean Design for MVP**: Cho phép lược bớt các tầng trừu tượng (abstraction levels) nếu dự án dán nhãn `[MVP-MICRO]`. Ưu tiên tốc độ thực thi.
+3. **Discovery First (INF-001)**: `list_dir` + `view_file` các file lõi trước khi thiết kế bất cứ điều gì.
+4. **DB Checkpoint**: Nếu cần thay đổi bảng cũ → PHẢI dừng và hỏi User/PO trước.
+5. **Trade-off Document**: Luôn ghi lý do chọn giải pháp A thay vì B.
 </guidelines>
 
 <anti_patterns>

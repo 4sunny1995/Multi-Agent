@@ -35,13 +35,17 @@ BA (Features) → SA (Architecture) → DEV (Code) → TECH_WRITER (Synthesize) 
 - **Output**: Structure tree + Annotated snippets gửi TECH WRITER.
 
 ## 4. SYNTHESIS (TECH WRITER)
-- **Hành động**: Tổng hợp input từ BA + SA + DEV → `docs/architecture/technical_report.md`.
+- **Hành động**: Tổng hợp input từ BA + SA + DEV → xuất bản thảo `docs/draft/architecture/technical_report.md` với `Status: Draft`.
 - **TRS-001 Compliance**: Mọi claim phải có evidence link. Không viết gì không verify được.
-- **Output**: `docs/architecture/technical_report.md` + cập nhật `docs/README.md`.
+- **Output**: `docs/draft/architecture/technical_report.md`.
 
-## 5. APPROVAL (LEADER)
-- **Hành động**: Verify accuracy (report vs src/) + approve hoặc yêu cầu chỉnh sửa.
-- **Output**: `walkthrough.md` với timestamp.
+## 5. APPROVAL & PROMOTION — Phê Duyệt & Chuyển Bản Chính Thức (LEADER & User)
+- **Hành động**: LEADER cùng User/PO kiểm tra độ chính xác (Verify accuracy report vs src/) của bản thảo tại `docs/draft/architecture/technical_report.md`.
+- **Hỏi ý kiến User/PO**: Trình nội dung báo cáo kỹ thuật và hỏi ý kiến Approve của User/PO.
+- **Phê duyệt & Promote**:
+    - ✅ **Approved**: Khi được User/PO chấp thuận, di chuyển/cập nhật tài liệu từ `docs/draft/architecture/technical_report.md` sang `docs/original/architecture/technical_report.md`, chuyển `Status: Approved` trong Header và đồng bộ cập nhật `docs/original/README.md`. Ghi nhận kết quả vào `walkthrough.md` với timestamp.
+    - 🔄 **Refine**: Yêu cầu TECH WRITER chỉnh sửa bản thảo trực tiếp tại `docs/draft/architecture/technical_report.md`.
+- **Output**: Báo cáo kỹ thuật chính thức được lưu tại `docs/original/architecture/technical_report.md` (Single Source of Truth).
 
 ---
 

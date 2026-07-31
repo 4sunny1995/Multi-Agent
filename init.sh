@@ -10,7 +10,7 @@
 echo "⏳ Đang tiến hành thiết lập không gian làm việc..."
 
 # Cố gắng tạo thư mục và kiểm tra kết quả ngay lập tức
-if mkdir -p src docs/original/business docs/original/architecture docs/original/budget docs/original/testing docs/original/release; then
+if mkdir -p src docs/drafts docs/original/business docs/original/architecture docs/original/budget docs/original/testing docs/original/release; then
     echo "✅ Hoàn tất! Cấu trúc thư mục Enterprise (docs/original/) đã sẵn sàng."
 else
     # Khu vực xử lý ngoại lệ (Exception Handling)

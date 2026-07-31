@@ -22,25 +22,25 @@ BA (Discovery) → SA (Technical Assessment) → AUDITOR (Risk Scan) → LEADER 
 // turbo
 - **Hành động**: `view_file` các tài liệu hiện có, `list_dir` để hiểu cấu trúc dự án. Phỏng vấn User (qua `ask_question`) để làm rõ Pain Points.
 - **Xác nhận**: Target Users là ai? Kết quả mong đợi (Output) là gì?
-- **Output**: Business Requirement Draft (BRD) sơ bộ trong `docs/business/`.
+- **Output**: Business Requirement Draft (BRD) tạo trong `docs/draft/business/brd.md` với `Status: Draft`.
 
 ## 2. TECHNICAL ASSESSMENT — Đánh giá Khả thi (SA)
 - **Hành động**: So sánh yêu cầu của BA với hạ tầng hiện có. Kiểm tra thư viện, ngôn ngữ và kiến trúc.
 - **Constraints**: Giải pháp có vi phạm **SSA-001** (Quy mô hệ thống) không? Có nợ kỹ thuật nào cản trở không?
-- **Output**: Feasibility Report + Đề xuất Kiến trúc sơ bộ (Draft Architecture).
+- **Output**: Feasibility Report + Đề xuất Kiến trúc sơ bộ trong `docs/draft/architecture/`.
 
 ## 3. RISK & GAP SCAN — Rà soát Rủi ro (AUDITOR)
 - **Hành động**: Tìm các "lỗ hổng" trong logic nghiệp vụ hoặc các điểm thắt cổ chai kỹ thuật.
 - **Checklist**: Security, Performance, Cost (Cloud Budget).
-- **Output**: Risk Matrix (High/Medium/Low) + Remediation suggestions.
+- **Output**: Risk Matrix (High/Medium/Low) sơ bộ trong `docs/draft/architecture/risk_matrix.md`.
 
-## 4. STRATEGIC DECISION — Ra quyết định (LEADER)
-- **Hành động**: LEADER (CTO Vision) xem xét Report từ BA/SA/AUDITOR.
-- **Quyết định**: 
-    - ✅ **Go**: Tiếp tục sang `/design` hoặc `/dev`.
-    - 🔄 **Refine**: Yêu cầu BA/SA phân tích lại các điểm chưa rõ.
-    - ❌ **Drop**: Hủy bỏ nếu rủi ro quá cao hoặc giá trị kinh doanh thấp.
-- **Output**: Final Analysis Report được ký duyệt (Approved).
+## 4. STRATEGIC DECISION & USER APPROVAL — Ra quyết định & Phê duyệt (LEADER & User/PO)
+- **Hành động**: LEADER xem xét các tài liệu bản thảo trong `docs/draft/` từ BA/SA/AUDITOR và trình bày cho User/PO.
+- **Hỏi ý kiến User/PO (Review & Approve)**: Trình tài liệu tại `docs/draft/` để User/PO review và chọn:
+    - ✅ **Approved**: User/PO chấp thuận tài liệu. LEADER chỉ đạo di chuyển/đồng bộ các tài liệu từ `docs/draft/` sang `docs/original/` (ví dụ `docs/original/business/brd.md`), cập nhật `Status: Approved` trong Header. Tiếp tục sang `/design` hoặc `/dev`.
+    - 🔄 **Refine**: Yêu cầu BA/SA chỉnh sửa trực tiếp các nội dung chưa đạt trong `docs/draft/`.
+    - ❌ **Drop**: Hủy bỏ yêu cầu nếu rủi ro quá cao hoặc không mang lại giá trị.
+- **Output**: Tài liệu chính thức đã Approved được lưu tại `docs/original/` (Single Source of Truth).
 
 ---
 

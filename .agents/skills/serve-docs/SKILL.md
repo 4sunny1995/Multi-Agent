@@ -1,28 +1,52 @@
 ---
 name: serve-docs
-description: Khởi chạy server nội bộ để hiển thị các tài liệu Markdown trong thư mục docs/original dưới dạng web trực quan trên trình duyệt.
+description: Tự động phát hiện ứng dụng ExpressJS để nhúng docs router hoặc khởi chạy server nội bộ hiển thị các tài liệu Markdown trong thư mục docs/original dưới dạng web trực quan trên trình duyệt.
 ---
 
 # 🌐 Serve Docs Skill (SRV-001)
 
 <identity>
 Tôi là công cụ hỗ trợ public và hiển thị tài liệu.
-Tôi giúp khởi chạy một Web Server nội bộ (sử dụng ExpressJS và Marked) để người dùng có thể đọc các file Markdown trong thư mục `docs/original` trực tiếp trên trình duyệt với giao diện thân thiện (HTML/CSS).
+Tôi giúp tự động phát hiện dự án ExpressJS để nhúng router hiển thị tài liệu, hoặc khởi chạy một Web Server nội bộ (ExpressJS và Marked) để người dùng có thể đọc các file Markdown trong thư mục `docs/original` trực tiếp trên trình duyệt với giao diện thân thiện (HTML/CSS).
 </identity>
 
 <activation>
 triggers:
-  - keyword: ["public docs", "serve docs", "hiển thị tài liệu original", "start document server"]
+  - keyword: ["public docs", "serve docs", "hiển thị tài liệu original", "start document server", "nhúng docs vào express"]
   - workflow: Khi người dùng muốn xem hoặc duyệt các tài liệu đã được Approved trong `docs/original`.
 </activation>
 
 <mission>
-Mang lại trải nghiệm đọc tài liệu mượt mà trên Browser bằng cách tự động parse Markdown sang HTML và cung cấp một danh sách Index (Mục lục) các tài liệu hiện có.
+1. **Kiểm tra môi trường Node.js**: Kiểm tra xem máy đã cài đặt Node.js hay chưa. Nếu chưa có, dừng lại hỏi ý kiến người dùng xem có cần AI hỗ trợ cài đặt hay không.
+2. **Kiểm tra ExpressJS**: Kiểm tra xem dự án hiện tại có sử dụng ExpressJS hay không.
+3. **Nếu là ứng dụng ExpressJS**: Tự động nhúng `createDocsRouter()` từ `.agents/skills/serve-docs/scripts/serve.js` vào file entry point chính (`app.js`, `server.js`, `index.js`, `src/app.ts`, v.v.) tại route `/docs`.
+4. **Nếu không phải ứng dụng ExpressJS (hoặc là dự án tĩnh)**: Khởi chạy Standalone Server độc lập tại port 3000 (hoặc port rảnh kế tiếp) qua lệnh `node .agents/skills/serve-docs/scripts/serve.js`.
 </mission>
 
 <guidelines>
-- Đảm bảo thư mục mục tiêu hợp lệ trong Project.
-- Nếu được yêu cầu, hãy chạy lệnh Start Server trong nền để người dùng có thể click vào URL.
+- **Bước 0: Node.js Environment Check (Kiểm tra Node.js)**:
+  - Chạy kiểm tra phiên bản Node.js (ví dụ `node -v`).
+  - **Nếu chưa cài đặt Node.js**: Dừng ngay lập tức và hỏi ý kiến người dùng (sử dụng câu hỏi trực tiếp hoặc `ask_question`):
+    > *"Hệ thống hiện tại chưa cài đặt Node.js. Bạn có muốn tôi hỗ trợ cài đặt Node.js (LTS) ngay bây giờ không?"*
+  - Nếu người dùng đồng ý (`Yes`): Tiến hành hỗ trợ cài đặt Node.js theo HĐH tương ứng.
+  - Nếu người dùng từ chối (`No`): Dừng thực thi skill và cung cấp hướng dẫn cài đặt thủ công.
+
+- **Bước 1: Express Detection (Phát hiện Express)**:
+  - Kiểm tra file `package.json` ở gốc dự án xem có `express` trong dependencies không.
+  - Sử dụng `grep_search` hoặc `view_file` để tìm file entry point chứa việc khởi tạo Express app (tìm từ khóa `express()`, `app.listen`, `const app = express()`, v.v.).
+
+- **Bước 2A: Auto-Embedding (Nếu phát hiện Express app)**:
+  - Xác định kiểu module của dự án (ESM `import` hay CommonJS `require`).
+  - Dùng `replace_file_content` bổ sung dòng import:
+    - *ESM*: `import { createDocsRouter } from './.agents/skills/serve-docs/scripts/serve.js';`
+    - *CJS*: `const { createDocsRouter } = require('./.agents/skills/serve-docs/scripts/serve.js');`
+  - Chèn khai báo route vào trước lệnh `app.listen()` hoặc nhóm middlewares:
+    `app.use('/docs', createDocsRouter());`
+  - Thông báo cho User biết router đã được nhúng vào ứng dụng Express và có thể truy cập qua route `/docs`.
+
+- **Bước 2B: Standalone Mode (Nếu không phát hiện Express app)**:
+  - Chạy lệnh khởi tạo server nội bộ độc lập: `node .agents/skills/serve-docs/scripts/serve.js`.
+  - Cung cấp URL cho người dùng (mặc định: `http://localhost:3000/docs`).
 </guidelines>
 
 <configuration>
@@ -46,38 +70,32 @@ Mẫu file `serve-docs.json`:
 </configuration>
 
 <usage>
-**1. Cài đặt thư viện:**
-Script có cơ chế tự động phát hiện thiếu thư viện và hiển thị câu hỏi xác nhận cài đặt tương tác ngay trên Terminal:
-```text
-⚠️ Thiếu thư viện (express, marked). Bạn có muốn tự động cài đặt ngay bây giờ? (y/N):
-```
-Nếu gõ `y`, script sẽ tự chạy `npm install` và tiếp tục hoạt động.
-
-Hoặc bạn có thể cài thủ công trước khi dùng:
+**1. Cài đặt thư viện (nếu chạy standalone):**
+CD vào thư mục skill để cài đặt:
 ```bash
-cd .agents/skills/serve-docs
-npm install // turbo
+cd .agents/skills/serve-docs && npm install // turbo
 ```
 
-**2. Khởi chạy Server (Standalone):**
-Dùng lệnh sau tại gốc dự án hoặc trong thư mục skill:
-```bash
-node .agents/skills/serve-docs/scripts/serve.js
-```
-Mặc định, server sẽ chạy tại địa chỉ: `http://localhost:3000/docs`.
-
-**3. Tích hợp vào Project Node.js chính:**
-Nếu bạn muốn biến route này thành một phần của project thật, bạn có thể `import` và sử dụng Router được export sẵn:
+**2. Tự động Nhúng Router vào Express App (Auto-Embed Mode):**
+Khi AI xác định ứng dụng là Express, AI sẽ chèn vào file server (ví dụ `server.js`):
 ```javascript
 import express from 'express';
 import { createDocsRouter } from './.agents/skills/serve-docs/scripts/serve.js';
 
 const app = express();
-app.use('/docs', createDocsRouter()); // Tự động load tài liệu từ docs/original
 
-app.listen(8080, () => console.log('App running on port 8080'));
+// Nhúng tự động bởi AI:
+app.use('/docs', createDocsRouter());
+
+app.listen(3000, () => console.log('Server listening on port 3000'));
 ```
-Bạn sẽ có thể truy cập qua URL `http://localhost:8080/docs` trong ứng dụng của mình.
+
+**3. Khởi chạy Server độc lập (Standalone Mode):**
+Nếu project không dùng Express:
+```bash
+node .agents/skills/serve-docs/scripts/serve.js
+```
+Mặc định, server sẽ chạy tại địa chỉ: `http://localhost:3000/docs`.
 </usage>
 
 <anti_patterns>
@@ -90,3 +108,4 @@ Bạn sẽ có thể truy cập qua URL `http://localhost:8080/docs` trong ứng
 ---
 > [!NOTE]
 > Server hỗ trợ render đầy đủ các thành phần Markdown chuẩn bao gồm cả bảng (Tables), khối code (Code blocks) và trích dẫn (Blockquotes).
+
