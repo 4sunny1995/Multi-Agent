@@ -102,6 +102,7 @@ export function parseTranscriptMetrics(transcriptFilePath) {
                     type: 'USER_INPUT',
                     agent: 'User',
                     action: 'User Request',
+                    details: typeof content === 'string' ? content : JSON.stringify(content, null, 2),
                     inputTokens,
                     outputTokens: 0,
                     totalTokens: inputTokens,
@@ -118,13 +119,27 @@ export function parseTranscriptMetrics(transcriptFilePath) {
                 totalInputTokens += inputTokens;
                 totalOutputTokens += outputTokens;
 
-                // Tóm tắt hành động
+                // Tóm tắt hành động & trích xuất chi tiết
                 let action = 'Phản hồi & Thực thi tác vụ';
+                let details = '';
+
                 if (toolCalls && toolCalls.length > 0) {
                     const toolNames = toolCalls.map(t => t.name || t.toolAction || 'tool').slice(0, 2).join(', ');
                     action = `Thực thi công cụ: ${toolNames}`;
+                    details = toolCalls.map(tc => {
+                        const name = tc.name || tc.toolAction || 'Tool';
+                        const args = tc.args || tc.parameters || tc.arguments || tc;
+                        return `🔧 Công cụ: ${name}\n` + JSON.stringify(args, null, 2);
+                    }).join('\n\n-------------------------------\n\n');
+                    
+                    if (content && typeof content === 'string' && content.trim().length > 0) {
+                        details += `\n\n💬 Phản hồi đính kèm:\n${content}`;
+                    }
                 } else if (typeof content === 'string' && content.length > 0) {
                     action = content.slice(0, 60).replace(/\n/g, ' ') + '...';
+                    details = content;
+                } else {
+                    details = JSON.stringify(entry, null, 2);
                 }
 
                 turns.push({
@@ -132,6 +147,7 @@ export function parseTranscriptMetrics(transcriptFilePath) {
                     type: 'AGENT_RESPONSE',
                     agent: role,
                     action,
+                    details,
                     inputTokens,
                     outputTokens,
                     totalTokens: inputTokens + outputTokens,
@@ -235,12 +251,15 @@ function generateHtmlDashboard(metrics) {
         `;
     }).join('');
 
-    const tableRows = metrics.turns.map(t => {
+    const tableRows = metrics.turns.map((t, idx) => {
         return `
         <tr class="turn-row" data-agent="${t.agent}">
             <td><span class="turn-badge">Turn ${t.turn}</span></td>
             <td><span class="agent-badge ${getAgentBadgeClass(t.agent)}">${t.agent}</span></td>
-            <td class="action-cell" title="${escapeHtml(t.action)}">${escapeHtml(t.action)}</td>
+            <td class="action-cell">
+                <span class="action-title" title="${escapeHtml(t.action)}">${escapeHtml(t.action)}</span>
+                <button class="btn-detail" onclick="showDetails(${idx})">👁️ Xem chi tiết</button>
+            </td>
             <td>${(t.inputTokens || 0).toLocaleString()}</td>
             <td>${(t.outputTokens || 0).toLocaleString()}</td>
             <td><strong>${(t.totalTokens || 0).toLocaleString()}</strong></td>
@@ -248,6 +267,8 @@ function generateHtmlDashboard(metrics) {
         </tr>
         `;
     }).join('');
+
+    const turnDetailsJson = JSON.stringify(metrics.turns);
 
     return `<!DOCTYPE html>
 <html lang="vi">
@@ -396,6 +417,36 @@ function generateHtmlDashboard(metrics) {
         }
         .pct-text { font-size: 0.8rem; color: var(--text-sub); font-family: 'Fira Code', monospace; }
 
+        /* Action Cell & Button */
+        .action-cell {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 480px;
+        }
+        .action-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 340px;
+        }
+        .btn-detail {
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-cyan);
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-detail:hover {
+            background: rgba(56, 189, 248, 0.25);
+            transform: translateY(-1px);
+        }
+
         /* Filter Controls */
         .filter-bar {
             display: flex;
@@ -412,13 +463,84 @@ function generateHtmlDashboard(metrics) {
             font-size: 0.9rem;
         }
         .search-input:focus { outline: none; border-color: var(--accent-cyan); }
-        .action-cell {
-            max-width: 450px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
         .time-cell { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-sub); }
+
+        /* Modal Overlay CSS */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 850px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        .modal-header {
+            padding: 1.2rem 1.5rem;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title { font-size: 1.05rem; font-weight: 700; color: #f8fafc; display: flex; align-items: center; gap: 0.5rem; }
+        .close-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #334155;
+            color: #94a3b8;
+            width: 32px; height: 32px;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .close-btn:hover { color: #ffffff; background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); }
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: #090d16;
+            line-height: 1.6;
+            flex: 1;
+        }
+        .modal-footer {
+            padding: 0.75rem 1.5rem;
+            background: #0f172a;
+            border-top: 1px solid #334155;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+        .btn-copy {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-copy:hover { background: rgba(56, 189, 248, 0.3); }
     </style>
 </head>
 <body>
@@ -500,13 +622,48 @@ function generateHtmlDashboard(metrics) {
         </div>
     </div>
 
+    <!-- Modal Xem Chi Tiết Nội Dung -->
+    <div id="detailsModal" class="modal-overlay" onclick="if(event.target===this) closeModal()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">📋 Chi tiết nội dung hành động</div>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn-copy" onclick="copyModalContent()">📋 Sao chép nội dung</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        window.turnDetailsData = ${turnDetailsJson};
+
         function filterTurns() {
             const input = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#turnsTable tbody tr');
             rows.forEach(row => {
                 const text = row.innerText.toLowerCase();
                 row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+
+        function showDetails(index) {
+            const turnData = window.turnDetailsData[index];
+            if (!turnData) return;
+            document.getElementById('modalTitle').innerText = \`Turn \${turnData.turn} - \${turnData.agent}: \${turnData.action}\`;
+            document.getElementById('modalBody').innerText = turnData.details || turnData.action || 'Không có chi tiết nội dung';
+            document.getElementById('detailsModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('detailsModal').classList.remove('active');
+        }
+
+        function copyModalContent() {
+            const content = document.getElementById('modalBody').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                alert('✅ Đã sao chép nội dung chi tiết vào Clipboard!');
             });
         }
     </script>
