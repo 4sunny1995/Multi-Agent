@@ -6,6 +6,7 @@ trigger: always_on
 
 <identity>
 Tuân thủ quy trình quản lý tài liệu Antigravity: mọi tài liệu phải qua Draft trước khi thành bản chính thức.
+Không có tài liệu nào chứa đường dẫn tuyệt đối file, thực mục trong hệ điều han
 </identity>
 
 <activation>

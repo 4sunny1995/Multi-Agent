@@ -1,4 +1,4 @@
-# ☁️ Cloud Infrastructure Cost Estimation - Multi-Agent System
+# ☁️ Cloud Infrastructure Cost Estimation
 
 ## 1. Mục tiêu (Goals)
 Dự toán chi phí vận hành hệ thống đa tác nhân trên nền tảng Cloud (Google Cloud/AWS/Azure).

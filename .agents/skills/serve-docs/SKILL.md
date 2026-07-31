@@ -50,13 +50,14 @@ triggers:
 </guidelines>
 
 <configuration>
-Bạn có thể linh hoạt điều chỉnh Port, thư mục public và các Router thông qua file `serve-docs.json` tại thư mục gốc của project (ngang hàng với `package.json` chính). 
+Bạn có thể linh hoạt điều chỉnh Port, thư mục public, cờ `publicAll` và các Routes thông qua file `serve-docs.json` tại thư mục gốc của project (ngang hàng với `package.json` chính). 
 
 Mẫu file `serve-docs.json`:
 ```json
 {
   "port": 3000,
   "publicFolder": "docs/original",
+  "publicAll": true,
   "routes": {
     "/about": "README.md",
     "/api-v1": "api.md"
@@ -64,9 +65,10 @@ Mẫu file `serve-docs.json`:
 }
 ```
 *Lưu ý:* 
+- **cờ `publicAll` (boolean)**: 
+  - `publicAll: true` (Mặc định): Public toàn bộ các file `.md` trong `publicFolder` theo route động. Nếu có khai báo `routes`, các route tĩnh sẽ được ưu tiên hiển thị đồng thời cùng danh sách file động.
+  - `publicAll: false`: **Chỉ public các route/file được khai báo cụ thể trong `"routes"`**, bảo mật các file khác trong `publicFolder`.
 - **Auto-copy:** Nếu bạn chạy script mà ở thư mục gốc (Project root) chưa có file cấu hình, hệ thống sẽ tự động tạo và sao chép mẫu `serve-docs.json` từ trong thư mục Skill ra ngoài.
-- **Route tĩnh:** Nếu bạn khai báo `"routes"`, server sẽ chuyển sang chế độ Route tĩnh (chỉ hiển thị và đọc các file được chỉ định rõ). 
-- **Route động:** Nếu không khai báo hoặc để trống `"routes"`, server sẽ dùng chế độ Route động (quét và load tự động tất cả các file `.md` có trong `publicFolder`).
 </configuration>
 
 <usage>

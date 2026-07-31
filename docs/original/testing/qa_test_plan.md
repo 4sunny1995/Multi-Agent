@@ -1,4 +1,4 @@
-# 🧪 QA Test Plan - Multi-Agent Workflow
+# 🧪 QA Test Plan
 
 ## 1. Mục tiêu (Goals)
 Đảm bảo các Agent hoạt động đúng theo Workflow và đáp ứng các tiêu chuẩn Clean Code/SOLID.

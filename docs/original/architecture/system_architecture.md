@@ -1,4 +1,4 @@
-# 🏗️ System Architecture Design - Multi-Agent Ecosystem
+# 🏗️ System Architecture Design
 
 ## 1. Tổng quan kiến trúc (High Level Overview)
 Giao thức giao tiếp giữa các Agent dựa trên các Workflow chuẩn.
