@@ -1,53 +1,53 @@
 # 📜 RULE: UI-UX DESIGN STANDARDS (UIX-001)
 
-| Thông số | Giá trị |
+| Parameter | Value |
 | :--- | :--- |
-| **Mã hiệu** | UIX-001 |
-| **Đối tượng** | DESIGNER, DEV, LEADER |
-| **Triết lý** | "Đơn giản là đỉnh cao của sự tinh tế. Chức năng quan trọng hơn hào nhoáng." |
+| **Code** | UIX-001 |
+| **Applies to** | DESIGNER, DEV, LEADER |
+| **Philosophy** | "Simplicity is the ultimate sophistication. Functionality precedes flashiness." |
 
 ---
 
-## 🌎 1. Nguyên tắc thiết kế chung (Global Principles)
+## 🌎 1. Global Design Principles
 
-1. **Tính nhất quán (Consistency)**:
-   - Các Button, Input, Icon phải cùng bộ Style (Design System).
-   - Menu, Header, Footer không thay đổi vị trí đột ngột giữa các trang.
-2. **Phân cấp thị giác (Visual Hierarchy)**:
-   - Nội dung quan trọng nhất (CTA) phải nổi bật nhất.
-   - Sử dụng Font Size và Weight để phân biệt H1, H2, Body.
-3. **Phản hồi hệ thống (Feedback)**:
-   - Mọi tương tác của người dùng phải có phản hồi (Hover, Click, Loading state).
-4. **Khả năng truy cập (Accessibility)**:
-   - Độ tương phản chữ (Color Contrast) phải đạt chuẩn WCAG.
-   - Hỗ trợ phím tắt và Screen Reader.
-
----
-
-## 🇯🇵 2. Quy chuẩn thẩm mỹ Nhật Bản (JP Aesthetic)
-
-Khi khách hàng là người Nhật hoặc thị trường Nhật Bản, tuân thủ các quy tắc sau:
-
-1. **Ma (Khoảng trống - Negative Space)**:
-   - Không lấp đầy mọi khoảng trống. Để cho mắt được "nghỉ ngơi".
-   - Khoảng cách (Gutter/Padding) phải rộng rãi, tạo cảm giác thanh thản (Seijaku).
-2. **Kanso (Sự đơn giản)**:
-   - Loại bỏ các yếu tố trang trí không cần thiết.
-   - Sử dụng bảng màu trung tính: Trắng, Xanh Navy, Xám, Gỗ. Tránh màu neon rực rỡ.
-3. **High Information Density (Cấu trúc thông tin)**:
-   - Một số trang (như E-commerce) yêu cầu nhiều thông tin.
-   - Giải pháp: Chia nhỏ thông tin bằng Border mảnh (1px) và Background màu nhạt để giữ sự ngăn nắp.
-4. **Tin cậy (Trust)**:
-   - Sử dụng Icons rõ ràng, Typography dễ đọc (Gothic/Mincho).
-   - Tránh các hiệu ứng Shadow quá mạnh hoặc Gradient phức tạp.
+1. **Consistency**:
+   - Buttons, Inputs, Icons must share the same Style (Design System).
+   - Menu, Header, Footer position must not change abruptly between pages.
+2. **Visual Hierarchy**:
+   - The most critical content (CTA) must stand out the most.
+   - Use Font Size and Weight to distinguish H1, H2, Body text.
+3. **Feedback**:
+   - Every user interaction must produce feedback (Hover, Click, Loading state).
+4. **Accessibility**:
+   - Text color contrast must meet WCAG standards.
+   - Support keyboard navigation and Screen Readers.
 
 ---
 
-## 🛠️ 3. Quy trình thực thi cho Agent
+## 🇯🇵 2. Japanese Aesthetic Principles (JP Aesthetic)
 
-- **DESIGNER**: Phải tạo "Moodboard" trước khi vẽ Mockup để thống nhất Concept với PO.
-- **DEV**: Phải tham chiếu bảng màu trong `ui/specs.md`, không dùng màu Hard-code.
-- **LEADER**: Kiểm duyệt sự đồng nhất giữa thiết kế và sản phẩm cuối cùng qua `UI Audit`.
+When target clients or market are Japanese, adhere to the following rules:
+
+1. **Ma (Negative Space)**:
+   - Do not fill every blank space. Allow eyes to "rest".
+   - Spacing (Gutter/Padding) must be spacious, evoking serenity (Seijaku).
+2. **Kanso (Simplicity)**:
+   - Remove unnecessary decorative elements.
+   - Use neutral color palettes: White, Navy Blue, Gray, Wood. Avoid glaring neon colors.
+3. **High Information Density**:
+   - Some pages (such as E-commerce) demand rich information density.
+   - Solution: Segment information using thin borders (1px) and muted backgrounds to maintain neatness.
+4. **Trust**:
+   - Use clear Icons, readable Typography (Gothic/Mincho).
+   - Avoid heavy drop shadows or complex gradients.
 
 ---
-> **"Thiết kế là giải pháp cho một vấn đề, không chỉ là một bức tranh."** — _The Creative Lead_
+
+## 🛠️ 3. Execution Workflow for Agents
+
+- **DESIGNER**: Must create a "Moodboard" before drawing Mockups to align on Concepts with PO.
+- **DEV**: Must reference the color palette inside `ui/specs.md`, avoiding hardcoded colors.
+- **LEADER**: Audit design consistency against final deliverables via `UI Audit`.
+
+---
+> **"Design is a solution to a problem, not just a picture."** — _The Creative Lead_

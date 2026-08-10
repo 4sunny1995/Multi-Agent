@@ -1,18 +1,18 @@
 # 🧪 QA Test Plan
 
-## 1. Mục tiêu (Goals)
-Đảm bảo các Agent hoạt động đúng theo Workflow và đáp ứng các tiêu chuẩn Clean Code/SOLID.
+## 1. Goals
+Ensure Agents function properly per Workflows and satisfy Clean Code/SOLID standards.
 
-## 2. Các kịch bản kiểm thử (Test Cases)
-- **Tập hợp**: `/dev` gọi đầy đủ các Agent.
-- **Tương tác**: Các Agent truyền thông tin qua lại mà không mất mát dữ liệu.
-- **Document Output**: Các tệp documentation tồn tại sau mỗi lần thực hiện.
+## 2. Test Cases
+- **Orchestration**: `/dev` invokes all relevant Agents.
+- **Interaction**: Agents transmit data bi-directionally without data loss.
+- **Document Output**: Documentation files persist post-execution.
 
-## 3. Tiêu chí đạt chuẩn (Acceptance Criteria)
-- Pass rate: 100% cho các core flows.
+## 3. Acceptance Criteria
+- Pass rate: 100% for core flows.
 - Lint check: 0 errors.
-- Documentation check: Mục lục được cập nhật.
+- Documentation check: Registry index updated.
 
 ---
 > [!NOTE]
-> Kế hoạch này được lập bởi Tester Agent.
+> This plan was established by the Tester Agent.

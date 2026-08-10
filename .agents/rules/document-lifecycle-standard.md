@@ -5,34 +5,34 @@ trigger: always_on
 # 📂 Document Lifecycle Standard (DLS-001)
 
 <identity>
-Tuân thủ quy trình quản lý tài liệu Antigravity: mọi tài liệu phải qua Draft trước khi thành bản chính thức.
-Không có tài liệu nào chứa đường dẫn tuyệt đối file, thực mục trong hệ điều han
+Comply with the Antigravity document management workflow: all documents must go through Draft before becoming official.
+No document shall contain absolute file/directory paths on the operating system.
 </identity>
 
 <activation>
-Luôn kích hoạt khi tạo mới, cập nhật hoặc bàn giao bất kỳ tài liệu nào.
+Always active when creating, updating, or handing over any document.
 </activation>
 
 <mission>
-Đảm bảo tài liệu có vòng đời rõ ràng, dễ review, truy vết và AI/người đọc hiểu ngay.
+Ensure documents have a clear lifecycle, easy to review, traceable, and immediately understandable to AI and human readers.
 </mission>
 
 <guidelines>
-- **Draft First**: Mọi tài liệu mới PHẢI tạo trong `draft/`, không tạo trực tiếp ở `original/`.
-- **Approval Required**: Chỉ chuyển sang `original/` sau khi được User/Reviewer xác nhận "Approved".
-- **One Source of Truth**: `original/` là bản chính thức sau khi approve; `draft/` lưu bản đang chỉnh sửa hoặc lịch sử.
-- **Document Header**: Mọi tài liệu PHẢI bắt đầu bằng Document Summary ngắn gọn.
-- **Traceable Changes**: Ghi rõ Version, Author, Timestamp và Change Summary khi cập nhật.
+- **Draft First**: All new documents MUST be created in `draft/`, never created directly in `original/`.
+- **Approval Required**: Promote to `original/` only after User/Reviewer confirms "Approved".
+- **One Source of Truth**: `original/` is the single official version post-approval; `draft/` stores working draft or history.
+- **Document Header**: All documents MUST begin with a concise Document Summary.
+- **Traceable Changes**: Clearly record Version, Author, Timestamp, and Change Summary when updating.
 </guidelines>
 
 <document_header>
-Mọi tài liệu đều phải bắt đầu bằng Header:
+Every document must start with the following Header:
 
 ```markdown
 # {Document Title}
 
 > **Summary**
-> Mô tả ngắn (2–5 câu): Mục đích, đối tượng, nội dung chính, khi nào nên đọc.
+> Short description (2–5 sentences): Purpose, target audience, main content, when to read.
 
 ---
 **Status:** Draft | Approved | Archived
@@ -61,17 +61,17 @@ Create → docs/draft/*.md → Review & Approved → Move / Replace → docs/ori
 </workflow>
 
 <anti_patterns>
-❌ Tạo tài liệu trực tiếp trong `original/`.
-❌ Chỉnh sửa tài liệu chính thức khi chưa tạo bản Draft.
-❌ Tài liệu thiếu Summary, Status hoặc Version.
-❌ Ghi đè tài liệu Approved mà không thông qua Draft mới.
+❌ Creating documents directly inside `original/`.
+❌ Editing official documents without creating a new Draft.
+❌ Documents missing Summary, Status, or Version headers.
+❌ Overwriting Approved documents without going through a new Draft.
 </anti_patterns>
 
 <checklist>
-- [ ] Tài liệu tạo trong `draft/` có Header (Summary, Status, Version)?
-- [ ] Đã qua Review & Approve trước khi chuyển sang `original/`?
+- [ ] Document created in `draft/` has Header (Summary, Status, Version)?
+- [ ] Reviewed & Approved prior to moving to `original/`?
 </checklist>
 
 ---
 > [!IMPORTANT]
-> **Draft là nơi làm việc. Original là nguồn sự thật duy nhất (Single Source of Truth). Quy trình: Draft → Review → Approve → Original.**
+> **Draft is for working. Original is the Single Source of Truth. Workflow: Draft → Review → Approve → Original.**

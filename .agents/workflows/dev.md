@@ -1,16 +1,16 @@
 ---
 workflow_id: DEV-001
-description: Quy trình phát triển tính năng tinh gọn (Chỉ dành cho BA, DEV, TESTER, LEADER).
+description: Lean feature development workflow (Exclusively for BA, DEV, TESTER, LEADER).
 role_lead: LEADER
-triggers: ["/dev", "phát triển", "tính năng tinh gọn", "lập trình"]
+triggers: ["/dev", "development", "lean feature", "coding"]
 version: "2.0"
 ---
 
-# 🚀 Workflow: Phát Triển Tinh Gọn (/dev)
+# 🚀 Workflow: Lean Development (/dev)
 
-> **Pre-condition**: Mọi Agent đọc [llm-agent-config.md](file:///.agents/config/llm-agent-config.md) trước khi bắt đầu.
+> **Pre-condition**: All Agents read [llm-agent-config.md](file:///.agents/config/llm-agent-config.md) before starting.
 
-## ⚡ Luồng thực thi (Happy Path)
+## ⚡ Execution Flow (Happy Path)
 
 ```
 USER_REQUEST → BA → DEV → TESTER → LEADER
@@ -20,34 +20,35 @@ USER_REQUEST → BA → DEV → TESTER → LEADER
 
 ## 1. REQUIREMENT ANALYSIS (BA)
 // turbo
-- **Kích hoạt**: Nhận USER_REQUEST có mô tả tính năng. `view_file` các thông tin liên quan.
-- **Hành động 1 (Phân loại FIC)**: Xác định Tính năng độc lập (`[FIC: ISOLATED]`) hay có chạm module cũ (`[FIC: INTEGRATED]`).
-- **Hành động 2 (Xác định Scope)**: Viết User Stories chi tiết, tập trung vào giá trị người dùng và các ràng buộc nghiệp vụ.
-- **Hành động 3 (Bàn giao kịch bản)**: Phác thảo sơ bộ các tiêu chí chấp nhận (Acceptance Criteria) để TESTER có cơ sở chuẩn bị.
+- **Trigger**: Receive USER_REQUEST containing feature description. Use `view_file` on related context.
+- **Action 1 (FIC Classification)**: Classify as Isolated Feature (`[FIC: ISOLATED]`) or touching legacy modules (`[FIC: INTEGRATED]`).
+- **Action 2 (Scope Definition)**: Write detailed User Stories, focusing on user value and business constraints.
+- **Action 3 (Scenario Handoff)**: Outline preliminary Acceptance Criteria to provide TESTER a base for preparation.
 - **Output**: `docs/original/business/brd.md` + `user-stories.md`.
 
 ## 2. CORE EXECUTION & TDD (DEV)
-- **Hành động 1 (Thiết kế nhanh)**: Tự thiết kế logic/DB schema đơn giản dựa trên BRD (không cần qua SA).
-- **Hành động 2 (Thực thi code)**: Tuân thủ quy trình TDD (RED → GREEN → REFACTOR). Đảm bảo code sạch, đúng convention.
-- **Hành động 3 (Unit Test)**: Đảm bảo coverage cho các logic nghiệp vụ quan trọng.
+- **Action 1 (Quick Design)**: Self-design simple logic/DB schema based on BRD (bypassing SA).
+- **Action 2 (Code Execution)**: Adhere to TDD workflow (RED → GREEN → REFACTOR). Ensure clean code and proper conventions.
+- **Action 3 (Unit Testing)**: Ensure coverage for critical business logic.
 - **Output**: Source code (`src/`) + Unit tests (`tests/`).
-- **Gate Check (Handoff)**: Bố trí chốt chặn xác nhận (TESTER verify xem đoạn Unit Test đã được include ở trên chưa trước khi chạy regression).
+- **Gate Check (Handoff)**: Verification checkpoint (TESTER verifies Unit Tests were included above before running regression tests).
 
 ## 3. QA & ACCEPTANCE TEST (TESTER)
-- **Hành động 1 (Kiểm thử chức năng)**: Chạy các kịch bản dựa trên User Stories và Acceptance Criteria từ BA.
-- **Hành động 2 (Kiểm thử hồi quy)**: Nếu là `[FIC: INTEGRATED]`, bắt buộc kiểm tra các module liên quan để đảm bảo không có lỗi phát sinh (Side-effects).
-- **Hành động 3 (Báo cáo)**: Ghi nhận kết quả kiểm thử, log lỗi nếu có.
+- **Action 1 (Functional Testing)**: Execute test scenarios based on User Stories and Acceptance Criteria from BA.
+- **Action 2 (Regression Testing)**: If `[FIC: INTEGRATED]`, mandatory to inspect related modules to ensure no regressions/side-effects.
+- **Action 3 (Reporting)**: Record test results and log defects if any.
 - **Output**: `docs/original/testing/reports.md`.
 
 ## 4. FINAL APPROVAL (LEADER)
-- **Hành động 1 (Review 7 Gates)**: Kiểm tra tính nguyên vẹn, bảo mật, hiệu năng và tài liệu.
-- **Hành động 2 (Nghiệm thu)**: Xác nhận tính năng đã hoàn thiện và sẵn sàng merge/release.
-- **Hành động 3 (Tổng kết)**: Cập nhật `STATE.md` và tạo walkthrough cho người dùng.
-- **Output**: `walkthrough.md` + Cập nhật `.agents/STATE.md`.
+- **Action 1 (Review 7 Gates)**: Inspect integrity, security, performance, and documentation.
+- **Action 2 (Acceptance)**: Confirm feature completeness and readiness for merge/release.
+- **Action 3 (Summary)**: Update `STATE.md` and create walkthrough for users.
+- **Output**: `walkthrough.md` + Updated `.agents/STATE.md`.
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. **DEV tự ý đổi DB schema lớn** mà không báo cáo -> LEADER sẽ block nếu phát hiện thay đổi kiến trúc nhạy cảm.
-2. **Thiếu Acceptance Criteria từ BA** -> TESTER không có căn cứ để đánh giá đạt/không đạt.
-3. **Bỏ qua Regression Test** ở module Integrated -> Gây lỗi tiềm ẩn cho hệ thống hiện tại.
+## 🚨 Failure Points
+
+1. **DEV unilaterally makes major DB schema changes** without reporting -> LEADER will block if detecting sensitive architectural shifts.
+2. **Missing Acceptance Criteria from BA** -> TESTER lacks benchmark for pass/fail evaluation.
+3. **Skipping Regression Testing** on Integrated modules -> Introduces potential bugs into existing system.

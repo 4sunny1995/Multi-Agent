@@ -1,16 +1,16 @@
 ---
 workflow_id: RET-001
-description: Cuộc họp Retrospective — AI Team tự phân tích, cập nhật Rules và tiến hóa.
+description: Retrospective meeting workflow — AI Team self-analyzes, updates Rules, and evolves.
 role_lead: LEADER
-triggers: ["/retro", "retrospective", "tự hoàn thiện", "nâng cấp bản thân", "tiến hóa", "bài học"]
+triggers: ["/retro", "retrospective", "self-improvement", "self-upgrade", "evolution", "lessons learned"]
 version: "2.0"
 ---
 
-# 🔄 Workflow: Họp Rút Kinh Nghiệm (/retro)
+# 🔄 Workflow: Retrospective Meeting (/retro)
 
-> **Mục đích**: Đây là cơ chế **tự tiến hóa** của hệ thống — mỗi /retro là một lần AI Team tự "nâng cấp não bộ".
+> **Purpose**: This is the system's **self-evolution** mechanism — each /retro is an instance of the AI Team "upgrading its brain".
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 LEADER (Facilitate) → ALL AGENTS (Reflect) → LEADER (Synthesize) → LEADER (Write to Rules) → walkthrough.md
@@ -18,34 +18,35 @@ LEADER (Facilitate) → ALL AGENTS (Reflect) → LEADER (Synthesize) → LEADER 
 
 ---
 
-## 1. THE ARENA — Thu thập Evidence (LEADER)
-- **Hành động**: Đọc context gần nhất — conversation logs, các bug đã fix, các task đã thất bại.
-- **Dẫn dắt từng Agent**:
-  - 🎯 **TESTER**: "Bug nguy hiểm nhất gần đây là gì? Nó lọt qua gate nào?"
-  - 💻 **DEV**: "Khó khăn lớn nhất khi implement là gì? SA đã miss điều gì?"
-  - 📋 **BA**: "User Story nào bị thiếu Edge Case dẫn đến bug?"
-  - 🏗️ **SA**: "Thiết kế nào đã phải thay đổi sau khi DEV bắt tay vào?"
-- **Output**: Danh sách vấn đề thực tế (không phải giả định).
+## 1. THE ARENA — Gather Evidence (LEADER)
+- **Action**: Inspect recent context — conversation logs, fixed bugs, failed tasks.
+- **Guide each Agent**:
+  - 🎯 **TESTER**: "What was the most dangerous recent bug? Which gate did it leak through?"
+  - 💻 **DEV**: "What was the biggest implementation hurdle? What did SA miss?"
+  - 📋 **BA**: "Which User Story missed Edge Cases resulting in a bug?"
+  - 🏗️ **SA**: "Which design had to change after DEV began coding?"
+- **Output**: List of real-world issues (not assumptions).
 
 ## 2. DEBATE & ROOT CAUSE (ALL AGENTS → LEADER)
-- **Hành động**: LEADER phân tích patterns — không phạt cá nhân, tìm lỗi hệ thống.
-- **Câu hỏi cốt lõi**: "Tiêu chuẩn nào bị thiếu khiến vấn đề này lặp lại?"
-- **Output**: Root Cause list với đề xuất Rule mới hoặc cập nhật Rule cũ.
+- **Action**: LEADER analyzes patterns — no individual blaming, locate system flaws.
+- **Core question**: "Which missing standard allowed this issue to repeat?"
+- **Output**: Root Cause list with proposed new Rules or updates to existing Rules.
 
-## 3. KNOWLEDGE UPGRADE — Viết vào Não bộ (LEADER)
-- **Hành động**: Ghi trực tiếp các tiêu chuẩn mới vào `.agents/rules/` hoặc role files.
+## 3. KNOWLEDGE UPGRADE — Write to Brain (LEADER)
+- **Action**: Write new standards directly into `.agents/rules/` or role files.
 // turbo
-- **Ưu tiên**: Cập nhật rule hiện có > Tạo rule mới (tránh bloat).
-- **Mandatory write**: Luôn cập nhật `team-retro.md` với Sprint summary và Render **"Cross-Team Lessons Learned Table"** để cộng đồng học hỏi.
-- **Output**: Các rule files đã được cập nhật + Bảng Lessons Learned.
+- **Priority**: Update existing rule > Create new rule (prevent bloat).
+- **Mandatory write**: Always update `team-retro.md` with Sprint summary and Render **"Cross-Team Lessons Learned Table"** for community learning.
+- **Output**: Updated rule files + Lessons Learned Table.
 
 ## 4. CLOSE & COMMIT (LEADER)
-- **Hành động**: Tóm tắt thành walkthrough. Đặt câu hỏi kiểm tra: "Nếu lỗi này xảy ra lần nữa, Rule mới có ngăn được không?"
+- **Action**: Summarize into walkthrough. Ask verification question: "If this error occurs again, will the new Rule prevent it?"
 - **Output**: `walkthrough.md` — Brain Upgrade Report.
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. /retro chỉ là "họp cho có" không có output thực tế → **Giải pháp**: Bắt buộc phải có ít nhất 1 file rule được modify.
-2. Thêm rule mới mà không loại bỏ rule cũ → **Giải pháp**: Trước khi thêm, kiểm tra rule tương tự đã tồn tại chưa.
-3. Blame cá nhân Agent thay vì blame hệ thống → **Giải pháp**: LEADER phải frame mọi vấn đề theo "Rule nào bị thiếu?" không phải "Agent nào làm sai?"
+## 🚨 Failure Points
+
+1. /retro is merely a formality lacking actual output → **Solution**: Mandatory to modify at least 1 rule file.
+2. Adding new rules without removing obsolete ones → **Solution**: Prior to adding, verify if similar rules exist.
+3. Blaming individual Agents instead of system → **Solution**: LEADER must frame all issues as "Which Rule is missing?" not "Which Agent failed?"

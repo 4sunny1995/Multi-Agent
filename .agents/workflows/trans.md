@@ -1,16 +1,16 @@
 ---
 workflow_id: TRN-001
-description: Quy trình dịch thuật, lưu trữ và đồng bộ hóa mục lục đa ngôn ngữ.
+description: Translation, archival, and multi-language index synchronization workflow.
 role_lead: TRANSLATOR
-triggers: ["/trans", "dịch", "translate", "multilingual", "localization", "i18n", "en", "ja", "vi"]
+triggers: ["/trans", "translate", "translation", "multilingual", "localization", "i18n", "en", "ja", "vi"]
 version: "2.0"
 ---
 
-# 🌐 Workflow: Dịch tài liệu & Quản lý Kho tri thức (/trans)
+# 🌐 Workflow: Document Translation & Knowledge Management (/trans)
 
-> **Quy tắc bất biến**: File gốc trong `docs/` không bao giờ bị sửa đổi hay overwrite.
+> **Immutable Rule**: Original files inside `docs/` are never modified or overwritten.
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 TRANSLATOR (Discovery) → TRANSLATOR (Snapshot) → TRANSLATOR (Translate) → TRANSLATOR (Persist) → TRANSLATOR (Index)
@@ -19,35 +19,36 @@ TRANSLATOR (Discovery) → TRANSLATOR (Snapshot) → TRANSLATOR (Translate) → 
 ---
 
 ## 1. DISCOVERY & GLOSSARY CHECK (TRANSLATOR)
-- **Hành động**: `view_file` file cần dịch. Tra cứu `glossary.json` cho mọi thuật ngữ.
-- **BA Consultation**: Nếu gặp thuật ngữ nghiệp vụ mới chưa có trong glossary → hỏi BA trước.
-- **Output**: Danh sách terms cần handle + confirmed glossary entries.
+- **Action**: Run `view_file` on target document. Look up `glossary.json` for all terminology.
+- **BA Consultation**: If encountering new business terms absent from glossary → consult BA first.
+- **Output**: List of terms to handle + confirmed glossary entries.
 
-## 2. SNAPSHOT BẢN GỐC (TRANSLATOR)
+## 2. ORIGINAL SNAPSHOT (TRANSLATOR)
 // turbo
-- **Hành động**: Copy file gốc vào `docs/original/<category>/` trước khi làm bất cứ điều gì.
-- **Constraint**: Nếu snapshot đã tồn tại → skip, không overwrite.
+- **Action**: Copy original file into `docs/original/<category>/` before taking any action.
+- **Constraint**: If snapshot already exists → skip, do not overwrite.
 - **Output**: `docs/original/<category>/<filename>` — immutable source of truth.
 
 ## 3. TRANSLATION (TRANSLATOR)
-- **Hành động**: Dịch sang ngôn ngữ đích theo TRL-IT-001.
-- **Giữ nguyên**: Code blocks, IT terms (API, Middleware...), URL trong links, file paths.
-- **Quality check**: Back-translate 1 đoạn để verify nghĩa không bị lệch.
-- **Output**: Translated content (in-memory, chưa lưu).
+- **Action**: Translate into target language according to TRL-IT-001.
+- **Retain**: Code blocks, IT terms (API, Middleware...), URLs in links, file paths.
+- **Quality check**: Back-translate 1 passage to verify meaning remains unwarped.
+- **Output**: Translated content (in-memory, unpersisted).
 
 ## 4. PERSIST (TRANSLATOR)
-- **Hành động**: Ghi file vào `docs/trans/{lang}/{category}/{filename}`.
-- **Dòng đầu tiên**: `> [!NOTE] Translated from: [link gốc] by AI Agent`.
+- **Action**: Write file to `docs/trans/{lang}/{category}/{filename}`.
+- **First line**: `> [!NOTE] Translated from: [original link] by AI Agent`.
 - **Output**: `docs/trans/<lang>/<category>/<filename>`.
 
 ## 5. INDEX UPDATE (TRANSLATOR)
 // turbo
-- **Hành động**: Thêm row mới vào bảng trong `docs/README.md` với link đến bản gốc + bản dịch.
+- **Action**: Add new row to table in `docs/README.md` with links to both original and translated versions.
 - **Output**: `docs/README.md` updated — 100% coverage.
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. Dịch mà không snapshot bản gốc → **Giải pháp**: Bước 2 bắt buộc, không thể skip.
-2. Code snippet bị dịch nhầm → **Giải pháp**: Auto-check: backtick content phải giữ nguyên 100%.
-3. `docs/README.md` không được cập nhật → **Giải pháp**: Bước 5 là bắt buộc, không phải optional.
+## 🚨 Failure Points
+
+1. Translating without snapshotted original → **Solution**: Step 2 mandatory, non-skippable.
+2. Code snippet mistakenly translated → **Solution**: Auto-check: backtick content must remain 100% untouched.
+3. `docs/README.md` left un-updated → **Solution**: Step 5 is mandatory, not optional.

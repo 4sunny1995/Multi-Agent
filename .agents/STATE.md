@@ -1,44 +1,61 @@
 # 🧠 Antigravity Project State Checkpoint
 
-> **Mục đích**: File này lưu giữ kiến trúc và trạng thái cấu trúc thư mục của dự án (Persistent State), giúp AI tiếp cận (Onboarding) nhanh chóng mà không cần chạy lệnh `list_dir` hoặc đọc code từ đầu trong các phiên làm việc mới.
-> **Flow**: Cập nhật bắt buộc bởi LEADER ở dòng cuối cùng của mọi Workflows (`/dev`, `/fix`).
+> **Purpose**: This file maintains the persistent architectural and directory state of the project (Persistent State), allowing AI agents to quickly onboard without re-running `list_dir` or reading code from scratch in new working sessions.
+> **Flow**: Mandatory update by LEADER at the final step of all Workflows (`/dev`, `/fix`).
 
 ---
 
-## 1. TÌNH TRẠNG DỰ ÁN (PROJECT STATUS)
-- **Tình trạng hạ tầng (INF-001)**: `[Greenfield / Cũ (Legacy) / Enterprise]` (AI cập nhật phần này)
-- **Giai đoạn phát triển**: `[MVP / Đang vận hành / Scaled]`
+## 1. PROJECT STATUS
+- **Infrastructure Status (INF-001)**: Enterprise Multi-Agent Framework Ecosystem (`[MODE: ENTERPRISE]`)
+- **Development Phase**: Scaled / Operational (V6.0 - Intelligent Autonomous Era)
 
-## 2. TECHNOLOGY STACK (NGĂN XẾP CÔNG NGHỆ)
-- **Frontend**: `[Trống - chờ cập nhật]`
-- **Backend / Khung sườn**: `[Trống - chờ cập nhật]`
-- **Database (DBS-001)**: `[Trống - chờ cập nhật]`
-- **Hạ tầng (Cloud/Deploy)**: `[Trống - chờ cập nhật]`
+## 2. TECHNOLOGY STACK
+- **Core Platform**: Google Antigravity Multi-Agent Environment
+- **Framework & Config**: Standard Markdown (`.md`), Shell Scripting (`init.sh`), Windows Batch (`init.bat`)
+- **Data & Glossary**: JSON (`glossary.json`, `serve-docs.json`)
+- **Infrastructure & Deployment**: Bash, Docker-compatible IaC, Multi-platform scripts
 
-## 3. CẤU TRÚC THƯ MỤC CỐT LÕI (CORE DIRECTORIES)
-*(Ghi chú các thư mục quan trọng để AI biết nên xem code ở đâu)*
-- `.agents/`: Chứa định nghĩa Agent, Rule, Workflow, và STATE.md (đây).
-- `docs/original/`: Chứa các tài liệu BRD, kiến trúc, test report do Agent tạo ra.
-- `docs/trans/`: Chứa các bản dịch đa ngôn ngữ do Translator tạo ra.
-- `...`: `[Chờ cập nhật]`
+## 3. CORE DIRECTORIES & INDEX
+- `.agents/`: AI Team orchestrator & core configuration.
+  - `.agents/config/`: Master LLM agent configuration ([llm-agent-config.md](file:///.agents/config/llm-agent-config.md)) and project structure rules ([project-structure.md](file:///.agents/config/project-structure.md)).
+  - `.agents/roles/`: 13 specialized AI agent roles ([README.md](file:///.agents/roles/README.md), `leader`, `ba`, `sa`, `dev`, `tester`, `designer`, `tech-writer`, `translator`, `security`, `cloud-architect`, `fin-ops`, `auditor`).
+  - `.agents/rules/`: 23 governance rules and standards ([README.md](file:///.agents/rules/README.md), AGS-001, DBS-001, DLS-001, DOC-001, INF-001, LPE-001, OPS-001, SHS-001, SWE-001, SSA-001, TTS-001, TRL-IT-001, UIX-001, VER-001, CTO-001, ALG-001, SDC-001, `glossary.json`).
+  - `.agents/workflows/`: 13 standardized workflows ([README.md](file:///.agents/workflows/README.md), `analyse`, `audit`, `design`, `dev`, `enterprise-dev`, `fix`, `infra`, `inspect`, `release`, `report`, `retro`, `secure`, `trans`).
+  - `.agents/skills/`: 8 specialized skills (`api-security-testing`, `archify`, `audit-system`, `code-review`, `markdown-convert`, `requiment-analyse`, `serve-docs`, `token-tracker`).
+- `docs/`: System Knowledge Base & Documentation Registry ([docs/README.md](file:///docs/README.md)).
+  - `docs/draft/`: Working draft before review/approval.
+  - `docs/original/`: Approved Single Source of Truth (`business/`, `architecture/`, `budget/`, `testing/`, `ui/`, `user-guide/`, `release/`).
+  - `docs/trans/`: Multi-language translations (`en/`, `ja/`, `vi/`).
+- `src/`: Application source code directory.
+- `tests/`: Automated test cases directory.
 
-## 4. BẢO MẬT & QUYỀN TRUY CẬP (SECURITY PROTOCOL)
-*(Ghi chú quy trình kết nối DB, API Key format, v.v)*
-- **External Secret (SDC-001)**: `[Cách lấy biến môi trường trong dự án này]`
+## 4. SECURITY PROTOCOL
+- **Zero-Trust Policy (SHS-001)**: Mandatory pre-commit secret scanning (`grep_search`), zero hardcoded secrets.
+- **External Secret & Environment (SDC-001)**: Use `.env` for local environments (listed in `.gitignore`) and Secret Manager for production.
+- **Database Protection (DBS-001)**: 3-step mandatory protocol (Survey -> Backup -> PO Approval) for schema modifications.
 
-## 5. NỢ KỸ THUẬT & TRẠNG THÁI CUỐI (TECH DEBTS & LAST ACTION)
-- **Nhánh / Phiên bản hiện tại**: `[Ví dụ: v1.0.0]`
-- **Nợ kỹ thuật cần xử lý (Tech Debt)**: `[Các phần code bẩn hoặc giải pháp tạm thời cần refactor]`
-- **Blockers hiện hành**: `[Phần nào đang vướng/chờ giải quyết]`
+## 5. TECH DEBTS & LAST ACTION
+- **Current Version**: v6.0-llm
+- **Last Actions Completed**:
+  - Condensed `README.md` and `RESPONSIBLE_AI.md`.
+  - Converted `.agents/config/`, 13 `.agents/roles/`, 22 `.agents/rules/`, and 13 `.agents/workflows/` to English (AGS-001).
+  - Created `.agents/workflows/README.md` catalog.
+  - Updated `init.sh` and `init.bat` to English and synchronized cross-platform directory creation.
+  - Repaired broken legacy paths (`/home/quoc/...` -> workspace paths) and indexed all documents in `docs/README.md`.
+- **Technical Debt**: None active; all system prompts, rules, workflows, indices, and documentation are fully synchronized.
 
-## 6. SƠ ĐỒ NGỮ NGHĨA (SEMANTIC KNOWLEDGE MAP)
-> **Mục đích**: Chống lại Điểm mù 800-loc của LLM. Mọi sơ đồ Call Graph giữa các service, module quan trọng phải được tường thuật lại dưới dạng tóm tắt văn bản.
-- **Data Flow**: `[Ví dụ: Auth Controller -> User Service -> MySQL]`
-- **Dependency Map**: `[Ví dụ: Module Payment KHÔNG ĐƯỢC gọi chéo sang Module Chat]`
-- **Core Abstractions**: `[Liệt kê các Base Classes / Interfaces chủ đạo]`
+## 6. SEMANTIC KNOWLEDGE MAP
+- **Data Flow**: `USER_REQUEST -> BA Agent (Requirements) -> SA Agent (Architecture) -> DEV Agent (Code) -> TESTER Agent (QA) -> LEADER Agent (7 Gates Audit) -> STATE.md / Walkthrough`
+- **Dependency Map**:
+  - `Rules` dictate behavior of `Roles` during `Workflows`.
+  - `Translator` depends on `glossary.json` and `TRL-IT-001`.
+  - `Document Lifecycle` requires `draft/` -> Review & Approve -> `original/` -> Index in `docs/README.md`.
+- **Core Abstractions**: AGS-001 (English-First Standard), DLS-001 (Document Lifecycle Standard), TTS-001 (Token Tracking Standard), LPE-001 (LLM Prompt Engineering Standard).
 
-## 7. MÔ HÌNH KINH DOANH & KHÁCH HÀNG (BUSINESS DOMAIN)
-> **Mục đích**: Nhồi ngữ cảnh kinh doanh cho BA Agent để không viết ra các Requirement và thiết kế vô dụng.
-- **Core Value Proposition (Giá trị cốt lõi)**: `[Ví dụ: Ứng dụng này giúp nông dân bán trực tiếp nông sản mà không qua môi giới]`
-- **User Personas (Chân dung Khách hàng)**: `[Ví dụ: Người từ 40-60 tuổi, mắt kém, hầu như không am hiểu công nghệ]`
-- **Business Rules (Luật kinh doanh sắt)**: `[Ví dụ: Nông sản hư hỏng phải được hoàn tiền trong tích tắc, cấm dùng font chữ nhỏ hơn 16px]`
+## 7. BUSINESS DOMAIN
+- **Core Value Proposition**: An enterprise-ready, autonomous multi-agent software engineering ecosystem operating in Google Antigravity to deliver high-quality, secure, and maintainable software.
+- **User Personas**: CTOs, Software Engineers, System Architects, Product Owners, DevOps Engineers.
+- **Business Rules**:
+  - All system documentation must follow English-First (AGS-001).
+  - No file modifications permitted without prior inspection (`view_file`).
+  - Zero-Trust security and database protection checkpoints enforced at all gates.

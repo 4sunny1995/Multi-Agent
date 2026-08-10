@@ -1,7 +1,7 @@
 ---
 rule_id: SHS-001
 trigger: model_decision
-description: Tiêu chuẩn bảo mật (Zero-Trust, Hard Constraints)
+description: Security Hardening Standards (Zero-Trust, Hard Constraints)
 applies_to: [SECURITY, CLOUD_ARCHITECT, SA, LEADER]
 severity: CRITICAL
 version: "2.0-llm"
@@ -9,44 +9,44 @@ version: "2.0-llm"
 
 # 🛡️ Security Hardening Standards (SHS-001)
 
-> **Activation**: Rule này kích hoạt khi Agent review code, IaC, hoặc chuẩn bị deploy.
+> **Activation**: This rule triggers when Agents review code, IaC, or prepare deployments.
 
-## ⚡ Zero-Trust Checklist (Chạy trước mỗi release)
+## ⚡ Zero-Trust Checklist (Run before each release)
 
 ```
-□ Không có hardcoded secret trong code/IaC?
-□ Tất cả external input đều được sanitized?
-□ HTTPS/TLS bắt buộc cho mọi external call?
-□ Least Privilege: Mọi service chỉ có quyền tối thiểu?
-□ Audit log cho mọi truy cập tài nguyên nhạy cảm?
-□ 24/7 Dependency Security: Đã có cơ chế auto-scan CVE liên tục ở mức CI/CD chưa?
+□ No hardcoded secrets in code/IaC?
+□ All external inputs sanitized?
+□ HTTPS/TLS mandatory for all external calls?
+□ Least Privilege: Every service has minimum necessary rights?
+□ Audit log for all sensitive resource access?
+□ 24/7 Dependency Security: Continuous automated CVE scanning at CI/CD level?
 ```
 
 ---
 
-## ❌ HARD BLOCKS (Phát hiện = Block ngay)
+## ❌ HARD BLOCKS (Detection = Immediate Block)
 
-❌ Hardcoded password, API key, token trong source code → `grep_search "secret=|password=|Bearer"`
-❌ HTTP (không có S) cho production API calls → Enforce HTTPS/TLS
-❌ SQL query dùng string concatenation → SQL Injection risk → REJECT
-❌ User input được `eval()` hoặc `exec()` trực tiếp → Remote Code Execution risk
+❌ Hardcoded passwords, API keys, tokens in source code → `grep_search "secret=|password=|Bearer"`
+❌ HTTP (without S) for production API calls → Enforce HTTPS/TLS
+❌ SQL query using string concatenation → SQL Injection risk → REJECT
+❌ User input passed to `eval()` or `exec()` directly → Remote Code Execution risk
 
 ## ✅ SAFE PATTERNS
 
-✅ Secrets qua environment variables hoặc Secret Manager
-✅ Parameterized queries cho SQL
-✅ Content Security Policy headers cho web endpoints
-✅ Input validation với whitelist approach (không phải blacklist)
+✅ Secrets via environment variables or Secret Managers
+✅ Parameterized queries for SQL
+✅ Content Security Policy headers for web endpoints
+✅ Input validation using whitelist approach (not blacklist)
 
 ---
 
-## 🔍 Scanning Protocol (SECURITY Agent phải chạy)
+## 🔍 Scanning Protocol (SECURITY Agent must run)
 
 ```bash
-# Scan cho hardcoded secrets
+# Scan for hardcoded secrets
 grep -r "password=\|secret=\|api_key=\|Bearer " src/
 
-# Scan cho dangerous functions  
+# Scan for dangerous functions  
 grep -r "eval(\|exec(\|system(" src/
 ```
 
@@ -66,4 +66,4 @@ grep -r "eval(\|exec(\|system(" src/
 ---
 
 > [!CAUTION]
-> **"Bảo mật là quá trình liên tục — không phải checkbox một lần."**
+> **"Security is a continuous process — not a one-time checkbox."**

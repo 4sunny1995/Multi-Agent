@@ -1,43 +1,43 @@
-# ⚖️ Agent Rules Registry: Hiến chương vận hành AI
+# ⚖️ Agent Rules Registry: AI Operational Charter
 
-Thư mục này chứa "Luật lệ" tối cao của hệ thống. Mỗi tệp tin định nghĩa các chuyên gia, tiêu chuẩn kỹ thuật và đạo đức mà mọi Agent phải tuân thủ tuyệt đối.
+This directory contains the supreme "Laws" of the system. Each file defines technical standards, guidelines, and behavioral contracts that every Agent must strictly follow.
 
 ---
 
-## 🏗️ Phân loại Quy chuẩn (Nâng cấp 7.0)
+## 🏗️ Standards Classification (v7.0)
 
 ### 1. 🚀 Core Engineering & Development
-- [**SWE-001**](software-engineering-standards.md): Chuẩn Kỹ nghệ Phần mềm (Clean Code, SOLID, TDD, Patterns).
-- [**ALGO-001**](algorithms-handbook.md): Cẩm nang thuật toán, Data Structures & System Design.
-- [**ENT-001**](enterprise-standards.md): Tiêu chuẩn hệ thống quy mô lớn (Microservices, gRPC, API).
+- [**SWE-001**](software-engineering-standards.md): Software Engineering Standards (Clean Code, SOLID, TDD, Patterns).
+- [**ALGO-001**](algorithms-handbook.md): Algorithms, Data Structures & System Design Handbook.
+- [**ENT-001**](enterprise-standards.md): Enterprise Systems Standards (Microservices, gRPC, API).
 
 ### 2. 🏗️ Infrastructure & Operations
-- [**INF-001**](infrastructure-standards.md): Chuẩn Hạ tầng (Detection, Cloud Ops, FinOps).
-- [**OPS-001**](operations-standards.md): Vận hành an toàn, Sao lưu và Tự phục hồi.
-- [**SCALE-001**](system-scale-alignment.md): Chiến lược thích ứng quy mô (S/M/L).
-- [**VER-001**](versioning-standards.md): Quản lý phiên bản SemVer.
+- [**INF-001**](infrastructure-standards.md): Infrastructure Standards (Detection, Cloud Ops, FinOps).
+- [**OPS-001**](operations-standards.md): Safe Operations, Backup, and Self-Healing.
+- [**SCALE-001**](system-scale-alignment.md): Scale Adaptation Strategy (S/M/L).
+- [**VER-001**](versioning-standards.md): SemVer Versioning Management.
 
 ### 3. 🛡️ Security & Environment
-- [**SEC-001**](security-hardening-standards.md): Cường hóa bảo mật hệ thống.
-- [**SDC-001**](external-secret.md): Quản lý Bí mật & Cấu hình Động (Secure Dynamic Config).
-- [**DBS-001**](database-protection-standards.md): Bảo vệ Database Registry & Migration.
+- [**SEC-001**](security-hardening-standards.md): System Security Hardening.
+- [**SDC-001**](external-secret.md): Secret Management & Secure Dynamic Config.
+- [**DBS-001**](database-protection-standards.md): Database Protection Registry & Migration.
 
 ### 4. 📝 Documentation & Communication
-- [**DOC-001**](documentation-standards.md): Quy chuẩn Tài liệu & Báo cáo kỹ thuật (Accuracy, Structure).
-- [**TRL-001**](translate-language.md): Quy chuẩn dịch thuật chuyên ngành IT.
-- [**UIX-001**](ui-ux-design-principles.md): Nguyên tắc thiết kế UI/UX & Thẩm mỹ Nhật Bản.
+- [**DOC-001**](documentation-standards.md): Documentation & Technical Reporting Standards (Accuracy, Structure).
+- [**TRL-001**](translate-language.md): IT Technical Translation Standards.
+- [**UIX-001**](ui-ux-design-principles.md): UI/UX Design & Japanese Aesthetics Principles.
 
 ### 5. 🛸 Antigravity Framework
-- [**AGS-001**](antigravity-standard.md): Quy chuẩn vận hành Antigravity (Tiếng Việt-First).
-- [**LPE-001**](llm-prompt-engineering.md): Tiêu chuẩn Prompt Engineering cho Agent.
-- [**LEGACY-001**](legacy-principles.md): Quy tắc xử lý & Audit hệ thống cũ.
+- [**AGS-001**](antigravity-standard.md): Antigravity Operational Standard (English-First).
+- [**LPE-001**](llm-prompt-engineering.md): Prompt Engineering Standards for Agents.
+- [**LEGACY-001**](legacy-principles.md): Legacy System Handling & Audit Rules.
 
 ---
 
 ### 🧠 Strategic Knowledge & Evolution
-- [**CTO-VISION**](cto-strategic-vision.md): Tầm nhìn chiến lược và kiến trúc dài hạn.
-- [**GLOSSARY**](glossary.json): Từ điển thuật ngữ kỹ thuật thống nhất.
-- [**RETRO-LOG**](team-retro.md): Nhật ký tiến hóa của đội ngũ Agent. ([Archive](team-retro-archive.md))
+- [**CTO-VISION**](cto-strategic-vision.md): Strategic Vision and Long-Term Architecture.
+- [**GLOSSARY**](glossary.json): Unified Technical Terminology Dictionary.
+- [**RETRO-LOG**](team-retro.md): Evolution Log of the Agent Team ([Archive](team-retro-archive.md)).
 
 ---
-> **"Luật lệ là xi măng gắn kết các viên gạch mã nguồn thành một tòa lâu đài bền vững."** 
+> **"Rules are the mortar binding source code bricks into a sustainable fortress."** 

@@ -1,41 +1,28 @@
-# 🤝 Lời Khuyên Chân Thành: Cùng Trưởng Thành Khôn Ngoan Trong Kỷ Nguyên AI
+# 🤝 Responsible AI Charter
 
-*(Đôi dòng tâm sự gửi tới các kỹ sư phần mềm tương lai, đặc biệt là các bạn sinh viên và những người đang chập chững bước vào nghề).*
-
-Sự xuất hiện của mô hình Multi-Agent bên trong dự án này mang lại cho chúng ta sức mạnh tuyệt vời. Nó giúp tiết kiệm hàng giờ gõ code rập khuôn và đưa ra những gợi ý thiết kế vô giá.
-
-Tuy nhiên, với tư cách là những Người Đi Trước, chúng tôi muốn chia sẻ một góc nhìn: **Hãy để AI làm bệ phóng, đừng vô tình biến nó thành lớp vỏ kìm hãm tư duy của chính bạn.**
+> **"Use AI as a launchpad, keep human intelligence as the foundation."**
 
 ---
 
-### 1. Ý Thức Về Chữ Ký Nghề Nghiệp (Professionalism)
-AI giống như một người trợ lý có thể đánh máy cực nhanh, nhưng nó không biết khái niệm về Đạo đức nghề nghiệp.
-- Khi một hệ thống gặp sự cố ở môi trường thực tế (Production), người dùng sẽ không phàn nàn với AI. Người đứng ra bảo vệ hệ thống, giải quyết vấn đề và chịu trách nhiệm chính là **Bạn**.
-- Việc sao chép khối lệnh vội vàng mà chưa kịp thấu hiểu có thể vô tình đưa những lỗ hổng bảo mật ẩn sâu vào sản phẩm, gây tổn hại cho người dùng cuối. 
+### 1. Professional Responsibility
+- When a production incident occurs, **you** are directly accountable, not the AI.
+- Never blindly copy AI-generated code without verifying security and logic.
 
-### 2. Gian Nan Mới Rèn Nên Kỹ Sư Giỏi (Embrace The Bugs)
-Nếu bạn vẫn còn đang học tập tại giảng đường, việc kẹt lại với một lỗi (Bug) trong vài ngày và cuối cùng "vỗ đùi cái đét" nhận ra lỗi do mình gõ sai... chính là khoảnh khắc đẹp nhất để trí não phát triển.
-- Nếu bạn cứ viện đến lệnh `/fix` để cỗ máy giải quyết mọi chuyện trong 5 giây, bạn có thể đã vô tình đánh mất đi một bài học lớn về tư duy gỡ rối (Debugging).
-- Đừng để sự tiện lợi của AI tước đi đặc quyền được tự mình đào sâu vào kiến trúc bộ nhớ, tự mình thấu hiểu tại sao mã nguồn lại vận hành như vậy.
+### 2. Autonomous Problem Solving (Embrace The Bugs)
+- Debugging and deep-diving into codebase architecture are essential engineering exercises.
+- Avoid relying solely on automated fixing workflows (`/fix`).
 
-### 3. Nguyên Tắc Để "Cộng Tác" Hoàn Hảo Cùng AI:
-1. **Làm Người Thẩm Định, Không Làm Máy Chuyển Khách:** Bạn chính là vị "Giám đốc" cuối cùng. Bất cứ khi Agent DEV trình lên một thuật toán, hãy dành thời gian review nó.
-2. **Kích Thích Sự Tò Mò:** Nếu AI sử dụng một cấu trúc `Design Pattern` mà bạn chưa từng biết, đừng lờ nó đi! Hãy dừng lại để học: *"Cái hàm này lạ quá, mày có thể phân tích cho tao vì sao mày không dùng if-else mà lại dùng cách này không?"*
-3. **Trải Nghiệm Độc Lập:** Đôi khi, hãy tự tắt trợ lý đi và thử tự xây dựng một logic nghiệp vụ phức tạp. Đó là cách bạn xác nhận mình vẫn đang làm chủ nghề nghiệp.
+### 3. AI Collaboration Principles
+1. **Act as the Final Evaluator**: You are the decision maker; always review AI-proposed code and architectural plans.
+2. **Cultivate Curiosity**: Actively study new design patterns, abstractions, and structures suggested by AI.
+3. **Maintain Core Competency**: Periodically write complex logic independently to preserve engineering sharpness.
 
-### 4. Tầm Nhìn Chiến Lược & "Người Gác Cổng" (CTO Perspective):
-Trong hệ thống của chúng ta, **LEADER** mang hai linh hồn: Một "Người gác cổng" (Gatekeeper) khắt khe và một "Kiến trúc sư trưởng" (CTO) có tầm nhìn.
-- Đừng chỉ hài lòng với việc code chạy đúng. Hãy tự hỏi: *"Hệ thống này có thể mở rộng trong 2 năm tới không?"*.
-- AI có thể giúp bạn tối ưu hóa, nhưng chính **Bạn** là người định hướng "con thuyền" công nghệ đi đúng mục tiêu kinh doanh.
+### 4. Strategic Vision (CTO Perspective)
+- Look beyond basic functional correctness — evaluate system scalability, maintainability, and long-term architecture.
 
-### 5. Đạo Đức Đối Với Dữ Liệu (The Brain Integrity):
-Quy chuẩn **DBS-001** (Bảo vệ Database) không chỉ là kỹ thuật, nó là lời hứa về sự an toàn đối với tài sản của người dùng.
-- Một kỹ sư giỏi là người biết sợ hãi trước sự thay đổi dữ liệu hiện có. Đừng bao giờ lạm dụng AI để thực thi các lệnh migration mù quáng. 
-- Hãy luôn là người đưa ra quyết định cuối cùng **[PO_APPROVE]** trước khi "chạm" vào bộ não của hệ thống.
+### 5. Data & Schema Integrity
+- Treat database schema modifications and migrations with caution; mandatory PO/human approval is required prior to execution.
 
+---
 
-> **LỜI KẾT**
-> Chúng ta đang may mắn ở trong một thời đại được máy móc hỗ trợ mọi rào cản thao tác tay. Hãy dùng AI để bản thân có thời gian giải quyết các bài toán tầm cỡ lớn hơn, nhưng người cầm vô lăng và nắm giữ những kiến thức tinh túy nhất... luôn luôn phải là **BẠN**! Dũng cảm tiến lên nhé!
-> Đừng bao giờ quên rằng, chúng ta là những kỹ sư phần mềm. 
-> Người đi trước đã xây dựng nên nền móng cho chúng ta, và chúng ta có trách nhiệm xây dựng nền móng cho thế hệ sau. 
-> Hãy để AI là công cụ hỗ trợ, không phải là người thay thế chúng ta.
+> **Summary**: Use AI to eliminate friction and solve bigger problems, but ensuring system integrity and holding core technical mastery must always rest with **YOU**.

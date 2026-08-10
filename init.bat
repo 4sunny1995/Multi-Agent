@@ -1,22 +1,29 @@
 @echo off
-:: Set UTF-8 encoding for Vietnamese characters
+:: Set UTF-8 encoding
 chcp 65001 >nul
 
 :: ==============================================================================
-:: INITIALIZATION SCRIPT CHO WINDOWS (BATCH FILE)
-:: Mục đích: Xây dựng bộ khung xương sống cho dự án.
-:: Mức độ an toàn: Kiểm tra sự tồn tại (if not exist) trước khi tạo để tránh ghi đè.
+:: WINDOWS INITIALIZATION SCRIPT (BATCH FILE)
+:: Purpose: Build core directory skeleton for Windows environments.
+:: Safety: Checks directory existence (`if not exist`) prior to creation.
 :: ==============================================================================
 
-echo ⏳ Dang tien hanh thiet lap khong gian lam viec (Dung cho Windows)...
+echo ⏳ Setting up workspace directory structure (Windows)...
 
-:: Tạo thư mục an toàn
+:: Create directories safely
 if not exist "src" mkdir "src"
-if not exist "docs\business" mkdir "docs\business"
-if not exist "docs\architecture" mkdir "docs\architecture"
+if not exist "tests" mkdir "tests"
+if not exist "docs\draft" mkdir "docs\draft"
+if not exist "docs\original\business" mkdir "docs\original\business"
+if not exist "docs\original\architecture" mkdir "docs\original\architecture"
+if not exist "docs\original\budget" mkdir "docs\original\budget"
+if not exist "docs\original\testing" mkdir "docs\original\testing"
+if not exist "docs\original\release" mkdir "docs\original\release"
+if not exist "docs\original\user-guide" mkdir "docs\original\user-guide"
+if not exist "docs\trans\vi" mkdir "docs\trans\vi"
+if not exist "docs\trans\en" mkdir "docs\trans\en"
+if not exist "docs\trans\ja" mkdir "docs\trans\ja"
 
-:: Do Windows hiếm khi bị lỗi permission denied ở thư mục root dự án như Linux
-:: Nên việc bắt lỗi ở đây được đơn giản hoá
-echo ✅ Hoan tat! Cau truc thu muc nen tang da san sang.
-echo Nhan phim bat ky de thoat...
+echo ✅ Success! Enterprise directory structure is ready.
+echo Press any key to exit...
 pause >nul

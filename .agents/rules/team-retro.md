@@ -4,96 +4,94 @@ trigger: model_decision
 
 # 🔄 Team Retrospective: Lessons Learned & System Evolution (V5.0 — LLM-First)
 
-Tài liệu này ghi lại các bài học kinh nghiệm từ quá trình vận hành hệ thống Multi-Agent trên môi trường Antigravity.
+This document records lessons learned from operating the Multi-Agent system within the Antigravity environment.
 
 ---
 
-## 🗄️ Khối lưu trữ (Archived)
-> Lịch sử từ **Sprint 2 đến Sprint 5.3** đã được nén lại và chuyển nhượng sang file `team-retro-archive.md` (Giải phóng 60% Token Context).
-- **Thành tựu lõi**: Thiết lập hệ thống 13 Roles, 12 Workflows chuyên sâu, LPE-001 Enforcement, và tái cấu trúc hệ thống Rules thành các Logic Gates tuyệt đối.
+## 🗄️ Archived Block
+> History from **Sprint 2 to Sprint 5.3** has been compressed and archived into `team-retro-archive.md` (Freed 60% Token Context).
+- **Core Achievements**: Established 13 Roles system, 12 in-depth Workflows, LPE-001 Enforcement, and refactored Rules system into absolute Logic Gates.
 ---
 
 ## 📅 SPRINT 6.0: The Intelligent Autonomous Era (Current)
 
-### 📊 Phân tích Hành vi Đại cục: SWC Matrix
-Nhằm chuẩn bị giải quyết các giới hạn nền tảng tiếp theo của hệ thống (*Token Context, Scalability và Destructive Over-engineering*), hội đồng Agent đã thiết lập bảng phân tích năng lực:
+### 📊 Strategic Behavior Analysis: SWC Matrix
+To prepare for overcoming next-level core platform limitations (*Token Context, Scalability, and Destructive Over-engineering*), the Agent council established the capability analysis matrix:
 
-| Hạng mục | Khái niệm cốt lõi | Biểu diễn trong hệ thống thực tế |
+| Category | Core Concept | Manifestation in Real System |
 | :--- | :--- | :--- |
-| **Strengths** (Sức mạnh) | Tính chuyên môn sâu & Phân quyền rành mạch | 13 Roles, 12 Workflows chặn Gate tuyệt đối. Các Rule nén siêu mỏng (SWE-001, CLD-002) giảm thiểu Token vắt kiệt. |
-| **Weaknesses** (Điểm yếu) | Nạn "Over-Engineering" & Rào cản Context | Tư duy hệ thống rập khuôn kiểu Enterprise, khiến các ứng dụng "đồ chơi" (MVP, học thuật) bị ngộp tài liệu. Rào cản đọc file > 800 LOC. |
-| **Challenges** (Thách thức) | Vượt ngưỡng Giới hạn LLM Vận hành | 1. **Mù Codebase quá khổ**: Không có Semantic Vector Search sẽ khiến LLM bó tay với Source Code triệu dòng. <br> 2. **Rủi ro tự trị (Auto-run)**: Chưa có cơ chế Safe-Backup tự động trước khi `replace_file_content` bị lỗi. |
+| **Strengths** | Deep specialization & explicit delegation | 13 Roles, 12 Workflows enforcing absolute Gates. Hyper-thin rules (SWE-001, CLD-002) minimizing token exhaustion. |
+| **Weaknesses** | Over-Engineering & Context Barriers | Rigid enterprise-style system mindset smothering simple MVP/toy projects with documentation. File reading barrier > 800 LOC. |
+| **Challenges** | Overcoming Operational LLM Thresholds | 1. **Over-sized Codebase Blindness**: Lack of Semantic Vector Search leaves LLMs powerless on million-LOC source codes.<br>2. **Autonomous Risks**: Lacks automated Safe-Backup mechanisms prior to failed `replace_file_content` edits. |
 
-### 🏆 Thành tựu (Design Wins)
-1. **Diệt Over-Engineering**: Xây dựng luồng nhánh của `/dev` chia làm 2 cấp `[ENTERPRISE]` và `[MVP-MICRO]`.
-2. **Khắc phục Mù Ngữ cảnh**: Cấy ghép "Semantic Knowledge Map" và "Business Domain" vào `STATE.md`, ép BA phải Thấu cảm trước khi phân tích dữ liệu.
-3. **Chống Rủi ro Tự trị**: Thiết lập `LAW 4: Safe-Backup` trong `operation-safety.md`, ngăn Agent tự động phá source.
-4. **Đồng bộ Hoá Bản năng (100%)**: Cập nhật Role files của BA, SA, TESTER, LEADER giúp toàn bộ đội ngũ cốt lõi hành động theo triết lý "Thấu cảm" và "Tối ưu quy mô" một cách tự nhiên.
+### 🏆 Design Wins
+1. **Eliminated Over-Engineering**: Split `/dev` execution paths into two tiers: `[ENTERPRISE]` and `[MVP-MICRO]`.
+2. **Fixed Context Blindness**: Embedded "Semantic Knowledge Map" and "Business Domain" into `STATE.md`, forcing BA to Empathize before analyzing data.
+3. **Prevented Autonomous Risks**: Established `LAW 4: Safe-Backup` in `operation-safety.md`, prohibiting Agents from automatically corrupting source files.
+4. **100% Instinct Alignment**: Updated Role files for BA, SA, TESTER, LEADER enabling core team actions to align naturally with "Empathy" and "Scale Optimization".
 
 ### 📚 Cross-Team Lessons Learned Table
-| Vấn đề / Tech Debt | Nguyên nhân gốc rễ (Root Cause) | Giải pháp đã áp dụng & Rule mới |
+| Issue / Tech Debt | Root Cause | Applied Solution & New Rule |
 | :--- | :--- | :--- |
-| Nợ kỹ thuật âm thầm | Do lười refactor, thiếu nhận diện sớm | Nâng cấp `inspect.md` với AI Pattern Recognition |
-| Quên kiểm soát chi phí | Chỉ có dự toán, không có alert | Ép buộc CloudWatch/Billing alarms trong `BUDGET-001` |
-| Lọt lỗi bảo mật từ thư viện | Quét 1 lần lúc deploy là không đủ | Bổ sung 24/7 scanning vào `SHS-001` & `/secure` |
-| Gây vỡ tính năng cũ (Regression) | BA phân tích requirements như xây mới | Cập nhật `/dev` thêm "Feature Impact Classification" (FIC). |
-| Over-Engineering lãng phí Token | Agent bị dính tư duy Enterprise cho dự án bé | Bổ sung Bypass `[MVP-MICRO]` vào luồng `/dev` |
-| BA thiết kế luồng vô dụng | Thiếu context người dùng và Pain points thực tế | Nhúng `BUSINESS DOMAIN` vào `STATE.md`, ép BA đọc trước khi viết BRD |
-| AI phá hoại source code (Destructive) | Replace lầm file khi chạy Auto-run | Ban hành `LAW 4: Safe-Backup` bắt buộc tạo `.bak` trước khi đè nội dung |
-| Bị phân mảnh cấu hình (Tồn tại 2 file glossary.json ở config và rules) | Thiếu góc nhìn toàn cảnh, lọc file theo Single Directory (`list_dir` cục bộ). | Nâng cấp `AGS-001` (Global Context Discovery), ép buộc dùng `grep_search` trên toàn dự án khi xử lý thay đổi kiến trúc/tài liệu cấu hình nền tảng. |
+| Silent Technical Debt | Laziness to refactor, lack of early detection | Upgraded `inspect.md` with AI Pattern Recognition |
+| Forgotten Cost Controls | Budgeting only, no alerts | Enforced CloudWatch/Billing alarms in `BUDGET-001` |
+| Security Flaws in Libraries | One-time scanning on deploy is insufficient | Added 24/7 scanning into `SHS-001` & `/secure` |
+| Breaking Legacy Features (Regression) | BA analyzed requirements like building greenfield | Updated `/dev` with "Feature Impact Classification" (FIC). |
+| Token Wasting Over-Engineering | Agents stuck in Enterprise mindset for tiny projects | Added `[MVP-MICRO]` bypass into `/dev` workflow |
+| Useless Flow Design by BA | Lacking user context and real Pain points | Embedded `BUSINESS DOMAIN` into `STATE.md`, forcing BA to read prior to drafting BRD |
+| Destructive AI Edits | Accidental file overwrites during Auto-run | Enacted mandatory `LAW 4: Safe-Backup` creating `.bak` before overwriting content |
+| Configuration Fragmentation (Duplicate glossary.json in config and rules) | Lacking holistic view, filtering files via Single Directory (`list_dir` locally). | Upgraded `AGS-001` (Global Context Discovery), forcing `grep_search` across entire project when modifying architecture/core configs. |
 
 ---
 
 ## 📅 SPRINT 5.6: The Predictive Era
 
-### 🏆 Thành tựu (System Wins)
-1. **AI-Driven RCA**: Nâng cấp `/inspect` với khả năng dùng LLM truy vết Root Cause thay vì chỉ dò regex độ dài file.
-2. **Predictive Security**: Tích hợp quy chuẩn dò tìm 24/7 CVE (Dependencies) vào `secure.md` và `SHS-001`.
-3. **Cost Auto-Alerting**: Đưa cảnh báo ngân sách Cloud tự động vào `BUDGET-001`.
-4. **Cross-Team Intelligence**: Thiết lập Bảng bài học kinh nghiệm dùng chung để các Agent và Human cùng học hỏi.
+### 🏆 System Wins
+1. **AI-Driven RCA**: Upgraded `/inspect` with LLM capability to trace Root Cause instead of merely regex-checking file lengths.
+2. **Predictive Security**: Integrated 24/7 CVE scanning (Dependencies) standards into `secure.md` and `SHS-001`.
+3. **Cost Auto-Alerting**: Integrated automated Cloud budget alarms into `BUDGET-001`.
+4. **Cross-Team Intelligence**: Established shared Lessons Learned Table for Agents and Humans to co-learn.
 
 ---
 
+## 📅 SPRINT 5.4: Token Conservation & Context Optimization (Current)
 
+### 🏆 System Wins
+1. **Rule File Optimization**: Successfully converted 19/19 static files (inlined rules) into "Conditional Rules" (model_decision).
+2. **Context Relief**: Tens of thousands of tokens (bytes) freed from System Prompt per turn, drastically reducing Latency and API Costs in Antigravity environment.
+3. **Archive Old Notes**: Streamlined `team-retro.md` by archiving contents from Sprint 2 - 4.3.
 
-## 📅 SPRINT 5.4: Tiết Kiệm Token & Context Optimization (Current)
+### 💡 Knowledge Upgrade
+> **"Don't let algorithms endlessly regurgitate useless theory."**
+> - Rules are no longer blindly stuffed into context. Let `<description>` serve as table of contents, allowing AI evaluation (model_decision) to decide when to inspect via tools.
 
-### 🏆 Thành tựu (System Wins)
-1. **Rule File Optimization**: Chuyển đổi thành công 19/19 files tĩnh (inlined rules) thành các "Conditional Rules" (model_decision).
-2. **Context Relief**: Hàng chục ngàn token (bytes) được giải phóng khỏi System Prompt mỗi lượt, giúp giảm Latency và API Cost đáng kể trong môi trường Antigravity.
-3. **Archive Old Notes**: Tinh gọn `team-retro.md` bằng cách nén (Archive) các nội dung từ Sprint 2 - 4.3.
-
-### 💡 Bài học (Knowledge Upgrade)
-> **"Đừng để thuật toán nhai lại lý thuyết vô ích."**
-> - Rules không còn nhồi nhét vô tội vạ vào não bộ. Hãy để `<description>` làm mục lục, và để sự đánh giá của AI (model_decision) quyết định lúc nào cần đọc bằng tool.
-
-### 🚀 Hành động tiếp theo
-- **ALL AGENTS**: Từ nay, khi thấy một Rule ở danh sách gợi ý trong System Prompt, hãy chủ động dùng lệnh `view_file` để tự tra cứu nội dung khi gặp bài toán liên quan.
+### 🚀 Next Actions
+- **ALL AGENTS**: From now on, when encountering a Rule in System Prompt suggestions, proactively use `view_file` to look up contents when handling related tasks.
 
 ---
 
-## 📅 SPRINT 5.5: Persistent Context & "Não bộ tĩnh" (Current)
+## 📅 SPRINT 5.5: Persistent Context & "Static Brain" (Current)
 
-### 🏆 Thành tựu (System Wins)
-1. **Lưu trữ Cấu hình tĩnh (`STATE.md`)**: Giải quyết triệt để tình trạng AI "Mất trí nhớ context" giữa các phiên chat bằng Project State Checkpoint mới.
-2. **Loại bỏ Bottleneck (INF-001)**: Thay vì mỗi đầu Session AI phải quét lại toàn bộ file `package.json`, `docker-compose.yaml` (gây tốn từ 2-5k tokens/lượt mất thời gian), giờ AI sẽ tải cấu hình kiến trúc ngay lập tức từ `STATE.md`.
-3. **Workflow Upgrade**: Chu trình `/dev` và `/fix` đã cập nhật lệnh ép buộc (Force action) cho LEADER phải lưu trạng thái của hệ thống trước khi Shutdown session.
+### 🏆 System Wins
+1. **Static Configuration Persistence (`STATE.md`)**: Thoroughly resolved AI "Context Amnesia" between chat sessions using new Project State Checkpoint.
+2. **Eliminated Bottlenecks (INF-001)**: Instead of re-scanning `package.json`, `docker-compose.yaml` every session start (wasting 2-5k tokens/turn), AI now loads architecture config instantly from `STATE.md`.
+3. **Workflow Upgrade**: `/dev` and `/fix` cycles updated with forced instructions for LEADER to persist system state before session shutdown.
 
-### 💡 Bài học (Knowledge Upgrade)
-> **"Kiến thức không thể chỉ lưu ở quá khứ (Retro), nó phải hướng tới hành động tương lai (State)."**
-> - Thay vì để AI loay hoay quét mù, việc thiết lập một "bảng đồ kiến trúc tĩnh" sẽ là la bàn định hướng cho mọi hành động.
+### 💡 Knowledge Upgrade
+> **"Knowledge cannot only live in the past (Retro), it must drive future action (State)."**
+> - Instead of AI blindly scanning, establishing a "static architecture map" serves as a compass for all actions.
 
-### 🚀 Hành động tiếp theo
-- **LEADER**: Chú ý thực thi ghi dữ liệu vào `.agents/STATE.md` ở bước 7 (FINAL GATE).
+### 🚀 Next Actions
+- **LEADER**: Pay attention to executing data writes to `.agents/STATE.md` at step 7 (FINAL GATE).
 
 ---
 
 ## 📅 SPRINT 5.6: The Discovery & Analysis Era (Current)
 
-### 🏆 Thành tựu (System Wins)
-1. **Khởi tạo `/analyse` (ANA-001)**: Thiết lập chốt chặn nghiên cứu chuyên sâu, ép buộc quy trình Discovery (BA) và Technical Assessment (SA) trước khi triển khai.
-2. **Failure Point Prevention**: Tích hợp các rào cản chống "Shallow Research" và "Assumption of Greenfield" ngay trong workflow định nghĩa.
+### 🏆 System Wins
+1. **Initialized `/analyse` (ANA-001)**: Established deep research checkpoints, enforcing Discovery (BA) and Technical Assessment (SA) prior to implementation.
+2. **Failure Point Prevention**: Integrated barriers against "Shallow Research" and "Assumption of Greenfield" directly in workflow definitions.
 
-### 💡 Bài học (Knowledge Upgrade)
-> **"Thấu cảm là chìa khóa của Giải pháp."**
-> - Một hệ thống không có pha phân tích rõ ràng thường dẫn đến lãng phí 30-50% công sức lập trình do sai lệch yêu cầu.
+### 💡 Knowledge Upgrade
+> **"Empathy is the key to Solution."**
+> - Systems lacking clear analysis phases often waste 30-50% engineering effort due to requirement misalignment.

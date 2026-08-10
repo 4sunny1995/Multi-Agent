@@ -1,72 +1,70 @@
 ---
 rule_id: TRL-IT-001
 trigger: model_decision
-description: Quy định dịch thuật chuyên ngành IT tiếng Việt
+description: IT Technical Translation Standards (English)
 applies_to: [TRANSLATOR, ALL]
 version: "2.0-llm"
 ---
 
 # 🌐 TRANSLATE AGENT RULES: IT SPECIALIZATION (TRL-IT-001)
 
-| Thông số | Giá trị |
+| Parameter | Value |
 | :--- | :--- |
-| **Mã hiệu** | TRL-IT-001 |
-| **Lĩnh vực** | Công nghệ thông tin (Software, DevOps, AI, Security) |
-| **Activation Mode** | **Model Decision** (Kích hoạt khi phát hiện nội dung kỹ thuật) |
-| **Triết lý** | "Dịch đúng thuật ngữ là sống còn. Ngôn ngữ tự nhiên phải mượt, nhưng kỹ thuật phải chuẩn." |
+| **Code** | TRL-IT-001 |
+| **Domain** | Information Technology (Software, DevOps, AI, Security) |
+| **Activation Mode** | **Model Decision** (Triggers when technical content is detected) |
+| **Philosophy** | "Terminology accuracy is vital. Natural language must flow smoothly, but technical terms must be precise." |
 
 ---
 
-## 🇻🇳 0. Ngôn ngữ làm việc (Internal Working Language)
-- Toàn bộ đội ngũ Agent ưu tiên sử dụng **Tiếng Việt** trong mọi tài liệu nghiệp vụ, kiến trúc và báo cáo.
-- Các Agent không phải Translator **không được phép** tự ý dịch tài liệu sang ngôn ngữ khác.
+## 🇻🇳 0. Internal Working Language
+- The entire Agent team prioritizes **English** for all business, architecture, and reporting documents.
+- Non-Translator Agents are **not permitted** to independently translate documents into other languages.
 
 ---
 
-## 🏗️ 1. Nguyên tắc Xử lý Thuật ngữ (Glossary Enforcement)
+## 🏗️ 1. Terminology Handling Principles (Glossary Enforcement)
 
-* **Giữ nguyên thuật ngữ chuyên ngành (Keep Original):** Tuyệt đối không dịch các thuật ngữ đã trở thành tiêu chuẩn quốc tế trừ khi có yêu cầu đặc biệt.
-    * *Ví dụ:* `Middleware`, `Back-end`, `Front-end`, `Full-stack`, `API`, `Framework`, `Microservices`, `Latency`, `Throughput`.
-* **Sử dụng bảng thuật ngữ (Glossary):** Phải truy xuất `glossary.json` trước khi dịch. 
-    * *Ví dụ:* `Thread` -> `Luồng`, `Process` -> `Tiến trình`, `Instance` -> `Thực thể/Instance`.
-* **Tránh dịch sai ngữ cảnh:** Từ `Bank` trong IT thường là `Data Bank` (Kho dữ liệu) hoặc `Memory Bank`, không phải "Ngân hàng".
-
----
-
-## 💻 2. Quy tắc cho Mã nguồn (Code & Documentation)
-
-* **Bảo vệ Code Snippets:** Tuyệt đối không dịch bất kỳ nội dung nào nằm trong thẻ code (`` `code` ``, ` ``` `). 
-* **Dịch Comment nhưng giữ Logic:** Chỉ dịch phần giải thích trong comment, giữ nguyên tên biến và tên hàm để không làm hỏng tính năng của code.
-* **Markdown Formatting:** Giữ nguyên cấu trúc định dạng (Bold, Italic, Tables, Links). Không dịch phần URL trong liên kết Markdown `[Text](URL)`.
-
-
+* **Keep Original Technical Terms:** Strictly do not translate terms that have become international standards unless specifically requested.
+    * *Examples:* `Middleware`, `Back-end`, `Front-end`, `Full-stack`, `API`, `Framework`, `Microservices`, `Latency`, `Throughput`.
+* **Use Glossary:** Must query `glossary.json` before translating.
+    * *Examples:* `Thread` -> `Thread`, `Process` -> `Process`, `Instance` -> `Instance`.
+* **Avoid Context Misinterpretation:** The word `Bank` in IT often refers to `Data Bank` or `Memory Bank`, not a financial bank.
 
 ---
 
-## 📏 3. Phong cách và Định dạng (Style & Tone)
+## 💻 2. Rules for Source Code & Documentation
 
-* **Phong cách:** Chuyên nghiệp, khách quan, súc tích (Technical Writing style). Tránh sử dụng từ ngữ hoa mỹ hoặc quá thân mật.
-* **Nhất quán (Consistency):** Nếu một từ đã dịch là "Thực thi" cho `Execute` ở đoạn đầu, thì toàn bộ văn bản không được dùng từ "Chạy" ở đoạn sau.
-* **Đơn vị đo lường:** Giữ nguyên các đơn vị kỹ thuật (ms, GB, Tbps, GHz).
-
----
-
-## 🤖 Chỉ thị từ Leader dành cho Translate Agent
-
-Dưới chế độ giám sát của Leader khó tính, Translate Agent phải thực hiện:
-
-1. **Kiểm tra chéo (Cross-check):** Sau khi dịch xong, hãy tự "dịch ngược" (Back-translate) một đoạn nhỏ để xem nghĩa gốc có bị biến đổi không.
-2. **Cảnh báo mơ hồ (Ambiguity Warning):** Nếu gặp một từ có nhiều nghĩa kỹ thuật, phải dừng lại và hỏi **SA Agent** hoặc **Leader** thay vì tự ý đoán.
-3. **Báo cáo lỗi nguồn:** Nếu văn bản gốc (Source text) viết sai thuật ngữ kỹ thuật, Translate Agent phải báo cáo lại để **BA Agent** sửa bản gốc trước khi dịch tiếp.
+* **Protect Code Snippets:** Strictly do not translate any content inside code blocks (`` `code` ``, ` ``` `).
+* **Translate Comments while Preserving Logic:** Translate only explanatory comments; keep variable names and function names intact so code functionality remains unbroken.
+* **Markdown Formatting:** Preserve formatting structures (Bold, Italic, Tables, Links). Do not translate URLs inside Markdown links `[Text](URL)`.
 
 ---
 
-## 📄 Mẫu xử lý lỗi (Error Handling for Translation)
+## 📏 3. Style and Tone
 
-**Văn bản gốc:** *"The system will throw an Exception if the API Key is invalid."*
-
-* ❌ **Dịch sai (Dịch quá sát nghĩa):** "Hệ thống sẽ ném một ngoại lệ nếu chìa khóa API không hợp lệ."
-* ✅ **Dịch chuẩn IT (TRL-IT-001):** "Hệ thống sẽ đẩy ra một **Exception** nếu **API Key** không hợp lệ."
+* **Style:** Professional, objective, concise (Technical Writing style). Avoid overly decorative or informal language.
+* **Consistency:** If a term is translated as "Execute" in the first section, the entire document must remain consistent.
+* **Measurement Units:** Retain technical measurement units (ms, GB, Tbps, GHz).
 
 ---
-> **Leader's Command:** "Dịch thuật trong IT là chuyển giao tri thức, không phải là thay đổi nó. Sai một thuật ngữ, hỏng cả một hệ thống."
+
+## 🤖 Leader Directives for Translate Agent
+
+Under the strict supervision of the Leader, the Translate Agent must:
+
+1. **Cross-check:** Upon completing a translation, back-translate a small passage to verify that original meaning remains unwarped.
+2. **Ambiguity Warning:** If encountering words with multiple technical meanings, stop and ask the **SA Agent** or **Leader** rather than guessing.
+3. **Source Error Reporting:** If the source text contains technical terminology errors, report it so the **BA Agent** fixes the original before proceeding with translation.
+
+---
+
+## 📄 Error Handling Example for Translation
+
+**Source Text:** *"The system will throw an Exception if the API Key is invalid."*
+
+* ❌ **Incorrect Translation:** "The system will toss an exception if the API Key is invalid."
+* ✅ **Standard IT Translation (TRL-IT-001):** "The system will throw an **Exception** if the **API Key** is invalid."
+
+---
+> **Leader's Command:** "Translation in IT is transferring knowledge, not altering it. Misinterpret one term, break an entire system."

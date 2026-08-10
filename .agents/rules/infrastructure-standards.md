@@ -1,7 +1,7 @@
 ---
 rule_id: INF-001
 trigger: model_decision
-description: Quy chuẩn Hạ tầng, Kiến trúc & Vận hành Cloud (Infra Detection, Cloud Ops, FinOps)
+description: Infrastructure, Architecture & Cloud Operations Standards (Infra Detection, Cloud Ops, FinOps)
 applies_to: [SA, CLOUD_ARCHITECT, LEADER]
 version: "7.0-llm"
 ---
@@ -9,55 +9,55 @@ version: "7.0-llm"
 # 🏗️ Infrastructure & Cloud Operations Standards (INF-001)
 
 <identity>
-Quy chuẩn hợp nhất về nhận diện hạ tầng, thiết kế kiến trúc và vận hành Cloud.
-Mục tiêu: Đảm bảo nền móng vững chắc, tối ưu chi phí (FinOps) và khả tự phục hồi.
+Unified standards for infrastructure detection, architecture design, and Cloud operations.
+Goal: Ensure a solid foundation, cost optimization (FinOps), and self-healing capability.
 </identity>
 
 <activation>
-Kích hoạt khi Agent khảo sát hệ thống, thiết kế IaC (Docker, Compose), hoặc triển khai Cloud.
+Activated when Agents survey the system, design IaC (Docker, Compose), or deploy to the Cloud.
 </activation>
 
 <thinking_pattern>
-1. Hệ thống hiện tại là Greenfield hay Legacy? (Đọc STATE.md).
-2. Docker Image có tối ưu (Slim/Alpine) và không lộ Secret không?
-3. Phương án này tiêu tốn bao nhiêu ngân sách? Có Billing Alert chưa?
-4. Có đảm bảo thay đổi sống (Hot-swap) và Fallback khi lỗi không?
+1. Is the current system Greenfield or Legacy? (Read STATE.md).
+2. Is the Docker Image optimized (Slim/Alpine) and free of leaked Secrets?
+3. How much budget will this proposal consume? Are Billing Alerts configured?
+4. Is hot-swapping and fallback resilience ensured upon failure?
 </thinking_pattern>
 
 <guidelines>
 ## 1. INFRASTRUCTURE DETECTION (Pre-flight)
-- **Check Memory First**: BẮT BUỘC đọc `.agents/STATE.md` đầu tiên. Nếu có -> Dùng làm context và bỏ qua quét thủ công.
-- **Manual Scan**: Nếu không có `STATE.md`, dùng `list_dir` tìm Dockerfile, `.env`, `SQL`, `migrations` để định hình hệ thống.
-- **Action Mode**: Phân loại `[Initial Infrastructure]` (Dự án mới) hoặc `[Infrastructure Evolution]` (Dự án cũ).
+- **Check Memory First**: MANDATORY to read `.agents/STATE.md` first. If present -> Use as context and skip manual scanning.
+- **Manual Scan**: If `STATE.md` is absent, use `list_dir` to locate Dockerfile, `.env`, `SQL`, `migrations` to inspect the system.
+- **Action Mode**: Classify as `[Initial Infrastructure]` (New Project) or `[Infrastructure Evolution]` (Legacy Project).
 
 ## 2. CONTAINERIZATION & DEPLOYMENT
-- **Multi-stage Builds**: Bắt buộc để tối ưu dung lượng Image và bảo mật.
-- **Base Images**: Ưu tiên Alpine hoặc Slim. Tránh dùng tag `latest`.
-- **Non-root User**: Cấm chạy ứng dụng bằng quyền `root` trong container.
-- **Health Checks**: Mọi service phải có Endpoint kiểm tra sức khỏe (`/health`).
+- **Multi-stage Builds**: Mandatory to optimize Image size and security.
+- **Base Images**: Prefer Alpine or Slim. Avoid using the `latest` tag.
+- **Non-root User**: Strictly forbid running applications under `root` privileges inside containers.
+- **Health Checks**: Every service must have a health check endpoint (`/health`).
 
 ## 3. FINOPS & CLOUD BUDGET
 - **Traffic Scaling**:
-    - *Low (<1k req/day)*: Ưu tiên Serverless để tối ưu chi phí về ~$0.
-    - *Medium/High*: Sử dụng Auto-scaling và Reserved Instances.
-- **Billing Alerts**: Khai báo Alarms (CloudWatch/Budget) trực tiếp trong IaC code ở các ngưỡng 50%, 80%, 100%.
+    - *Low (<1k req/day)*: Prefer Serverless to optimize costs down to ~$0.
+    - *Medium/High*: Use Auto-scaling and Reserved Instances.
+- **Billing Alerts**: Declare Alarms (CloudWatch/Budget) directly in IaC code at thresholds of 50%, 80%, 100%.
 
 ## 4. DYNAMIC CONFIG & HOT-SWAP
-- **Centralized Store**: Runtime config (Feature flags, Thresholds) phải tách khỏi code, lưu tại Redis/AppConfig.
-- **Zero-Restart Updates**: Thiết lập cơ chế cập nhật giá trị mới mà không cần restart container/app.
-- **Fallback Resilience**: Luôn có giá trị mặc định an toàn trong mã nguồn nếu Centralized Store gặp sự cố.
+- **Centralized Store**: Runtime config (Feature flags, Thresholds) must be decoupled from code, stored in Redis/AppConfig.
+- **Zero-Restart Updates**: Establish mechanisms to update new values without restarting containers/apps.
+- **Fallback Resilience**: Always maintain safe default fallback values in source code if the Centralized Store fails.
 </guidelines>
 
 <anti_patterns>
-❌ Ghi đè cấu hình cũ (`.env`, DB) mà không có đề xuất trong Plan.
-❌ Build Image nhúng cứng Secret/Token vào lớp Dockerfile.
-❌ Chạy Production mà không có Billing Alerts hoặc Health Checks.
-❌ Restart ứng dụng chỉ để thay đổi một tham số cấu hình nhỏ.
+❌ Overwriting legacy configuration (`.env`, DB) without a proposal in the Plan.
+❌ Building Images with hardcoded Secrets/Tokens embedded in Dockerfile layers.
+❌ Running Production without Billing Alerts or Health Checks.
+❌ Restarting the application merely to change a minor configuration parameter.
 </anti_patterns>
 
 <checklist>
-- [ ] Đã đọc `STATE.md` và xác định đúng Action Mode chưa?
-- [ ] Dockerfile đã có Multi-stage build và Non-root user chưa?
-- [ ] Đã thiết lập Billing Alerts và ngưỡng dự toán chi phí chưa?
-- [ ] Có đảm bảo "Default Fallback" cho cấu hình động không?
+- [ ] Read `STATE.md` and correctly identified Action Mode?
+- [ ] Dockerfile contains Multi-stage build and Non-root user?
+- [ ] Set up Billing Alerts and cost budget thresholds?
+- [ ] Ensured "Default Fallback" for dynamic configurations?
 </checklist>

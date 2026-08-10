@@ -1,16 +1,16 @@
 ---
 workflow_id: FIX-001
-description: Quy trình sửa lỗi nhanh, an toàn tuyệt đối cho hệ thống Enterprise.
+description: Quick, bulletproof bug fixing workflow for Enterprise systems.
 role_lead: TESTER
-triggers: ["/fix", "bug", "lỗi", "fix", "sửa"]
+triggers: ["/fix", "bug", "error", "fix", "repair"]
 version: "2.0"
 ---
 
-# 🩹 Workflow: Sửa Lỗi Kiên Cố (/fix)
+# 🩹 Workflow: Robust Bug Fix (/fix)
 
-> **Nguyên tắc cốt lõi**: TESTER cô lập trước — DEV sửa sau. Không bao giờ ngược lại.
+> **Core Principle**: TESTER isolates first — DEV fixes second. Never the reverse.
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 BUG_REPORT → TESTER (Isolate) → DEV (Fix) → SECURITY (Review) → LEADER (Gate)
@@ -19,28 +19,29 @@ BUG_REPORT → TESTER (Isolate) → DEV (Fix) → SECURITY (Review) → LEADER (
 ---
 
 ## 1. ISOLATE BUG (TESTER)
-- **Hành động**: Tái hiện lỗi bằng failing test (RED). Xác định Root Cause và scope ảnh hưởng.
-- **Block condition**: Không tái hiện được lỗi → Yêu cầu thêm info, KHÔNG đoán.
+- **Action**: Reproduce bug via a failing test (RED). Identify Root Cause and affected scope.
+- **Block condition**: Bug cannot be reproduced → Request additional info, DO NOT guess.
 - **Output**: Failing test + Bug Report (Severity + Steps to Reproduce + Expected vs Actual).
 
 ## 2. SURGICAL FIX (DEV)
-- **Hành động**: Sửa lỗi tối giản nhất để pass failing test của TESTER. Không "gold plate".
-- **[DB_CHECKPOINT]**: Sửa lỗi yêu cầu thay đổi DB schema cũ → DỪNG, hỏi User.
-- **Constraint (KISS)**: Nếu fix cần > 50 dòng code → dấu hiệu Root Cause sai, quay lại bước 1.
-- **Output**: Code fix + Updated unit test + `[TECH_DEBT]` tag nếu dùng workaround.
+- **Action**: Apply minimal fix to pass TESTER's failing test. Do not "gold plate".
+- **[DB_CHECKPOINT]**: Fix requires altering legacy DB schema → STOP, ask User.
+- **Constraint (KISS)**: If fix requires > 50 lines of code → indicates wrong Root Cause, return to step 1.
+- **Output**: Code fix + Updated unit test + `[TECH_DEBT]` tag if using workaround.
 
 ## 3. SECURITY REGRESSION (SECURITY)
-- **Hành động**: Scan bản fix xem có tạo ra lỗ hổng mới không (regression vulnerabilities).
+- **Action**: Scan the fix to verify no new vulnerabilities were introduced (regression vulnerabilities).
 - **Focus**: Input validation, auth logic, data exposure.
-- **Output**: Approval / Block với evidence cụ thể.
+- **Output**: Approval / Block with specific evidence.
 
 ## 4. GATE & LOG (LEADER)
-- **Hành động**: Verify test passes. Ghi nhận Root Cause. Cập nhật nợ kỹ thuật (nếu có) vào `.agents/STATE.md`.
-- **Output**: `walkthrough.md` + `.agents/STATE.md` (Update).
+- **Action**: Verify test passes. Log Root Cause. Update technical debt (if any) in `.agents/STATE.md`.
+- **Output**: `walkthrough.md` + `.agents/STATE.md` (Updated).
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. DEV fix mà không có failing test → **Giải pháp**: TESTER phải bàn giao RED test trước bước 2.
-2. Fix "rộng" hơn cần thiết → **Giải pháp**: LEADER yêu cầu scope giới hạn trong failing test.
-3. Bug tái xuất sau 1 tuần → **Giải pháp**: Nếu fix > 2 lần → trigger `/retro` để phân tích pattern.
+## 🚨 Failure Points
+
+1. DEV fixes without a failing test → **Solution**: TESTER must hand off RED test before step 2.
+2. Fix is broader than necessary → **Solution**: LEADER requires scope restricted to failing test.
+3. Bug resurfaces after 1 week → **Solution**: If fixed > 2 times → trigger `/retro` to analyze patterns.

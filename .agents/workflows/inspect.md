@@ -1,16 +1,16 @@
 ---
 workflow_id: INS-001
-description: Quy trình tự động dò tìm và diệt nợ kỹ thuật (Technical Debt).
+description: Automated technical debt detection and elimination workflow.
 role_lead: LEADER
-triggers: ["/inspect", "nợ kỹ thuật", "technical debt", "code smell", "audit code"]
+triggers: ["/inspect", "technical debt", "code smell", "code audit", "debt inspect"]
 version: "2.0"
 ---
 
-# 🔬 Workflow: Kiểm Toán Nợ Kỹ Thuật (/inspect)
+# 🔬 Workflow: Technical Debt Audit (/inspect)
 
-> **Chế độ**: Leader khó tính — không có lòng thương xót với code bẩn.
+> **Mode**: Strict Leader — zero tolerance for dirty code.
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 LEADER (Scan) → LEADER (Compliance) → DEV (Refactor) → LEADER (Verify)
@@ -20,31 +20,32 @@ LEADER (Scan) → LEADER (Compliance) → DEV (Refactor) → LEADER (Verify)
 
 ## 1. AI-DRIVEN ROOT CAUSE ANALYSIS (LEADER)
 // turbo
-- **Hành động 1 (Static)**: `list_dir src/` tìm file lớn, `grep_search` pattern cơ bản (hàm > 15 dòng, if-else > 3 mức).
-- **Hành động 2 (AI Pattern Recognition)**: Đọc nội dung module nghi ngờ (qua `view_file`) và dò tìm "vi khuẩn" thiết kế: 
-  - Khối mã có Tight-coupling hay không?
-  - Dòng dữ liệu (data flow) có mâu thuẫn dẫn đến state leak không?
-  - Xác định Root Cause sâu xa tạo ra Tech Debt (VD: sai Pattern, nhồi nhét Feature).
-- **Output**: Danh sách "Suspects" kèm lý giải AI-Driven Root Cause.
+- **Action 1 (Static)**: Run `list_dir src/` to locate large files, `grep_search` basic code smells (functions > 15 lines, if-else > 3 levels).
+- **Action 2 (AI Pattern Recognition)**: Read suspect module contents (via `view_file`) and detect architectural defects: 
+  - Does the code block contain tight coupling?
+  - Does the data flow contain conflicts leading to state leaks?
+  - Determine underlying Root Causes generating Tech Debt (e.g., wrong pattern, feature bloating).
+- **Output**: List of "Suspects" accompanied by AI-driven Root Cause explanations.
 
 ## 2. COMPLIANCE & SEVERITY TAGGING (LEADER)
-- **Đối chiếu** với `clean-code.md`, `solid.md`, `design-pattern.md`.
-- **AI Tagging**: Đánh giá độ nghiêm trọng không dựa trên độ dài file, mà dựa trên "Bán kính lây lan bug" nếu logic hỏng: `[CRITICAL]` / `[HIGH]` / `[MEDIUM]` / `[LOW]`.
-- **Output**: Debt Register với mã phân loại và hướng refactor.
+- **Cross-reference** against `software-engineering-standards.md`.
+- **AI Tagging**: Evaluate severity based on bug propagation radius rather than file length: `[CRITICAL]` / `[HIGH]` / `[MEDIUM]` / `[LOW]`.
+- **Output**: Debt Register containing classification codes and refactoring guidance.
 
 ## 3. BOY SCOUT REFACTOR (DEV)
-- **Hành động**: DEV xử lý các debt theo thứ tự CRITICAL → HIGH.
-- **Constraint**: Mỗi refactor commit phải có unit test đi kèm để chứng minh behavior không thay đổi.
-- **Gắn tag**: `[TECH_DEBT:RESOLVED]` khi hoàn thành từng item.
+- **Action**: DEV addresses debts in priority order: CRITICAL → HIGH.
+- **Constraint**: Every refactor commit must be accompanied by unit tests proving behavior remains unaltered.
+- **Tagging**: Mark `[TECH_DEBT:RESOLVED]` upon completing each item.
 - **Output**: Refactored code + updated tests.
 
 ## 4. VERIFY & LOG (LEADER)
-- **Hành động**: Chạy lại scan để đảm bảo debt đã được giải quyết. Không có regression.
-- **Output**: `walkthrough.md` — Debt Register Before/After. Cập nhật `team-retro.md` nếu pattern mới phát hiện.
+- **Action**: Re-run scan to confirm debts are resolved with zero regressions.
+- **Output**: `walkthrough.md` — Debt Register Before/After. Update `team-retro.md` if new patterns are identified.
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. Refactor làm hỏng behavior → **Giải pháp**: Viết "behavior test" trước khi refactor.
-2. DEV refactor quá scope → **Giải pháp**: Mỗi PR chỉ xử lý 1 debt item.
-3. Debt Register không có priority → **Giải pháp**: LEADER phân loại severity trước khi giao DEV.
+## 🚨 Failure Points
+
+1. Refactoring breaks existing behavior → **Solution**: Write "behavior tests" prior to refactoring.
+2. DEV over-refactors beyond scope → **Solution**: Each PR addresses strictly 1 debt item.
+3. Debt Register lacks prioritization → **Solution**: LEADER classifies severity before assigning to DEV.

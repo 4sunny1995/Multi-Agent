@@ -2,82 +2,82 @@
 rule_id: LPE-001
 role: ALL
 trigger: model_decision
-description: Tiêu chuẩn Prompt Engineering cho AI Agent (XML tags, Token budget)
+description: Prompt Engineering Standards for AI Agents (XML tags, Token budget)
 version: "1.0"
 ---
 
 # 📐 LLM Prompt Engineering Standards (LPE-001)
 
-Quy chuẩn viết tài liệu `.agents` để tối ưu hiệu suất trên các mô hình LLM (Claude, Gemini, GPT). Áp dụng cho mọi Role, Rule và Workflow file.
+Standards for writing `.agents` documentation to optimize performance across LLM models (Claude, Gemini, GPT). Applies to all Role, Rule, and Workflow files.
 
 ---
 
-## 1. Token Budget Rules (Tiết kiệm Token)
+## 1. Token Budget Rules
 
-- **Mỗi Role file**: Tối đa **60 dòng hiệu quả** (không tính comments trống).
-- **Guidelines**: Tối đa **5 điểm**, mỗi điểm **1 câu hành động** (imperative sentence).
-- **Cấm**: Đoạn văn giải thích dài hơn 3 câu liên tiếp.
-- **Ưu tiên**: Danh sách (`-`) > Đoạn văn > Bảng (cho nội dung ngắn).
+- **Each Role file**: Maximum **60 effective lines** (excluding blank/comments).
+- **Guidelines**: Maximum **5 points**, each point **1 action sentence** (imperative sentence).
+- **Forbidden**: Explanatory paragraphs longer than 3 consecutive sentences.
+- **Preference**: Lists (`-`) > Paragraphs > Tables (for short content).
 
-## 2. XML Tag Standards (Cấu trúc chuẩn)
+## 2. XML Tag Standards
 
-Mọi Role file PHẢI có đủ các tag sau theo thứ tự:
+Every Role file MUST contain all of the following tags in order:
 
 ```xml
-<identity>   → Ai bạn là, tính cách cốt lõi (max 3 dòng)
-<activation> → Khi nào Role này được kích hoạt (max 4 điều kiện)
-<mission>    → Mục tiêu chính, 1-2 câu (không phải danh sách)
-<thinking_pattern> → Chuỗi câu hỏi nội tâm trước khi hành động
-<input_output>     → Bảng: Giai đoạn | Input | Output | Đường dẫn
-<guidelines>       → Max 5 hành động cụ thể, ưu tiên động từ mạnh
-<anti_patterns>    → Min 3 điều TUYỆT ĐỐI CẤM (để LLM không đoán sai)
-<recommended_tools>→ Danh sách tools + mục đích
-<constraints>      → Giới hạn phạm vi hoạt động
-<output_format>    → Cấu trúc output cụ thể (nếu cần)
+<identity>   → Who you are, core personality (max 3 lines)
+<activation> → When this Role is activated (max 4 conditions)
+<mission>    → Main mission, 1-2 sentences (not a list)
+<thinking_pattern> → Internal question chain before action
+<input_output>     → Table: Phase | Input | Output | Path
+<guidelines>       → Max 5 concrete actions, prioritizing strong verbs
+<anti_patterns>    → Min 3 STRICTLY FORBIDDEN items (preventing LLM misguessing)
+<recommended_tools>→ List of tools + purpose
+<constraints>      → Activity scope limits
+<output_format>    → Concrete output structure (if needed)
 ```
 
-## 3. Activation Trigger Syntax (Ngữ pháp kích hoạt)
+## 3. Activation Trigger Syntax
 
 ```yaml
-# Cú pháp chuẩn trong <activation>:
+# Standard syntax inside <activation>:
 triggers:
-  - keyword: ["BRD", "User Story", "phân tích yêu cầu"]  # → BA
-  - keyword: ["thiết kế", "Architecture", "Schema"]       # → SA
-  - keyword: ["viết code", "implement", "fix bug"]        # → DEV
-  - workflow: ["/dev", "/fix"]                            # → Kích hoạt cả team
+  - keyword: ["BRD", "User Story", "requirement analysis"]  # → BA
+  - keyword: ["design", "Architecture", "Schema"]           # → SA
+  - keyword: ["write code", "implement", "fix bug"]        # → DEV
+  - workflow: ["/dev", "/fix"]                            # → Activate whole team
 ```
 
 ## 4. Thinking Pattern Template
 
 ```
-# Pattern cho LLM trước khi phản hồi:
-1. Tôi đang trong Role [X] không? (Kiểm tra activation conditions)
-2. Input từ User/Agent trước có đủ không? (Kiểm tra handoff contract)
-3. Tôi sắp làm gì vi phạm anti_patterns không? (Self-check)
-4. Output của tôi sẽ enable Agent tiếp theo làm gì? (Output contract)
+# Pattern for LLM before responding:
+1. Am I currently in Role [X]? (Check activation conditions)
+2. Is the input from User/previous Agent sufficient? (Check handoff contract)
+3. Am I about to do anything that violates anti_patterns? (Self-check)
+4. What will my output enable the next Agent to do? (Output contract)
 ```
 
 ## 5. Anti-Pattern Documentation
 
-Mỗi Role PHẢI khai báo `<anti_patterns>` với cấu trúc:
+Every Role MUST declare `<anti_patterns>` with the structure:
 ```
-❌ [Hành động cấm] → 💡 [Thay vào đó, làm gì]
+❌ [Forbidden action] → 💡 [What to do instead]
 ```
 
-Ví dụ:
+Example:
 ```
-❌ Tự ý đoán logic DB khi không có ERD → 💡 Hỏi SA hoặc đọc init.sql trước
-❌ Viết code không có unit test → 💡 Viết test RED trước, code sau
+❌ Guessing DB logic when lacking ERD → 💡 Ask SA or read init.sql first
+❌ Writing code without unit tests → 💡 Write RED test first, code second
 ```
 
 ## 6. Negative-First Specification
 
-Khi định nghĩa hành vi của LLM, **khai báo điều cấm trước** — LLM xử lý constraint tốt hơn xử lý instruction dương tính.
+When defining LLM behavior, **declare prohibitions first** — LLMs handle constraints better than positive instructions.
 
 ---
 > [!IMPORTANT]
-> **Kiểm tra trước khi commit file .agents mới:**
-> - [ ] File có đủ 10 XML tags không?
-> - [ ] Guidelines có > 5 điểm không? (Nếu có → phải cắt)
-> - [ ] Có `<anti_patterns>` chưa?
-> - [ ] `<activation>` có ít nhất 2 trigger condition không?
+> **Check before committing new .agents files:**
+> - [ ] Does the file contain all 10 XML tags?
+> - [ ] Do Guidelines exceed 5 points? (If yes → must trim)
+> - [ ] Is `<anti_patterns>` present?
+> - [ ] Does `<activation>` have at least 2 trigger conditions?

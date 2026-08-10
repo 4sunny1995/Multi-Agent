@@ -1,16 +1,16 @@
 ---
 workflow_id: REP-001
-description: Quy trình phối hợp BA, SA, DEV để trích xuất báo cáo kỹ thuật.
+description: Technical report extraction workflow collaborating BA, SA, and DEV.
 role_lead: TECH_WRITER
-triggers: ["/report", "báo cáo", "technical report", "sức khỏe dự án", "system snapshot"]
+triggers: ["/report", "report", "technical report", "project health", "system snapshot"]
 version: "2.0"
 ---
 
-# 📊 Workflow: Báo Cáo Kỹ Thuật (/report)
+# 📊 Workflow: Technical Report Extraction (/report)
 
-> **Mục đích**: Chụp "Chân dung dự án" tại một thời điểm — từ nghiệp vụ, kiến trúc đến mã nguồn thực tế.
+> **Purpose**: Capture the "Project Snapshot" at a specific point in time — spanning business, architecture, to live source code.
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 BA (Features) → SA (Architecture) → DEV (Code) → TECH_WRITER (Synthesize) → LEADER (Approve)
@@ -19,37 +19,38 @@ BA (Features) → SA (Architecture) → DEV (Code) → TECH_WRITER (Synthesize) 
 ---
 
 ## 1. FEATURE DISCOVERY (BA)
-- **Hành động**: Liệt kê tất cả User Stories & Acceptance Criteria đã hoàn thành.
-- **Constraint**: Chỉ liệt kê tính năng **đã ship** — không đưa vào những gì đang WIP.
-- **Output**: Feature list gửi TECH WRITER.
+- **Action**: List all completed User Stories & Acceptance Criteria.
+- **Constraint**: List **shipped** features only — do not include WIP items.
+- **Output**: Feature list submitted to TECH WRITER.
 
 ## 2. ARCHITECTURE EXTRACT (SA)
-- **Hành động**: Tóm tắt kiến trúc hiện có — Sequence Diagram, Data Schema, API contract.
-- **Verify first**: `view_file` để lấy data thực tế, không viết từ memory.
-- **Output**: Diagrams + Specs gửi TECH WRITER.
+- **Action**: Summarize existing architecture — Sequence Diagrams, Data Schemas, API contracts.
+- **Verify first**: Run `view_file` to extract live data, do not write from memory.
+- **Output**: Diagrams + Specs submitted to TECH WRITER.
 
 ## 3. CODE & STRUCTURE INSIGHT (DEV)
 // turbo
-- **Hành động**: `list_dir src/` để lấy cấu trúc. Trích xuất 3-5 Code Snippets logic quan trọng nhất.
-- **Constraint**: Snippets phải có `file_path:line_number` reference.
-- **Output**: Structure tree + Annotated snippets gửi TECH WRITER.
+- **Action**: Run `list_dir src/` to inspect structure. Extract 3-5 core logic Code Snippets.
+- **Constraint**: Snippets must feature `file_path:line_number` references.
+- **Output**: Structure tree + Annotated snippets submitted to TECH WRITER.
 
 ## 4. SYNTHESIS (TECH WRITER)
-- **Hành động**: Tổng hợp input từ BA + SA + DEV → xuất bản thảo `docs/draft/architecture/technical_report.md` với `Status: Draft`.
-- **TRS-001 Compliance**: Mọi claim phải có evidence link. Không viết gì không verify được.
+- **Action**: Consolidate inputs from BA + SA + DEV → publish draft `docs/draft/architecture/technical_report.md` with `Status: Draft`.
+- **TRS-001 Compliance**: Every claim must have an evidence link. Write nothing unverified.
 - **Output**: `docs/draft/architecture/technical_report.md`.
 
-## 5. APPROVAL & PROMOTION — Phê Duyệt & Chuyển Bản Chính Thức (LEADER & User)
-- **Hành động**: LEADER cùng User/PO kiểm tra độ chính xác (Verify accuracy report vs src/) của bản thảo tại `docs/draft/architecture/technical_report.md`.
-- **Hỏi ý kiến User/PO**: Trình nội dung báo cáo kỹ thuật và hỏi ý kiến Approve của User/PO.
-- **Phê duyệt & Promote**:
-    - ✅ **Approved**: Khi được User/PO chấp thuận, di chuyển/cập nhật tài liệu từ `docs/draft/architecture/technical_report.md` sang `docs/original/architecture/technical_report.md`, chuyển `Status: Approved` trong Header và đồng bộ cập nhật `docs/original/README.md`. Ghi nhận kết quả vào `walkthrough.md` với timestamp.
-    - 🔄 **Refine**: Yêu cầu TECH WRITER chỉnh sửa bản thảo trực tiếp tại `docs/draft/architecture/technical_report.md`.
-- **Output**: Báo cáo kỹ thuật chính thức được lưu tại `docs/original/architecture/technical_report.md` (Single Source of Truth).
+## 5. APPROVAL & PROMOTION — Approval & Official Promotion (LEADER & User)
+- **Action**: LEADER and User/PO verify report accuracy against source code (`src/`) for the draft at `docs/draft/architecture/technical_report.md`.
+- **User/PO Consultation**: Present technical report content and solicit Approval from User/PO.
+- **Approve & Promote**:
+    - ✅ **Approved**: When approved by User/PO, move/update document from `docs/draft/architecture/technical_report.md` to `docs/original/architecture/technical_report.md`, transition `Status: Approved` in Header, and update `docs/original/README.md`. Log results in `walkthrough.md` with timestamp.
+    - 🔄 **Refine**: Instruct TECH WRITER to edit draft directly at `docs/draft/architecture/technical_report.md`.
+- **Output**: Official technical report saved in `docs/original/architecture/technical_report.md` (Single Source of Truth).
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. TECH WRITER viết từ BRD thay vì src/ → **Giải pháp**: LEADER reject nếu không có file:line evidence.
-2. Report không cập nhật `docs/README.md` → **Giải pháp**: Auto-Indexing rule bắt buộc.
-3. DEV snippet không chạy được → **Giải pháp**: Snippet phải được test bằng `run_command` trước.
+## 🚨 Failure Points
+
+1. TECH WRITER writes from BRD instead of src/ → **Solution**: LEADER rejects if lacking file:line evidence.
+2. Report fails to update `docs/README.md` → **Solution**: Auto-Indexing rule mandatory.
+3. DEV snippets fail execution → **Solution**: Snippets must be verified via `run_command` beforehand.

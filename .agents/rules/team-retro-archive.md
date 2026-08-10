@@ -1,19 +1,19 @@
 # 🗄️ Team Retrospective: Archived Sprints (V5.0 - V5.3)
 
-Tài liệu này lưu trữ các bài học kinh nghiệm cũ của hệ thống. Không sử dụng làm Context ưu tiên trừ khi cần tra cứu lịch sử tiến hóa nguyên thủy.
+This document archives legacy system lessons learned. Do not use as primary Context unless searching for original evolutionary history.
 
 ---
 
 ## 📅 SPRINT 5.3: Rules Optimization
-### 🏆 Thành tựu (Design Wins)
-1. **LPE-001 Enforcement**: 100% Rules cốt lõi đã được tái cấu trúc thành XML-like, giúp LLM parse context nhanh và chính xác hơn.
-2. **Consolidation**: Gộp thành công Security & Environment rules vào các mã hiệu thống nhất (SDC-001, CLD-001).
-3. **Execution Readiness**: Các quy định lý thuyết được chuyển đổi thành các "Gates" và "Checklists" có thể thực thi ngay lập tức.
+### 🏆 Design Wins
+1. **LPE-001 Enforcement**: 100% core Rules refactored into XML-like structures, enabling LLMs to parse context faster and more accurately.
+2. **Consolidation**: Successfully merged Security & Environment rules into unified codes (SDC-001, CLD-001).
+3. **Execution Readiness**: Converted theoretical rules into actionable "Gates" and "Checklists" executable immediately.
 
-### 💡 Bài học (Knowledge Upgrade)
-> **"Rules không phải là câu chữ để đọc, mà là các hàm điều kiện (Logic Gates) để chạy."**
-> - Một Rule mơ hồ là một rủi ro hỏng hóc hệ thống.
-> - Cấu trúc thẻ XML giúp AI phân tách rõ ràng giữa "Tôi là ai" và "Tôi không được làm gì".
+### 💡 Knowledge Upgrade
+> **"Rules are not prose to be read, but conditional functions (Logic Gates) to be executed."**
+> - An ambiguous Rule is a system failure risk.
+> - XML tag structures allow AI to cleanly delineate between "Who I am" and "What I cannot do".
 
 ### ✅ Final Verification Sprint 5
 - [x] Roles: Optimized
@@ -24,55 +24,55 @@ Tài liệu này lưu trữ các bài học kinh nghiệm cũ của hệ thống
 ---
 
 ## 📅 SPRINT 5.0: The Autonomous Era
-- **Mục tiêu**: Nâng cao tính tự chủ, tự vận hành và tự hoàn thiện của đội ngũ Agent.
-- **Chiến lược**:
-    - Tích hợp 7 Gates vào bản năng thiết kế (CTO-001).
-    - Tự động hóa trích xuất báo cáo kỹ thuật (/report).
-    - Duy trì tiêu chuẩn bảo mật SHS-001 xuyên suốt.
-- **Checkpoint**: Hệ thống có khả năng tự phát hiện nợ kỹ thuật (Technical Debt) mà không cần User nhắc nhở.
+- **Goals**: Enhance autonomy, self-operation, and self-improvement across the Agent team.
+- **Strategy**:
+    - Integrate 7 Gates into core design instincts (CTO-001).
+    - Automate technical report extraction (/report).
+    - Maintain continuous SHS-001 security standards.
+- **Checkpoint**: System capable of self-detecting Technical Debt without requiring User prompts.
 
 ---
 
 ## 📅 SPRINT 5.1: LLM-First Architecture
-### 🏆 Thành tựu về Thiết kế (Design Wins)
-1. **LLM Behavioral Anchoring**: Bổ sung `<activation>` và `<thinking_pattern>` vào 100% Roles — LLM giờ biết *khi nào* hoặc *nghĩ gì* trước khi hành động.
-2. **Anti-pattern Codification**: Mỗi Role có ít nhất 4 điều cấm rõ ràng — loại bỏ "hallucination" về scope của từng Agent.
-3. **Master Config (LLM-MASTER-001)**: Tạo System Prompt đầu nguồn — mọi Agent đọc file này trước để "cộng não" đúng context.
-4. **LPE-001 Standard**: Thiết lập tiêu chuẩn viết tài liệu `.agents` tối ưu cho LLM (Token Budget, XML Tags, Few-shot).
+### 🏆 Design Wins
+1. **LLM Behavioral Anchoring**: Added `<activation>` and `<thinking_pattern>` to 100% of Roles — LLM now knows *when* or *what to think* before acting.
+2. **Anti-pattern Codification**: Each Role has at least 4 clear prohibitions — eliminating scope "hallucinations" for each Agent.
+3. **Master Config (LLM-MASTER-001)**: Created upstream System Prompt — all Agents read this file first to align context.
+4. **LPE-001 Standard**: Established `.agents` documentation standard optimized for LLMs (Token Budget, XML Tags, Few-shot).
 
-### 💡 Bài học (Knowledge Upgrade)
-> **"Tài liệu viết cho người đọc ≠ Tài liệu viết cho LLM."**
-> - Người đọc cần đoạn văn mạch lạc.
-> - LLM cần **constraints rõ ràng, activation conditions cụ thể, và anti_patterns tường minh**.
+### 💡 Knowledge Upgrade
+> **"Documentation written for humans ≠ Documentation written for LLMs."**
+> - Humans need coherent prose.
+> - LLMs need **clear constraints, explicit activation conditions, and unambiguous anti_patterns**.
 
-### 🚀 Hành động tiếp theo (Next Sprint)
-- Xem xét few-shot examples cho các Role phức tạp (SA, LEADER).
-- Thiết lập cơ chế tự động kiểm tra LPE-001 compliance khi tạo Role mới.
+### 🚀 Next Sprint Actions
+- Consider few-shot examples for complex Roles (SA, LEADER).
+- Establish automated LPE-001 compliance checking when creating new Roles.
 
 ---
 
 ## 📅 SPRINT 5.2: Workflow Optimization
-### 🏆 Thành tựu (Design Wins)
-1. **12/12 Workflows chuẩn hóa LPE-001**: Mọi workflow có frontmatter, triggers, flow diagram, failure points.
-2. **Failure Points Codification**: Mỗi workflow có ≥ 3 điểm thất bại phổ biến và giải pháp phòng ngừa.
-3. **Trigger Keywords**: LLM giờ tự động nhận diện workflow phù hợp từ keywords của User.
-4. **Atomic Flow**: Mỗi bước trong workflow có Input/Output rõ ràng + Block conditions tường minh.
+### 🏆 Design Wins
+1. **12/12 Workflows LPE-001 Standardized**: Every workflow has frontmatter, triggers, flow diagram, failure points.
+2. **Failure Points Codification**: Every workflow has ≥ 3 common failure points and preventive measures.
+3. **Trigger Keywords**: LLM automatically recognizes matching workflows from User keywords.
+4. **Atomic Flow**: Every step in workflows has clear Input/Output + explicit Block conditions.
 
-### 💡 Bài học (Knowledge Upgrade)
-> **"Workflow không phải là checklist — là tập hợp các Block Conditions ngăn Agent đi sai đường."**
-> - Thiếu Failure Points → Agent không biết dừng ở đâu.
-> - Thiếu Triggers → LLM không biết workflow nào phù hợp.
-> - Thiếu Block Conditions → Mọi bước đều "pass" kể cả khi sai.
+### 💡 Knowledge Upgrade
+> **"Workflows are not checklists — they are collections of Block Conditions preventing Agents from straying."**
+> - Missing Failure Points → Agents don't know where to stop.
+> - Missing Triggers → LLM doesn't know which workflow fits.
+> - Missing Block Conditions → Every step "passes" even when wrong.
 
 ### ✅ Retrospective Checklist 6.0
-- [x] 100% Roles có `<activation>`, `<thinking_pattern>`, `<anti_patterns>`?
-- [x] 100% Workflows có `triggers`, `failure_points`, `block_conditions`?
-- [x] Master Config (LLM-MASTER-001) đã được tạo?
-- [x] LPE-001 Standard đã được khai báo trong rules/?
-- [x] Team Retro đã ghi nhận Sprint 5.1 và 5.2?
+- [x] 100% Roles have `<activation>`, `<thinking_pattern>`, `<anti_patterns>`?
+- [x] 100% Workflows have `triggers`, `failure_points`, `block_conditions`?
+- [x] Master Config (LLM-MASTER-001) created?
+- [x] LPE-001 Standard declared in rules/?
+- [x] Team Retro recorded Sprint 5.1 and 5.2?
 
 ---
 > [!IMPORTANT]
-> **"Hệ thống không thể tự tiến hóa nếu không có cơ chế phản tư. /retro là DNA của sự tiến hóa."**
+> **"A system cannot self-evolve without a reflective mechanism. /retro is the DNA of evolution."**
 > **"LLM-First. Human-Verified. Enterprise-Ready."** — _Antigravity AI Team v5.2_
 > **"Building an autonomous future, one retrospective at a time."** — _Antigravity AI Team_

@@ -1,18 +1,18 @@
 # ☁️ Cloud Infrastructure Cost Estimation
 
-## 1. Mục tiêu (Goals)
-Dự toán chi phí vận hành hệ thống đa tác nhân trên nền tảng Cloud (Google Cloud/AWS/Azure).
+## 1. Goals
+Budgeting operational costs for multi-agent systems across Cloud platforms (Google Cloud/AWS/Azure).
 
-## 2. Các thành phần chi phí (Cost Components)
-- **Compute Instance**: Chạy các Agent Engine.
-- **Artifact Storage**: Lưu trữ các file documentation (`docs/`).
-- **Network Egress**: Chi phí truyền tải dữ liệu giữa các Agent.
+## 2. Cost Components
+- **Compute Instance**: Running Agent engines.
+- **Artifact Storage**: Storing system documentation (`docs/`).
+- **Network Egress**: Data transmission between Agents.
 
-## 3. Dự toán chi phí (Estimate)
-- **Low Traffic**: < $50 / tháng (Giai đoạn MVP).
-- **Medium Traffic**: $200 - $500 / tháng (Giai đoạn Scale-up).
-- **High Traffic**: > $1000 / tháng (Dự án Enterprise lớn).
+## 3. Cost Estimation
+- **Low Traffic**: < $50 / month (MVP stage).
+- **Medium Traffic**: $200 - $500 / month (Scale-up stage).
+- **High Traffic**: > $1,000 / month (Large Enterprise stage).
 
 ---
 > [!NOTE]
-> Tài liệu này được tính toán bởi Cloud Architect Agent.
+> This document was calculated by the Cloud Architect Agent.

@@ -1,18 +1,18 @@
 # 📄 Business Requirements Document (BRD)
 
-## 1. Mục tiêu (Objectives)
-Xây dựng một hệ sinh thái AI Agent có khả năng tự động hóa quy trình phát triển phần mềm theo chuẩn Enterprise.
+## 1. Objectives
+Build an AI Agent ecosystem capable of automating the software development lifecycle according to Enterprise standards.
 
-## 2. Các yêu cầu cốt lõi (Core Requirements)
-- **Hợp tác đa tác nhân**: BA, SA, DEV, TESTER, LEADER, TRANSLATOR làm việc nhịp nhàng.
-- **Tiêu chuẩn kỹ thuật**: Áp dụng Clean Code, SOLID, TDD.
-- **Tự động hóa tài liệu**: Mọi thay đổi đều được ghi vết và cập nhật vào Mục lục (`docs/README.md`).
+## 2. Core Requirements
+- **Multi-Agent Collaboration**: BA, SA, DEV, TESTER, LEADER, TRANSLATOR working seamlessly together.
+- **Technical Standards**: Enforce Clean Code, SOLID, and TDD principles.
+- **Automated Documentation**: All changes tracked and indexed in the documentation registry (`docs/README.md`).
 
-## 3. Đối tượng sử dụng (Stakeholders)
-- Đội ngũ phát triển phần mềm.
-- Quản lý dự án (PM).
-- Đội ngũ vận hành (DevOps).
+## 3. Stakeholders
+- Software Engineering Team.
+- Project Management (PM).
+- Operations Team (DevOps).
 
 ---
 > [!NOTE]
-> Tài liệu này được khởi tạo bởi BA Agent.
+> This document was authored by the BA Agent.

@@ -1,40 +1,37 @@
 #!/bin/bash
 
 # ==============================================================================
-# SCRIPT KHỞI TẠO CẤU TRÚC THƯ MỤC DỰ ÁN (INITIALIZATION SCRIPT)
-# Mục đích: Xây dựng bộ khung xương sống (src, docs/original/business, docs/original/architecture).
-# Mức độ an toàn: Tuyệt đối. Cờ `-p` đảm bảo sẽ KHÔNG ghi đè, xóa hoặc làm 
-# mất dữ liệu nếu các thư mục này đã tồn tại trước đó.
+# PROJECT DIRECTORY INITIALIZATION SCRIPT
+# Purpose: Build core directory skeleton (src, tests, docs/original, etc.).
+# Safety: Uses `mkdir -p` to ensure existing directories and data are preserved.
 # ==============================================================================
 
-echo "⏳ Đang tiến hành thiết lập không gian làm việc..."
+echo "⏳ Setting up workspace directory structure..."
 
-# Cố gắng tạo thư mục và kiểm tra kết quả ngay lập tức
-if mkdir -p src docs/drafts docs/original/business docs/original/architecture docs/original/budget docs/original/testing docs/original/release; then
-    echo "✅ Hoàn tất! Cấu trúc thư mục Enterprise (docs/original/) đã sẵn sàng."
+# Create directory structure and verify output
+if mkdir -p src tests docs/draft docs/original/business docs/original/architecture docs/original/budget docs/original/testing docs/original/release docs/original/user-guide docs/trans/vi docs/trans/en docs/trans/ja; then
+    echo "✅ Success! Enterprise directory structure is ready."
 else
-    # Khu vực xử lý ngoại lệ (Exception Handling)
-    ERROR_FILE="XU_LY_LOI_INIT.md"
+    ERROR_FILE="INIT_ERROR_GUIDE.md"
     
-    echo "❌ Lệnh thất bại! Đang tạo file hướng dẫn sửa chữa tại $ERROR_FILE..."
+    echo "❌ Execution failed! Generating troubleshooting guide at $ERROR_FILE..."
     
-    # Sinh file hướng dẫn trực tiếp bằng echo
     cat << 'EOF' > "$ERROR_FILE"
-# ⚠️ HƯỚNG DẪN KHẮC PHỤC LỖI TẠO THƯ MỤC
+# ⚠️ DIRECTORY CREATION TROUBLESHOOTING GUIDE
 
-Hệ thống đã gặp sự cố khi chạy lệnh `sh init.sh`. Bạn đừng lo lắng, mã nguồn của bạn hoàn toàn an toàn. Dưới đây là 2 nguyên nhân phổ biến và cách giải quyết:
+The initialization script (`init.sh`) encountered an error. Your source code remains safe. Below are common causes and solutions:
 
-### Nguyên nhân 1: Xung đột cấu trúc (Conflict)
-- **Triệu chứng:** Trong thư mục hiện tại của bạn đã có một **Tệp (File)** tên là `src` hoặc `docs`. Hệ thống không thể tạo Thư mục đè lên Tệp.
-- **Cách sửa:** Đổi tên hoặc xóa các File đang bị trùng tên với thư mục cần tạo.
+### Cause 1: Path Conflict
+- **Symptom:** A file named `src` or `docs` already exists in the target location.
+- **Fix:** Rename or remove conflicting files before re-running the script.
 
-### Nguyên nhân 2: Lỗi phân quyền (Permission Denied)
-- **Triệu chứng:** Tài khoản User hiện tại không có quyền ghi dữ liệu vào vị trí này.
-- **Cách sửa:** Khởi chạy lại lệnh bằng quyền quản trị. Gõ vào terminal: `sudo sh init.sh` hoặc cấp quyền cho thư mục hiện tại: `sudo chmod -R 775 .`
+### Cause 2: Permission Denied
+- **Symptom:** Current user lacks write permissions in this directory.
+- **Fix:** Re-run with elevated privileges: `sudo sh init.sh` or update directory permissions: `sudo chmod -R 775 .`
 
-*Vui lòng xóa file hướng dẫn này sau khi bạn đã khắc phục xong sự cố!*
+*Please delete this troubleshooting file once the issue is resolved.*
 EOF
 
-    echo "⚠️ Yêu cầu: Hãy mở file $ERROR_FILE để xem cách giải quyết."
+    echo "⚠️ Action required: Open $ERROR_FILE for details."
     exit 1
 fi

@@ -7,32 +7,32 @@ version: "2.0-llm"
 
 # 📦 Versioning & Release Standards (VER-001)
 
-> **Activation**: Kích hoạt khi LEADER chuẩn bị `git tag`, `CHANGELOG`, hoặc `/release`.
+> **Activation**: Activated when LEADER prepares `git tag`, `CHANGELOG`, or `/release`.
 
 ## ⚡ SemVer Decision Tree
 
 ```
-Thay đổi phá vỡ backward compatibility? → MAJOR (X+1.0.0)
-Thêm tính năng mới, không phá vỡ gì? → MINOR (X.Y+1.0)
-Sửa bug / refactor / docs? → PATCH (X.Y.Z+1)
+Breaking changes backward compatibility? → MAJOR (X+1.0.0)
+Adding new features, non-breaking? → MINOR (X.Y+1.0)
+Bug fix / refactor / docs? → PATCH (X.Y.Z+1)
 ```
 
 **Examples**:
-- Thêm endpoint mới → `1.1.0`
-- Sửa null pointer bug → `1.1.1`  
-- Đổi auth schema → `2.0.0`
+- Adding new endpoint → `1.1.0`
+- Fixing null pointer bug → `1.1.1`  
+- Changing auth schema → `2.0.0`
 
 ---
 
-## ✅ Release Gate Checklist (LEADER phải pass trước git tag)
+## ✅ Release Gate Checklist (LEADER must pass prior to git tag)
 
-- [ ] `/dev` hoặc `/fix` đã pass tất cả 7 LEADER Gates?
-- [ ] TESTER xác nhận regression tests PASS?
-- [ ] SECURITY xác nhận "Green" (không có Critical/High open)?
-- [ ] TECH WRITER đã hoàn thành Changelog và Release Notes?
-- [ ] DB backup/snapshot đã được tạo?
-- [ ] Rollback plan đã được document và test?
-- [ ] PO/User đã ký "Digital Approval"?
+- [ ] `/dev` or `/fix` passed all 7 LEADER Gates?
+- [ ] TESTER confirms regression tests PASS?
+- [ ] SECURITY confirms "Green" (no Critical/High open)?
+- [ ] TECH WRITER completed Changelog and Release Notes?
+- [ ] DB backup/snapshot created?
+- [ ] Rollback plan documented and tested?
+- [ ] PO/User signed "Digital Approval"?
 
 ---
 
@@ -41,16 +41,16 @@ Sửa bug / refactor / docs? → PATCH (X.Y.Z+1)
 ```markdown
 ## [1.2.0] - YYYY-MM-DD
 ### Added
-- [Feature] User Story #X: Mô tả ngắn gọn.
+- [Feature] User Story #X: Concise description.
 ### Fixed  
-- [Fix] Bug #Y: Root cause và giải pháp.
+- [Fix] Bug #Y: Root cause and solution.
 ### Security
-- [Security] CVE-XXXX: Mô tả và patch.
+- [Security] CVE-XXXX: Description and patch.
 ### Breaking Changes ⚠️
-- [Breaking] API endpoint /v1/X không còn hỗ trợ.
+- [Breaking] API endpoint /v1/X no longer supported.
 ```
 
 ---
 
 > [!IMPORTANT]
-> **Không có /release nào được thực thi nếu chưa có PO Digital Approval.**
+> **No /release shall be executed without PO Digital Approval.**

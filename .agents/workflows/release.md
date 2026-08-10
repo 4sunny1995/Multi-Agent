@@ -1,16 +1,16 @@
 ---
 workflow_id: REL-001
-description: Quy trình đóng gói và phát hành (Release) an toàn tuyệt đối.
+description: Safe, bulletproof packaging and release workflow.
 role_lead: LEADER
-triggers: ["/release", "phát hành", "release", "deploy production", "ship", "go-live"]
+triggers: ["/release", "release", "deploy production", "ship", "go-live"]
 version: "2.0"
 ---
 
-# 📦 Workflow: Quản Lý Phát Hành Chiến Lược (/release)
+# 📦 Workflow: Strategic Release Management (/release)
 
-> **Quy tắc vàng**: Không có Release nào được phép xảy ra nếu chưa có Rollback Plan đã được kiểm chứng.
+> **Golden Rule**: No Release shall occur without a verified Rollback Plan.
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 LEADER (Version) → WRITER+TRANS (Docs) → SECURITY+TESTER (Pre-check) → PO (Sign-off) → CLOUD ARCH (Deploy)
@@ -19,35 +19,36 @@ LEADER (Version) → WRITER+TRANS (Docs) → SECURITY+TESTER (Pre-check) → PO 
 ---
 
 ## 1. VERSIONING & MANIFEST (LEADER)
-- **Hành động**: Chốt SemVer theo VER-001 (Major.Minor.Patch). `git tag vX.Y.Z`.
-- **Pre-condition**: `/dev` hoặc `/fix` đã qua LEADER Gate và QA approved.
+- **Action**: Finalize SemVer per VER-001 (Major.Minor.Patch). Execute `git tag vX.Y.Z`.
+- **Pre-condition**: `/dev` or `/fix` passed LEADER Gate and QA approval.
 - **Output**: Git tag + Release manifest.
 
 ## 2. CHANGELOG & DOCS (TECH WRITER + TRANSLATOR)
-- **TECH WRITER**: Tổng hợp Bug Fix, New Features, Breaking Changes.
-- **TRANSLATOR** (nếu cần): Dịch Changelog → VI, EN, JA.
-- **Output**: `docs/original/release/vX.Y.Z.md` + `CHANGELOG.md` cập nhật.
+- **TECH WRITER**: Consolidate Bug Fixes, New Features, Breaking Changes.
+- **TRANSLATOR** (if required): Translate Changelog → VI, EN, JA.
+- **Output**: `docs/original/release/vX.Y.Z.md` + Updated `CHANGELOG.md`.
 
 ## 3. PRE-RELEASE GATE (SECURITY + TESTER)
-- **SECURITY**: Security scan lần cuối trên staging. Không hardcoded secrets.
-- **TESTER**: Full regression test suite. Coverage không giảm so với release trước.
-- **Block condition**: Bất kỳ CRITICAL/HIGH security finding → Hard block.
-- **Output**: Green/Red status + evidence trong `walkthrough.md`.
+- **SECURITY**: Final security scan on staging environment. Zero hardcoded secrets.
+- **TESTER**: Full regression test suite. Coverage must not drop relative to previous release.
+- **Block condition**: Any CRITICAL/HIGH security finding → Hard block.
+- **Output**: Green/Red status + evidence logged in `walkthrough.md`.
 
 ## 4. DIGITAL APPROVAL (PO / USER)
-- **Hành động**: User xem xét và phê duyệt release manifest + Changelog.
-- **Constraint**: Đây là chốt chặn không thể tự động hóa — cần human sign-off.
-- **Output**: Approval confirmation → Trigger bước 5.
+- **Action**: User reviews and approves release manifest + Changelog.
+- **Constraint**: Non-automatable checkpoint — requires explicit human sign-off.
+- **Output**: Approval confirmation → Triggers step 5.
 
 ## 5. DEPLOY & VERIFY (CLOUD ARCHITECT)
 - **Pre-deploy**: Backup DB snapshot. Document rollback command.
-- **Deploy**: Thực thi deployment. Monitor health checks 5 phút đầu.
-- **Rollback trigger**: Nếu error rate > 5% trong 5 phút → Tự động rollback.
-- **Output**: Deployment success report + Incident runbook nếu có vấn đề.
+- **Deploy**: Execute deployment. Monitor health checks during initial 5 minutes.
+- **Rollback trigger**: If error rate > 5% within 5 minutes → Trigger automatic rollback.
+- **Output**: Deployment success report + Incident runbook if issues arise.
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. TESTER skip regression → **Giải pháp**: LEADER không sign-off nếu không có test evidence.
-2. Deploy mà không có DB backup → **Giải pháp**: Script tự động backup trước `docker-compose up`.
-3. Không có Rollback Plan → **Giải pháp**: Block bước 5 cho đến khi rollback command được document.
+## 🚨 Failure Points
+
+1. TESTER skips regression → **Solution**: LEADER does not sign off without test evidence.
+2. Deploying without DB backup → **Solution**: Script automatically backs up before running `docker-compose up`.
+3. Lacking Rollback Plan → **Solution**: Block step 5 until rollback command is documented.

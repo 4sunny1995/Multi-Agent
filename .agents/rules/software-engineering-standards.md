@@ -1,7 +1,7 @@
 ---
 rule_id: SWE-001
 trigger: model_decision
-description: Chuẩn Kỹ nghệ Phần mềm Tích hợp (Clean Code, SOLID, TDD, Patterns)
+description: Integrated Software Engineering Standards (Clean Code, SOLID, TDD, Patterns)
 applies_to: [SA, DEV, TESTER, LEADER]
 version: "7.0-llm"
 ---
@@ -9,58 +9,58 @@ version: "7.0-llm"
 # 🛠️ Software Engineering Standards (SWE-001)
 
 <identity>
-Quy chuẩn Engineering hợp nhất. Nguyên tắc tối cao: "Đọc dễ hơn Viết, Sửa dễ hơn Thêm."
+Unified Engineering Standards. Supreme principle: "Easier to Read than Write, Easier to Edit than Add."
 </identity>
 
 <activation>
-Trình LLM sẽ kích hoạt khi review kiến trúc (SA), viết code (DEV) hoặc duyệt pull request (LEADER).
+Triggers when reviewing architecture (SA), writing code (DEV), or reviewing pull requests (LEADER).
 </activation>
 
 <thinking_pattern>
-1. Code này có vi phạm Nguyên lý Đơn trách nhiệm (SRP) không?
-2. Hàm này dài hơn 15 dòng hoặc có quá 2 tham số không?
-3. Thiết kế có đang mang tính chống cháy (Hardcoded, Magic Numbers) không?
-4. Test đã bao phủ các Edge Cases chưa?
+1. Does this code violate the Single Responsibility Principle (SRP)?
+2. Is this function longer than 15 lines or containing more than 2 parameters?
+3. Is the design quick-fix in nature (Hardcoded, Magic Numbers)?
+4. Does test coverage extend to Edge Cases?
 </thinking_pattern>
 
 <guidelines>
 ## 1. THE MINIMALIST MINDSET (KISS & YAGNI)
-- **KISS (Keep It Simple, Stupid)**: Giải pháp đơn giản nhất luôn là tốt nhất. Không lạm dụng Design Pattern nếu một hàm thuần túy có thể giải quyết tốt.
-- **YAGNI (You Ain't Gonna Need It)**: Không code trước cho "tương lai". Chỉ code đúng nghiệp vụ hiện tại.
+- **KISS (Keep It Simple, Stupid)**: The simplest solution is always the best. Do not overuse Design Patterns if a pure function handles the job well.
+- **YAGNI (You Ain't Gonna Need It)**: Do not pre-code for "the future". Code strictly for current business needs.
 
 ## 2. SOLID PRINCIPLES
-- **S (Single Responsibility)**: Mỗi Lớp/Module chỉ có 1 lý do để thay đổi.
-- **O (Open/Closed)**: Thêm tính năng = Thêm class/file mới, HẠN CHẾ tối đa sửa file cũ.
-- **L (Liskov Substitution)**: Lớp con không được phá vỡ kỳ vọng của lớp cha.
-- **I (Interface Segregation)**: Không gom "Rác" vào Interface. Tách thành nhiều Interface nhỏ đặc thù.
-- **D (Dependency Inversion)**: Module cấp cao gọi module cấp thấp qua Interface/Abstraction.
+- **S (Single Responsibility)**: Each Class/Module has only 1 reason to change.
+- **O (Open/Closed)**: Adding features = Adding new classes/files, STRICTLY limit modifying existing files.
+- **L (Liskov Substitution)**: Subclasses must not break expectations of base classes.
+- **I (Interface Segregation)**: Do not cluster bloated interfaces. Split into small specialized interfaces.
+- **D (Dependency Inversion)**: High-level modules call low-level modules through Interfaces/Abstractions.
 
 ## 3. CLEAN CODE METRICS
-- **Luật Tên**: Khai báo rõ ràng mục đích (`daysSinceCreation` thay vì `d`). Không dùng `data`, `temp`, `obj`.
-- **Luật Hàm**: `< 15 dòng`, `≤ 2 parameters`. 1 Động từ + 1 Danh từ, làm đúng 1 việc. Dùng **Guard Clauses** (Return early) thay vì lồng `if-else` quá 3 cấp.
-- **Side Effects**: Hàm `get*` tuyệt đối không được mutate external state.
+- **Naming Rule**: Declare purpose clearly (`daysSinceCreation` instead of `d`). Do not use `data`, `temp`, `obj`.
+- **Function Rule**: `< 15 lines`, `≤ 2 parameters`. 1 Verb + 1 Noun, do exactly 1 thing. Use **Guard Clauses** (Return early) instead of nesting `if-else` deeper than 3 levels.
+- **Side Effects**: `get*` functions strictly must not mutate external state.
 
-## 4. QUY CHUẨN KIỂM THỬ (TDD & F.I.R.S.T)
-- **TDD Flow**: RED (viết test fail) → GREEN (viết code vừa đủ) → REFACTOR (làm sạch).
+## 4. TESTING STANDARDS (TDD & F.I.R.S.T)
+- **TDD Flow**: RED (write failing test) → GREEN (write just enough code) → REFACTOR (clean up).
 - **F.I.R.S.T**: Fast (<100ms), Independent (Mocking), Repeatable, Self-Validating, Timely.
-- **Cấu trúc AAA**: Arrange (Chuẩn bị) - Act (Thực thi) - Assert (Kiểm chứng).
-- **Edge Cases**: Mỗi tính năng phải có ≥ 3 kịch bản biên (Null, Empty, Extreme value).
+- **AAA Structure**: Arrange - Act - Assert.
+- **Edge Cases**: Every feature must have ≥ 3 boundary scenarios (Null, Empty, Extreme value).
 
 ## 5. REFACTORING & TECHNICAL DEBT
-- **Boy Scout Rule**: Luôn để lại file sạch sẽ hơn lúc bạn nhận lấy nó.
-- **Gắn Tag Nợ**: Phát hiện mùi code bẩn → Đánh tag `[TECH_DEBT: lý do]`.
+- **Boy Scout Rule**: Always leave files cleaner than you found them.
+- **Debt Tagging**: Detect code smell → Tag with `[TECH_DEBT: reason]`.
 </guidelines>
 
 <anti_patterns>
-❌ Viết hàm God Function (> 50 dòng, xử lý cả UI lẫn DB).
-❌ Dùng chuỗi `if-else` dài thay vì dùng Strategy/Đa hình.
-❌ Đặt tên biến vô nghĩa (`data`, `res`, `flag`).
-❌ Viết code trước khi có test hoặc bỏ qua Edge Cases.
+❌ Writing God Functions (> 50 lines, handling both UI and DB).
+❌ Using long `if-else` chains instead of Strategy/Polymorphism.
+❌ Meaningless variable naming (`data`, `res`, `flag`).
+❌ Writing code before writing tests or skipping Edge Cases.
 </anti_patterns>
 
 <checklist>
-- [ ] Code có tự giải thích (self-documenting) mà không cần comment dài dòng?
-- [ ] Hàm có vi phạm độ sâu `if-else` > 3 levels hoặc dài > 15 dòng?
-- [ ] Đã kiểm tra và loại bỏ hoàn toàn Hardcoded/Magic Number chưa?
-- [ ] Test đã cô lập hoàn toàn (Mocking DB/Network) và bao phủ Edge Cases chưa?
+- [ ] Code is self-documenting without long comments?
+- [ ] Functions do not exceed `if-else` nesting > 3 levels or length > 15 lines?
+- [ ] Completely checked and eliminated Hardcoded/Magic Numbers?
+- [ ] Tests fully isolated (Mocking DB/Network) and covering Edge Cases?
 </checklist>

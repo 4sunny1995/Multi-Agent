@@ -8,7 +8,7 @@ version: "2.0-llm"
 
 # 🛡️ Database Protection Standards (DBS-001)
 
-> **Activation**: Rule này kích hoạt ngay khi bất kỳ Agent nào nhắc đến: `ALTER`, `DROP`, `TRUNCATE`, `migration`, `schema change`, hay `database`.
+> **Activation**: This rule triggers immediately when any Agent mentions: `ALTER`, `DROP`, `TRUNCATE`, `migration`, `schema change`, or `database`.
 
 ## ⚡ 3-Step Mandatory Protocol
 
@@ -18,36 +18,36 @@ version: "2.0-llm"
 3. APPROVE (USER/PO) → Explicit "Approve DB Change" required
 ```
 
-**Thiếu bất kỳ bước nào → LEADER BLOCK toàn bộ deployment.**
+**Missing any step → LEADER BLOCKS entire deployment.**
 
 ---
 
-## ❌ HARD BLOCKS (Cấm tuyệt đối — không có ngoại lệ)
+## ❌ HARD BLOCKS (Strictly Forbidden — No Exceptions)
 
-❌ `DROP TABLE` / `TRUNCATE` trên production data → Agent PHẢI dừng và báo cáo LEADER
-❌ `ALTER TABLE` trên bảng có dữ liệu thực mà không có PO Approval
-❌ Schema migration mà không có rollback script
-❌ Thay đổi DB mà không có backup snapshot
+❌ `DROP TABLE` / `TRUNCATE` on production data → Agent MUST stop and report to LEADER.
+❌ `ALTER TABLE` on tables containing live data without PO Approval.
+❌ Schema migration without a rollback script.
+❌ Database modifications without a backup snapshot.
 
-## ✅ SAFE PATHS (Đường đi an toàn)
+## ✅ SAFE PATHS (Safe Execution Paths)
 
-✅ Thêm bảng MỚI thay vì sửa bảng cũ (Append-only pattern)
-✅ Thêm column nullable thay vì `ALTER` column hiện có
-✅ Backup → Migrate staging → Verify → PO Approval → Migrate production
+✅ Create NEW tables instead of modifying old ones (Append-only pattern).
+✅ Add nullable columns instead of `ALTER`ing existing columns.
+✅ Backup → Migrate staging → Verify → PO Approval → Migrate production.
 
 ---
 
 ## 🚦 [DB_CHECKPOINT] Protocol
 
-Khi Agent nhận thấy cần thay đổi DB, phải thực hiện ngay:
+When an Agent realizes a DB change is required, immediately execute:
 
 ```
-🛑 [DB_CHECKPOINT] Phát hiện thay đổi DB yêu cầu.
-📋 Impact: [Bảng X sẽ bị ảnh hưởng]
-🔒 Action required: User phê duyệt trước khi tiếp tục.
-   → Nhập "Approve DB Change" để tiếp tục, hoặc "Reject" để dừng.
+🛑 [DB_CHECKPOINT] DB change requirement detected.
+📋 Impact: [Table X will be affected]
+🔒 Action required: User approval prior to continuing.
+   → Enter "Approve DB Change" to proceed, or "Reject" to stop.
 ```
 
 ---
 
-> **"Database là bộ não của dự án. Bảo vệ trước, can thiệp sau."**
+> **"The Database is the project's brain. Protect first, alter second."**

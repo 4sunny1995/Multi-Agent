@@ -1,44 +1,47 @@
-# 📚 Project Documentation Index (Mục lục tài liệu)
+# 📚 Project Documentation Index
 
 > [!IMPORTANT]
-> **Tài liệu Tự động**: File này được cập nhật tự động bởi các AI Agent (BA, SA, DEV, TRANSLATOR) mỗi khi có tài liệu mới được tạo ra hoặc thay đổi.
+> **Automated Documentation**: This index is updated by AI Agents (BA, SA, DEV, TRANSLATOR) whenever documentation is created or modified.
 
 ---
 
-## 🗺️ Bản đồ tài liệu (Documentation Map)
+## 🗺️ Documentation Map
 
-| **Agent Roles** | Danh mục nhân sự AI | [README](file:///home/quoc/workspaces/ai/.agents/roles/README.md) | - | - | - |
-| **Agent Rules** | Quy chuẩn vận hành | [README](file:///home/quoc/workspaces/ai/.agents/rules/README.md) | - | - | - |
-| **Workflows** | Quy trình phối hợp | [README](file:///home/quoc/workspaces/ai/.agents/workflows/README.md) | - | - | - |
-| **Business** | Quy trình & Logic | [BRD](file:///home/quoc/workspaces/ai/docs/original/business/brd_multi_agent.md) | [Bản dịch](file:///home/quoc/workspaces/ai/docs/trans/) |
-| **Architecture** | Kiến trúc & Hạ tầng | [Design](file:///home/quoc/workspaces/ai/docs/original/architecture/system_architecture.md) | [Bản dịch](file:///home/quoc/workspaces/ai/docs/trans/) |
-| **UI/UX** | Giao diện & Trải nghiệm | [Style Guide](file:///home/quoc/workspaces/ai/docs/original/ui/style-guide.md) | [Bản dịch](file:///home/quoc/workspaces/ai/docs/trans/) |
-| **Testing** | Báo cáo QA | [Test Plan](file:///home/quoc/workspaces/ai/docs/original/testing/qa_test_plan.md) | [Bản dịch](file:///home/quoc/workspaces/ai/docs/trans/) |
-| **Budget** | Dự toán hạ tầng | [Estimate](file:///home/quoc/workspaces/ai/docs/original/budget/cloud_cost_estimate.md) | [Bản dịch](file:///home/quoc/workspaces/ai/docs/trans/) |
-| **Release** | Changelog | [View Original](file:///home/quoc/workspaces/ai/docs/original/release/) | [Bản dịch](file:///home/quoc/workspaces/ai/docs/trans/) |
-
----
-
-## 📈 Tình trạng hệ thống (System Evolution)
-
-| Ngày | Sự kiện | Kết quả | Chi tiết |
+| Category | Description | Primary Document | Translations |
 | :--- | :--- | :--- | :--- |
-| 2026-04-11 | **The Predictive Era (5.6)** | Nâng cấp 4 năng lực phân tích sâu: AI RCA, 24/7 Security, Cost Alerting | [Walkthrough](file:///.agents/rules/team-retro.md) |
-| 2026-04-10 | **Persistent State (5.5)** | Định danh "checkpoint" nhớ của AI | [STATE](file:///.agents/STATE.md) |
-| 2026-04-10 | **Context Relief (5.4)** | Giải phóng Token bằng Conditional Rules | [Retro Logs](file:///.agents/rules/team-retro.md) |
-| 2026-04-05 | **Technical Report** | Thiết lập Workflow /report (BA-SA-DEV) | [Plan](file:///.agents/workflows/report.md) |
-| 2026-04-05 | **UI/UX Standard** | Thiết lập Workflow Design & Agent Designer | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
-| 2026-04-05 | **Team Meeting** | Quy hoạch lại cấu trúc tài liệu Docs | [Plan](file:///home/quoc/.gemini/antigravity/brain/eba08674-5006-4b6f-ab57-e2b096b56292/implementation_plan.md) |
-| 2026-04-03 | **Sprint Retro 2** | Quy chuẩn Antigravity (Auto-Indexing) | [Retro Logs](file:///.agents/rules/team-retro.md) |
-| 2026-04-03 | Build Core Team | Khởi tạo 10 Agent chuyên biệt | [Roles Directory](file:///.agents/roles/) |
+| **Agent Roles** | AI Team Member Prompts | [Roles Registry](file:///home/rcvn/workspaces/AI/antigravity/.agents/roles/README.md) | - |
+| **Agent Rules** | System Governance & Rules | [Rules Registry](file:///home/rcvn/workspaces/AI/antigravity/.agents/rules/README.md) | - |
+| **Workflows** | Execution Workflows | [Master Config](file:///home/rcvn/workspaces/AI/antigravity/.agents/config/llm-agent-config.md) | - |
+| **Business** | Requirements & Logic | [BRD](file:///home/rcvn/workspaces/AI/antigravity/docs/original/business/brd_multi_agent.md) | [Translations](file:///home/rcvn/workspaces/AI/antigravity/docs/trans/) |
+| **Architecture** | Architecture & Infra | [System Design](file:///home/rcvn/workspaces/AI/antigravity/docs/original/architecture/system_architecture.md) | [Translations](file:///home/rcvn/workspaces/AI/antigravity/docs/trans/) |
+| **UI/UX** | Design System & Specs | [UI/UX Principles](file:///home/rcvn/workspaces/AI/antigravity/.agents/rules/ui-ux-design-principles.md) | [Translations](file:///home/rcvn/workspaces/AI/antigravity/docs/trans/) |
+| **Testing** | QA & Test Plans | [Test Plan](file:///home/rcvn/workspaces/AI/antigravity/docs/original/testing/qa_test_plan.md) | [Translations](file:///home/rcvn/workspaces/AI/antigravity/docs/trans/) |
+| **Budget** | Infrastructure Budget | [Cost Estimate](file:///home/rcvn/workspaces/AI/antigravity/docs/original/budget/cloud_cost_estimate.md) | [Translations](file:///home/rcvn/workspaces/AI/antigravity/docs/trans/) |
+| **Release** | Changelog & Manifests | [Release Logs](file:///home/rcvn/workspaces/AI/antigravity/.agents/rules/versioning-standards.md) | [Translations](file:///home/rcvn/workspaces/AI/antigravity/docs/trans/) |
 
 ---
 
-## 🛠️ Hướng dẫn vận hành cho Agent
+## 📈 System Evolution Log
 
-1. **Phát triển**: Khi BA/SA tạo file mới, hãy đặt vào đúng folder nghiệp vụ trong `docs/`.
-2. **Dịch thuật**: Dùng lệnh `@[/trans]` để khởi động quy trình dịch và cập nhật bảng này.
-3. **Tra cứu**: Sử dụng cột ngôn ngữ tương ứng để xem tài liệu.
+| Date | Milestone | Result / Impact | Reference |
+| :--- | :--- | :--- | :--- |
+| 2026-08-10 | **English-First Conversion** | Translated all configs, roles, rules, workflows, and documentation into English | [Walkthrough](file:///home/rcvn/workspaces/AI/antigravity/README.md) |
+| 2026-04-11 | **The Predictive Era (5.6)** | Upgraded 4 core analysis capabilities: AI RCA, 24/7 Security, Cost Alerting | [Walkthrough](file:///.agents/rules/team-retro.md) |
+| 2026-04-10 | **Persistent State (5.5)** | Established project state checkpointing | [STATE](file:///.agents/STATE.md) |
+| 2026-04-10 | **Context Relief (5.4)** | Freed Token budget via Conditional Rules | [Retro Logs](file:///.agents/rules/team-retro.md) |
+| 2026-04-05 | **Technical Report** | Established `/report` Workflow (BA-SA-DEV) | [Plan](file:///.agents/workflows/report.md) |
+| 2026-04-05 | **UI/UX Standard** | Established `/design` Workflow & Designer Role | [Plan](file:///.agents/workflows/design.md) |
+| 2026-04-05 | **Team Alignment** | Re-architected `docs/` documentation layout | [Plan](file:///.agents/config/project-structure.md) |
+| 2026-04-03 | **Sprint Retro 2** | Antigravity Standard Enforcement (Auto-Indexing) | [Retro Logs](file:///.agents/rules/team-retro.md) |
+| 2026-04-03 | **Core Team Initialization** | Deployed 13 Specialized AI Agent Roles | [Roles Registry](file:///.agents/roles/README.md) |
+
+---
+
+## 🛠️ Operating Instructions
+
+1. **Development**: When BA/SA create new documents, place them in the corresponding `docs/original/<category>/` directory.
+2. **Translation**: Use `/trans` to initiate translation workflows and synchronize this index.
+3. **Lookup**: Reference language columns or standard links to access appropriate artifacts.
 
 > [!NOTE]
-> Tài liệu được dịch tự động bởi AI Agent và được kiểm soát chất lượng bởi Leader.
+> All documentation is maintained by AI Agents and quality-controlled by the LEADER Agent.

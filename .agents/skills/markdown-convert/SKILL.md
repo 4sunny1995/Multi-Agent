@@ -1,61 +1,61 @@
 ---
 name: markdownConvert
-description: Chuyển đổi file Markdown sang HTML, PNG, SVG, CSV hoặc chuẩn hóa đường dẫn Markdown.
+description: Converts Markdown files to HTML, PNG, SVG, CSV, or normalizes internal Markdown file paths.
 ---
 
 # 🔄 Markdown Converter Skill (MDC-001)
 
 <identity>
-Tôi là công cụ hỗ trợ chuyển đổi Markdown.
-Tôi giúp chuyển đổi các file Markdown thành tài liệu trực quan (HTML, SVG, PNG), xuất cấu trúc dữ liệu dạng bảng (CSV) để phân tích, hoặc chuẩn hóa đường dẫn file cục bộ.
+I am the Markdown conversion tool.
+I assist in transforming Markdown files into visual document formats (HTML, SVG, PNG), exporting tabular data structures (CSV) for analysis, or normalizing local file paths.
 </identity>
 
 <activation>
 triggers:
   - keyword: ["convert markdown", "markdown to html", "markdown to png", "markdown to svg", "markdown to csv"]
-  - workflow: Yêu cầu xuất báo cáo hoặc tài liệu sang định dạng khác.
+  - workflow: Export request for reports or documents into alternative file formats.
 </activation>
 
 <mission>
-Cung cấp khả năng xuất file Markdown nhanh chóng sang các định dạng khác nhau để chia sẻ, báo cáo, hiển thị trực quan hoặc phân tích dữ liệu.
+Provide rapid Markdown export capabilities into various formats for sharing, reporting, visual presentation, or data analysis.
 </mission>
 
 <guidelines>
-- **Xác định Input/Output:** Luôn cung cấp đường dẫn file đầu vào (`.md`) và file đầu ra.
-- **Chọn định dạng hợp lý:** Phù hợp với mục đích sử dụng (`html`, `png`, `svg`, `csv`, `md`).
-- **Thực thi:** Gọi file script thông qua môi trường Node.js.
+- **Define Input/Output:** Always specify input file path (`.md`) and output target path.
+- **Select Appropriate Format:** Choose based on target use case (`html`, `png`, `svg`, `csv`, `md`).
+- **Execution:** Execute script via Node.js runtime environment.
 </guidelines>
 
 <usage>
-**1. Cài đặt thư viện (Chỉ làm lần đầu):**
-Vì công cụ xuất ảnh PNG phụ thuộc vào `puppeteer`, bạn cần cài đặt các gói thư viện trước khi chạy:
+**1. Dependency Installation (First-time setup only):**
+Since PNG export relies on `puppeteer`, install package dependencies prior to execution:
 ```bash
 cd .agents/skills/markdownConvert
 npm install // turbo
 ```
 
-**2. Chạy công cụ:**
-Dùng lệnh Terminal sau để chạy công cụ chuyển đổi:
+**2. Tool Execution:**
+Use the following Terminal command to launch the conversion tool:
 
 ```bash
 node .agents/skills/markdownConvert/scripts/markdown-convert.js <input.md> <output> [html|png|svg|csv|md]
 ```
 
-**Các định dạng hỗ trợ:**
-- `html` (Mặc định): Xuất ra file HTML tĩnh với CSS tiêu chuẩn.
-- `png`: Xuất ra file ảnh PNG toàn trang (chạy ngầm qua Puppeteer).
-- `svg`: Xuất ra file SVG vector (render text).
-- `csv`: Xuất cấu trúc thẻ Heading (H1, H2, H3...) thành dữ liệu bảng (`id`, `title`, `level`, `parent_id`, `path`).
-- `md`: Chuẩn hóa các đường dẫn tuyệt đối/tương đối bên trong markdown dựa trên Project Root.
+**Supported Formats:**
+- `html` (Default): Exports static HTML file with standard CSS styling.
+- `png`: Exports full-page PNG image file (headless execution via Puppeteer).
+- `svg`: Exports vector SVG file (rendered text).
+- `csv`: Exports Heading hierarchy (H1, H2, H3...) into tabular data (`id`, `title`, `level`, `parent_id`, `path`).
+- `md`: Normalizes absolute/relative file paths inside Markdown relative to Project Root.
 </usage>
 
 <anti_patterns>
-❌ Sử dụng định dạng file đầu vào không phải Markdown.
-→ 💡 Script được thiết kế chuyên biệt để parse cú pháp Markdown.
-❌ Gọi lệnh nhưng thiếu tham số đầu ra.
-→ 💡 Lệnh yêu cầu bắt buộc tối thiểu `<input.md>` và `<output>`.
+❌ Using non-Markdown input file formats.
+→ 💡 Script is designed specifically to parse Markdown syntax.
+❌ Invoking script with missing output arguments.
+→ 💡 Script strictly requires at minimum `<input.md>` and `<output>` parameters.
 </anti_patterns>
 
 ---
 > [!TIP]
-> Sử dụng định dạng `csv` cực kỳ hiệu quả để trích xuất và phân tích cấu trúc tổng thể của các tài liệu kỹ thuật phức tạp (BRD, System Design) mà không cần đọc từng dòng văn bản.
+> Exporting into `csv` format is highly effective for extracting and analyzing high-level structures of complex technical documents (BRDs, System Designs) without reading through text line by line.

@@ -1,16 +1,16 @@
 ---
 workflow_id: SEC-001
-description: Quy trình cường hóa hệ thống và rà soát bảo mật chiến lược.
+description: Strategic system hardening and security audit workflow.
 role_lead: SECURITY
-triggers: ["/secure", "bảo mật", "security", "hardening", "penetration", "vulnerability", "secret leak"]
+triggers: ["/secure", "security", "hardening", "penetration", "vulnerability", "secret leak"]
 version: "2.0"
 ---
 
-# 🛡️ Workflow: Cường Hóa Hệ Thống (/secure)
+# 🛡️ Workflow: System Hardening (/secure)
 
-> **Zero-Trust Mindset**: Không tin bất kỳ input nào từ bên ngoài cho đến khi được sanitize và verified.
+> **Zero-Trust Mindset**: Trust no external input until sanitized and verified.
 
-## ⚡ Luồng thực thi
+## ⚡ Execution Flow
 
 ```
 SECURITY (Discovery) → SECURITY+SA (Risk) → SA (Hardening) → TESTER (PenTest) → LEADER (Certify)
@@ -20,34 +20,35 @@ SECURITY (Discovery) → SECURITY+SA (Risk) → SA (Hardening) → TESTER (PenTe
 
 ## 1. PREDICTIVE DISCOVERY & SEC-SCAN (SECURITY)
 // turbo
-- **Hành động 1 (Static Analysis)**: `grep_search` toàn bộ repo tìm: `password=`, `secret=`, `AIza`, `Bearer`, `api_key`. Check ports `docker-compose`.
-- **Hành động 2 (Predictive 24/7 Dependencies)**: Tự động phân tích hệ sinh thái dự án (Node/Python/Go) để áp dụng quét thư viện (Dependencies). Agent sẽ quyết định công cụ tương ứng (như `npm audit`, `pip-audit`, Trivy, Dependabot) để dò tìm CVE chưa phát nổ.
-- **Output**: Raw findings list với file:line + Báo cáo các cấu phần có rủi ro phụ thuộc (Dependency risks).
+- **Action 1 (Static Analysis)**: Run `grep_search` across entire repo for: `password=`, `secret=`, `AIza`, `Bearer`, `api_key`. Inspect ports in `docker-compose`.
+- **Action 2 (Predictive 24/7 Dependencies)**: Automatically analyze project ecosystem (Node/Python/Go) to apply dependency scanning. Agent selects appropriate tools (such as `npm audit`, `pip-audit`, Trivy, Dependabot) to locate unexploded CVEs.
+- **Output**: Raw findings list with file:line + Dependency risk report.
 
 ## 2. ATTACK SURFACE ANALYSIS (SECURITY + SA)
-- **Hành động**: Phân tích kiến trúc — entry points, trust boundaries, auth flows.
-- **STRIDE model**: Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation.
+- **Action**: Analyze architecture — entry points, trust boundaries, auth flows.
+- **STRIDE model**: Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege.
 - **Output**: `docs/original/testing/security-reports.md` — Risk matrix (Critical/High/Medium/Low).
 
 ## 3. HARDENING IMPLEMENTATION (SA + CLOUD ARCH)
-- **SA**: Thiết kế encryption at rest + in transit, RBAC model.
+- **SA**: Design encryption at rest + in transit, RBAC model.
 - **CLOUD ARCH**: Enforce HTTPS, firewall rules, least-privilege IAM.
-- **DBS-001**: Snapshot DB trước khi apply bất kỳ security constraint nào.
+- **DBS-001**: Snapshot DB prior to applying any security constraints.
 - **Output**: Updated architecture + IaC with security controls.
 
 ## 4. PENETRATION TEST (TESTER)
-- **Hành động**: Simulate: Auth bypass, SQL Injection, XSS, CSRF, Mass Assignment.
-- **Tool**: `run_command` với scanner hoặc manual test scripts.
-- **Block condition**: Phát hiện Critical vulnerability → Block bước 5, yêu cầu fix.
+- **Action**: Simulate: Auth bypass, SQL Injection, XSS, CSRF, Mass Assignment.
+- **Tool**: `run_command` with scanner or manual test scripts.
+- **Block condition**: Critical vulnerability detected → Block step 5, require fix.
 - **Output**: Pentest report + Remediation list.
 
 ## 5. SECURITY CERTIFICATE (LEADER)
-- **Hành động**: Verify tất cả Critical/High đã được close. `grep_search` lần cuối cho secrets.
-- **Output**: "Secure-Ready" certificate trong `walkthrough.md` + CI/CD secret-scan integration.
+- **Action**: Verify all Critical/High issues are closed. Run final `grep_search` for secrets.
+- **Output**: "Secure-Ready" certificate in `walkthrough.md` + CI/CD secret-scan integration.
 
 ---
 
-## 🚨 Failure Points (Điểm hay gặp lỗi)
-1. Secret leak qua git history → **Giải pháp**: Revoke key + `git filter-branch` + force push.
-2. PenTest skip → **Giải pháp**: LEADER không certify nếu không có pentest report.
-3. Hardening gây outage → **Giải pháp**: DBS-001 snapshot + rollback command bắt buộc trước.
+## 🚨 Failure Points
+
+1. Secret leaked through git history → **Solution**: Revoke key + `git filter-branch` + force push.
+2. PenTest skipped → **Solution**: LEADER does not certify without a pentest report.
+3. Hardening causes outage → **Solution**: Mandatory DBS-001 snapshot + rollback command beforehand.

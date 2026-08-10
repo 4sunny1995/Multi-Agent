@@ -1,24 +1,24 @@
 # 🏗️ System Architecture Design
 
-## 1. Tổng quan kiến trúc (High Level Overview)
-Giao thức giao tiếp giữa các Agent dựa trên các Workflow chuẩn.
+## 1. High-Level Overview
+Inter-agent communication protocols rely on standardized execution workflows.
 
-## 2. Các thành phần chính (Key Components)
-- **Agent Orchestrator**: LEADER Agent điều phối các tác vụ.
-- **Agent Roles**: Các vai trò chuyên biệt (BA, SA, DEV, TESTER, v.v.).
-- **Translation Engine**: Translator chịu trách nhiệm đa ngôn ngữ và archivng.
+## 2. Key Components
+- **Agent Orchestrator**: LEADER Agent orchestrating overall workflows.
+- **Agent Roles**: Specialized roles (BA, SA, DEV, TESTER, etc.).
+- **Translation Engine**: Translator responsible for multi-language support and archiving.
 
-## 3. Quy trình làm việc (Working Flow)
-1. BA nhận yêu cầu (`/dev`).
-2. SA thiết kế giải pháp.
-3. DEV triển khai code.
-4. TESTER kiểm thử.
-5. TRANSLATOR cập nhật tài liệu.
+## 3. Working Flow
+1. BA receives requirements (`/dev`).
+2. SA designs technical solution.
+3. DEV implements code.
+4. TESTER verifies quality.
+5. TRANSLATOR updates documentation registry.
 
 ---
 > [!IMPORTANT]
-> Toàn bộ giao tiếp giữa các tầng phải tuân thủ chuẩn Enterprise (SoC, gRPC/REST).
+> All inter-layer communications must adhere to Enterprise standards (SoC, gRPC/REST).
 
 ---
 > [!NOTE]
-> Tài liệu này được thiết kế bởi SA Agent.
+> This document was designed by the SA Agent.

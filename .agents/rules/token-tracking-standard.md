@@ -5,64 +5,64 @@ trigger: always_on
 # 📊 Token & Agent Interaction Tracking Standard (TTS-001)
 
 <identity>
-Tôi là quy chuẩn theo dõi & quản lý hiệu năng Token tiêu thụ và lịch sử tương tác Agent trong hệ sinh thái Antigravity Multi-Agent.
-Mục tiêu: Đảm bảo mọi giao tiếp và thực thi workflow đều ghi nhận minh bạch lượng token đã tiêu tốn, tần suất tương tác của từng tác nhân AI, và chi tiết phân bổ token qua từng bước.
+Standard for tracking & managing Token consumption performance and Agent interaction history within the Antigravity Multi-Agent ecosystem.
+Goal: Ensure all communication and workflow executions transparently record consumed token quantities, interaction frequency per AI agent, and detailed token allocation across steps.
 </identity>
 
 <activation>
-Luôn kích hoạt khi bất kỳ Agent hoặc Workflow nào (`/dev`, `/analyse`, `/design`, `/report`, `/fix`, `/enterprise-dev`,...) được khởi động.
+Always active whenever any Agent or Workflow (`/dev`, `/analyse`, `/design`, `/report`, `/fix`, `/enterprise-dev`,...) is launched.
 </activation>
 
 <mission>
-Ghi nhận đầy đủ chỉ số tương tác và tiêu thụ token của từng phiên làm việc, bao gồm:
-1. Danh sách tất cả các Agent/Roles đã tham gia trong cuộc trò chuyện.
-2. Tổng số lượt giao tiếp (Interaction Turn Count).
-3. Chi tiết lượng Token (Prompt Tokens, Completion Tokens, Total Tokens) đã sử dụng trong từng lượt giao tiếp.
-4. Tổng lượng Token lũy kế của toàn bộ cuộc trò chuyện.
+Record full interaction metrics and token consumption per session, including:
+1. List of all participating Agents/Roles in the conversation.
+2. Total interaction turn count (Interaction Turn Count).
+3. Detailed Token quantities (Prompt Tokens, Completion Tokens, Total Tokens) used per interaction turn.
+4. Cumulative Total Tokens for the entire conversation.
 </mission>
 
 <guidelines>
-- **Automatic Tracking**: Cuối mỗi lượt làm việc (Turn) hoặc khi hoàn thành một Workflow/Bàn giao (Handoff), Agent có trách nhiệm ghi nhận các chỉ số tương tác và sử dụng token.
-- **Role Identification**: Phải xác định rõ vai trò Agent tham gia giao tiếp (BA, SA, DEV, TESTER, LEADER, TECH_WRITER, SECURITY,...).
-- **Metric Persistence**: Chỉ số theo dõi được lưu vết tại `.agents/metrics/token_metrics.json` và cập nhật vào báo cáo `walkthrough.md`.
+- **Automatic Tracking**: At the end of each work turn (Turn) or upon completing a Workflow/Handoff, the Agent is responsible for recording interaction and token usage metrics.
+- **Role Identification**: Clearly identify the participating Agent role in communication (BA, SA, DEV, TESTER, LEADER, TECH_WRITER, SECURITY,...).
+- **Metric Persistence**: Tracking metrics are persisted at `.agents/metrics/token_metrics.json` and updated in `walkthrough.md` reports.
 - **Token Estimation Formula**:
-  - Tiếng Anh / Code: ~ 1 Token = 4 ký tự (hoặc ~0.75 từ).
-  - Tiếng Việt (Unicode): ~ 1 Token = 1.5 đến 2 ký tự.
-  - Sử dụng thông tin chính xác từ API Metadata khi có sẵn.
+  - English / Code: ~ 1 Token = 4 characters (or ~0.75 words).
+  - Non-ASCII / Unicode: ~ 1 Token = 1.5 to 2 characters.
+  - Use exact API metadata information when available.
 </guidelines>
 
 <output_format>
-Mọi báo cáo kết quả làm việc hoặc tổng kết Workflow phải đính kèm Bảng Thống Kế Tương Tác chuẩn TTS-001:
+Every work report or Workflow summary must include the TTS-001 Interaction Tracking Table:
 
 ```markdown
-### 📊 Thống Kế Tương Tác Agent & Token Usage (TTS-001)
+### 📊 Agent Interaction & Token Usage Statistics (TTS-001)
 
-- **Phiên làm việc (Session ID)**: `{session_id}`
-- **Tổng số lượt giao tiếp**: `{total_turns}` lượt
-- **Các Agent đã tham gia**: `{agent_list}`
+- **Session ID**: `{session_id}`
+- **Total Interaction Turns**: `{total_turns}` turns
+- **Participating Agents**: `{agent_list}`
 
-| Lượt (#) | Agent Role | Hành động / Tác vụ chính | Input Tokens | Output Tokens | Total Tokens | Thời gian |
+| Turn (#) | Agent Role | Primary Action / Task | Input Tokens | Output Tokens | Total Tokens | Duration |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Turn 1 | BA Agent | Phân tích yêu cầu & tạo BRD Draft | 1,250 | 850 | 2,100 | HH:MM:SS |
-| Turn 2 | SA Agent | Thiết kế kiến trúc & API Contract | 2,100 | 1,400 | 3,500 | HH:MM:SS |
-| Turn 3 | LEADER | Review & Phê duyệt tài liệu | 950 | 450 | 1,400 | HH:MM:SS |
-| **TỔNG BỘ**| **3 Agents** | **3 Turns** | **4,300** | **2,700** | **7,000** | -- |
+| Turn 1 | BA Agent | Requirement Analysis & Draft BRD | 1,250 | 850 | 2,100 | HH:MM:SS |
+| Turn 2 | SA Agent | Architecture Design & API Contract | 2,100 | 1,400 | 3,500 | HH:MM:SS |
+| Turn 3 | LEADER | Document Review & Approval | 950 | 450 | 1,400 | HH:MM:SS |
+| **TOTAL** | **3 Agents** | **3 Turns** | **4,300** | **2,700** | **7,000** | -- |
 ```
 </output_format>
 
 <anti_patterns>
-❌ Hoàn thành Workflow/Task mà không ghi nhận số lượt giao tiếp và lượng token đã dùng.
-❌ Gộp chung lượng token mà không phân tách chi tiết theo từng Agent tham gia.
-❌ Tự ý xóa hoặc ghi đè file lịch sử metrics `.agents/metrics/token_metrics.json`.
+❌ Completing a Workflow/Task without recording interaction turns and token usage.
+❌ Aggregating token usage without breaking down per participating Agent.
+❌ Deleting or overwriting metrics history file `.agents/metrics/token_metrics.json`.
 </anti_patterns>
 
 <checklist>
-- [ ] Đã xác định danh sách các Agent đã tham gia trong cuộc trò chuyện chưa?
-- [ ] Đã đếm chính xác số lượt giao tiếp (Turn count) chưa?
-- [ ] Đã tính toán lượng token cho từng lượt và tổng lũy kế chưa?
-- [ ] Đã lưu vết chỉ số vào `.agents/metrics/` và đính kèm vào báo cáo chưa?
+- [ ] Identified the list of participating Agents in the conversation?
+- [ ] Accurately counted total interaction turns (Turn count)?
+- [ ] Calculated token usage per turn and cumulative total?
+- [ ] Persisted metrics to `.agents/metrics/` and attached to report?
 </checklist>
 
 ---
 > [!IMPORTANT]
-> **"Tối ưu hóa tài nguyên bắt đầu từ việc đo lường minh bạch. TTS-001 giúp kiểm soát ngân sách AI và nâng cao hiệu suất làm việc nhóm."**
+> **"Resource optimization begins with transparent measurement. TTS-001 controls AI budgets and enhances team productivity."**
