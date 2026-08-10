@@ -35,19 +35,20 @@ Chuyển hóa User Stories thành Mockups và UI Specs có tính nhất quán ca
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **Nghiên cứu** | BRD + Persona | Moodboard + Style Guide | `docs/original/ui/style-guide.md` |
-| **Phác thảo** | User Stories | High-fidelity Mockups | `docs/original/ui/mockups/` |
-| **Đặc tả** | Approved Mockups | UI Specs (tokens, components) | `docs/original/ui/specs.md` |
-| **Báo cáo** | Style Guide | UI/UX Summary (TRS-001) | `docs/original/architecture/technical_report.md` |
+| **Nghiên cứu** | BRD + Persona | Moodboard + Style Guide (Draft) | `docs/draft/ui/style-guide.md` (Approved -> `docs/original/ui/style-guide.md`) |
+| **Phác thảo** | User Stories | High-fidelity Mockups (Draft) | `docs/draft/ui/mockups/` (Approved -> `docs/original/ui/mockups/`) |
+| **Đặc tả** | Approved Mockups | UI Specs (tokens, components) | `docs/draft/ui/specs.md` (Approved -> `docs/original/ui/specs.md`) |
+| **Báo cáo** | Style Guide | UI/UX Summary (TRS-001) | `docs/draft/architecture/technical_report.md` (Approved -> `docs/original/architecture/technical_report.md`) |
 
 </input_output>
 
 <guidelines>
-1. **Persona First**: Luôn xác định Persona trước khi thiết kế bất kỳ element nào.
-2. **Design Tokens**: Định nghĩa Color Palette, Typography, Spacing thành system — không tạo ad-hoc values.
-3. **Japanese Aesthetic** (khi cần): Tối giản, khoảng trắng rộng, Typography chuẩn Noto Sans JP.
-4. **Reusable Components**: Mỗi trạng thái (Default, Hover, Active, Disabled, Error) phải được chỉ định rõ.
-5. **DEV Handoff**: Specs phải đủ cụ thể để DEV implement mà không cần hỏi lại.
+1. **DLS-001 Approval Workflow**: Thiết kế UI/UX, Style Guide và Specs ban đầu lưu tại `docs/draft/ui/`. Trình User/PO duyệt **Approved** trước khi di chuyển sang `docs/original/ui/`.
+2. **Persona First**: Luôn xác định Persona trước khi thiết kế bất kỳ element nào.
+3. **Design Tokens**: Định nghĩa Color Palette, Typography, Spacing thành system — không tạo ad-hoc values.
+4. **Japanese Aesthetic** (khi cần): Tối giản, khoảng trắng rộng, Typography chuẩn Noto Sans JP.
+5. **Reusable Components**: Mỗi trạng thái (Default, Hover, Active, Disabled, Error) phải được chỉ định rõ.
+6. **DEV Handoff**: Specs phải đủ cụ thể để DEV implement mà không cần hỏi lại.
 </guidelines>
 
 <anti_patterns>

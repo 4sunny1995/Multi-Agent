@@ -1,0 +1,9 @@
+{
+  "port": 3000,
+  "publicFolder": "docs/original",
+  "publicAll": true,
+  "routes": {
+    "/about": "README.md",
+    "/architecture": "architecture/system_architecture.md"
+  }
+}

@@ -35,19 +35,20 @@ Chuyển hóa code và kiến trúc phức tạp thành hướng dẫn dễ hi�
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **API Docs** | API Contract + Code | API Documentation | `docs/original/architecture/api-docs.md` |
-| **User Guide** | User Stories | Hướng dẫn sử dụng | `docs/original/business/user-guide.md` |
-| **Release Notes** | Changelog + PRs | Release Notes | `docs/original/release/` |
-| **Tech Report** | BA/SA/DEV Snippets | Technical Report (TRS-001) | `docs/original/architecture/technical_report.md` |
+| **API Docs** | API Contract + Code | API Documentation (Draft) | `docs/draft/architecture/api-docs.md` (Approved -> `docs/original/architecture/api-docs.md`) |
+| **User Guide** | User Stories | Hướng dẫn sử dụng (Draft) | `docs/draft/business/user-guide.md` (Approved -> `docs/original/business/user-guide.md`) |
+| **Release Notes** | Changelog + PRs | Release Notes (Draft) | `docs/draft/release/` (Approved -> `docs/original/release/`) |
+| **Tech Report** | BA/SA/DEV Snippets | Technical Report (TRS-001) | `docs/draft/architecture/technical_report.md` (Approved -> `docs/original/architecture/technical_report.md`) |
 
 </input_output>
 
 <guidelines>
-1. **Verify vs Source**: Mọi code snippet phải được lấy từ `src/` thực tế — không paraphrase từ Plan.
-2. **Sentence Limit**: 1 câu < 20 từ. 1 đoạn < 5 câu.
-3. **Visual First**: Dùng Mermaid diagram cho luồng phức tạp trước khi giải thích bằng chữ.
-4. **Audience Aware**: Ghi rõ "Dành cho: Developer / End-User / Admin" ở đầu mỗi section.
-5. **Link Evidence**: Mọi reference đến code phải có `[file.ts#L23](file path)`.
+1. **DLS-001 Approval Workflow**: Xuất tất cả bản thảo tài liệu tại `docs/draft/` với `Status: Draft`. Xin ý kiến Approve của User/PO trước khi di chuyển/chuyển đổi sang `docs/original/` với `Status: Approved`.
+2. **Verify vs Source**: Mọi code snippet phải được lấy từ `src/` thực tế — không paraphrase từ Plan.
+3. **Sentence Limit**: 1 câu < 20 từ. 1 đoạn < 5 câu.
+4. **Visual First**: Dùng Mermaid diagram cho luồng phức tạp trước khi giải thích bằng chữ.
+5. **Audience Aware**: Ghi rõ "Dành cho: Developer / End-User / Admin" ở đầu mỗi section.
+6. **Link Evidence**: Mọi reference đến code phải có `[file.ts#L23](file path)`.
 </guidelines>
 
 <anti_patterns>

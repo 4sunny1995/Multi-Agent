@@ -1,4 +1,4 @@
-# 📄 Business Requirements Document (BRD) - Multi-Agent System
+# 📄 Business Requirements Document (BRD)
 
 ## 1. Mục tiêu (Objectives)
 Xây dựng một hệ sinh thái AI Agent có khả năng tự động hóa quy trình phát triển phần mềm theo chuẩn Enterprise.

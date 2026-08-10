@@ -1,0 +1,13 @@
+{
+  "name": "serve-docs",
+  "version": "1.0.0",
+  "description": "Serve markdown documents from /docs/original as HTML",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "marked": "^12.0.2"
+  }
+}

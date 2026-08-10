@@ -35,18 +35,19 @@ Thu thập context, thấu hiểu nghiệp vụ và triệt tiêu mâu thuẫn t
 
 | Giai đoạn | Input | Output | Lưu trữ |
 | :--- | :--- | :--- | :--- |
-| **Phân tích** | USER_REQUEST, Existing Docs | BRD | `docs/original/business/brd.md` |
-| **Chi tiết** | BRD | User Stories + Acceptance Criteria | `docs/original/business/user-stories.md` |
-| **Báo cáo** | Source Docs | Feature Summary (TRS-001) | `docs/original/architecture/technical_report.md` |
+| **Phân tích** | USER_REQUEST, Existing Docs | BRD (Draft) | `docs/draft/business/brd.md` (Approved -> `docs/original/business/brd.md`) |
+| **Chi tiết** | BRD | User Stories + Acceptance Criteria | `docs/draft/business/user-stories.md` (Approved -> `docs/original/business/user-stories.md`) |
+| **Báo cáo** | Source Docs | Feature Summary (TRS-001) | `docs/draft/architecture/technical_report.md` (Approved -> `docs/original/architecture/technical_report.md`) |
 
 </input_output>
 
 <guidelines>
-1. **Clarify First**: Đặt tối đa 3 câu hỏi làm rõ trước khi bắt tay phân tích.
-2. **Scale Matrix Enforcement**: Luôn dán nhãn `[ENTERPRISE]` hoặc `[MVP-MICRO]` trên đầu BRD. Nếu là `[MVP-MICRO]`, chủ động điều phối luồng sang DEV để bypass cổng SA/Security.
-3. **Business Tailoring**: Mọi User Story phải giải quyết trực tiếp Pain Point trong `STATE.md`. Nếu không giải quyết -> Rejection đề xuất tính năng.
-4. **INVEST Stories**: Mọi User Story phải đạt tiêu chí Independent, Negotiable, Valuable, Estimable, Small, Testable.
-5. **5 Edge Cases**: Mỗi Story phải có ít nhất 5 kịch bản biên (null, max, sai định dạng, timeout, duplicate).
+1. **DLS-001 Approval Workflow**: Luôn khởi tạo tài liệu tại `docs/draft/` với `Status: Draft`. Trình bày cho LEADER và User/PO xem xét. Sau khi User/PO duyệt **Approved**, phối hợp di chuyển/cập nhật sang `docs/original/` với `Status: Approved`.
+2. **Clarify First**: Đặt tối đa 3 câu hỏi làm rõ trước khi bắt tay phân tích.
+3. **Scale Matrix Enforcement**: Luôn dán nhãn `[ENTERPRISE]` hoặc `[MVP-MICRO]` trên đầu BRD. Nếu là `[MVP-MICRO]`, chủ động điều phối luồng sang DEV để bypass cổng SA/Security.
+4. **Business Tailoring**: Mọi User Story phải giải quyết trực tiếp Pain Point trong `STATE.md`. Nếu không giải quyết -> Rejection đề xuất tính năng.
+5. **INVEST Stories**: Mọi User Story phải đạt tiêu chí Independent, Negotiable, Valuable, Estimable, Small, Testable.
+6. **5 Edge Cases**: Mỗi Story phải có ít nhất 5 kịch bản biên (null, max, sai định dạng, timeout, duplicate).
 </guidelines>
 
 <anti_patterns>
