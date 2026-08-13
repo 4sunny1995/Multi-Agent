@@ -19,6 +19,12 @@ test('parses bold and inline code formatting', () => {
   assert.match(html, /<p>This is <strong>bold<\/strong> text and this is <code>inline code<\/code>\.<\/p>/);
 });
 
+test('parses br tags correctly while preserving escaped br inside inline code', () => {
+  const markdown = 'Line 1<br>Line 2<br/>Line 3<br />Line 4 and `code<br>tag`';
+  const html = parseMarkdownToHtml(markdown);
+  assert.match(html, /<p>Line 1<br>Line 2<br>Line 3<br>Line 4 and <code>code&lt;br&gt;tag<\/code><\/p>/);
+});
+
 test('normalizes absolute file paths to project-relative paths', () => {
   const markdown = 'Link: file:///home/rcvn/workspaces/5needs/v4legacy/docs/architecture.html';
   const html = parseMarkdownToHtml(markdown, '/home/rcvn/workspaces/5needs/v4legacy');

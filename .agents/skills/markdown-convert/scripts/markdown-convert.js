@@ -75,7 +75,8 @@ function parseInlineMarkdown(text, projectRoot) {
   });
 
   const withBold = withCode.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  const normalized = normalizeAbsolutePaths(withBold, projectRoot);
+  const withBr = withBold.replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+  const normalized = normalizeAbsolutePaths(withBr, projectRoot);
 
   return normalized.replace(new RegExp(`${placeholderPrefix}(\\d+)%%`, 'g'), (_, index) => codeSpans[Number(index)]);
 }
@@ -202,6 +203,7 @@ function exportHtmlToImage(html, outputPath) {
 function exportHtmlToSvg(html, outputPath) {
   ensureDir(path.dirname(outputPath));
   const lines = html
+    .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<[^>]+>/g, '\n')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
