@@ -111,7 +111,7 @@ function parseInlineMarkdown(text, projectRoot) {
 
 function parseMarkdownToHtml(markdown, projectRoot = process.cwd()) {
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
-  
+
   let html = `<!DOCTYPE html>
 <html lang="vi">
 <head>
