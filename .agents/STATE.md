@@ -10,26 +10,27 @@
 - **Giai đoạn phát triển**: `[MVP / Đang vận hành / Scaled]`
 
 ## 2. TECHNOLOGY STACK (NGĂN XẾP CÔNG NGHỆ)
-- **Frontend**: `[Trống - chờ cập nhật]`
-- **Backend / Khung sườn**: `[Trống - chờ cập nhật]`
-- **Database (DBS-001)**: `[Trống - chờ cập nhật]`
-- **Hạ tầng (Cloud/Deploy)**: `[Trống - chờ cập nhật]`
+- **Runtime / Engine**: `Node.js v24.15.0 (linux)`
+- **Gói chính**: `antigravity v1.0.0`
+- **Skills Multi-Agent**: `9 skills tích hợp`
+- **Workflows**: `13 workflows tự động`
 
 ## 3. CẤU TRÚC THƯ MỤC CỐT LÕI (CORE DIRECTORIES)
 *(Ghi chú các thư mục quan trọng để AI biết nên xem code ở đâu)*
-- `.agents/`: Chứa định nghĩa Agent, Rule, Workflow, và STATE.md (đây).
-- `docs/original/`: Chứa các tài liệu BRD, kiến trúc, test report do Agent tạo ra.
-- `docs/trans/`: Chứa các bản dịch đa ngôn ngữ do Translator tạo ra.
-- `...`: `[Chờ cập nhật]`
+- `.agents/`: Chứa 8 mục/file cốt lõi.
+- `docs/`: Chứa 5 mục/file cốt lõi.
+- `src/`: Chứa 0 mục/file cốt lõi.
+- `tests/`: Chứa 0 mục/file cốt lõi.
 
 ## 4. BẢO MẬT & QUYỀN TRUY CẬP (SECURITY PROTOCOL)
 *(Ghi chú quy trình kết nối DB, API Key format, v.v)*
 - **External Secret (SDC-001)**: `[Cách lấy biến môi trường trong dự án này]`
 
 ## 5. NỢ KỸ THUẬT & TRẠNG THÁI CUỐI (TECH DEBTS & LAST ACTION)
-- **Nhánh / Phiên bản hiện tại**: `[Ví dụ: v1.0.0]`
-- **Nợ kỹ thuật cần xử lý (Tech Debt)**: `[Các phần code bẩn hoặc giải pháp tạm thời cần refactor]`
-- **Blockers hiện hành**: `[Phần nào đang vướng/chờ giải quyết]`
+- **Nhánh / Phiên bản hiện tại**: `upgrade-docs-skills-and-rule` (Commit: `5c28075`)
+- **Hành động gần nhất (System Memory Checkpoint)**: `Khởi tạo hệ thống System Memories (MMS-001) và đồng bộ STATE.md` [16:02:10 14/8/2026]
+- **Nợ kỹ thuật cần xử lý (Tech Debt)**: `[Không có blocker nghiêm trọng]`
+- **Blockers hiện hành**: `[None]`
 
 ## 6. SƠ ĐỒ NGỮ NGHĨA (SEMANTIC KNOWLEDGE MAP)
 > **Mục đích**: Chống lại Điểm mù 800-loc của LLM. Mọi sơ đồ Call Graph giữa các service, module quan trọng phải được tường thuật lại dưới dạng tóm tắt văn bản.

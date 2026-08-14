@@ -25,6 +25,43 @@ test('parses br tags correctly while preserving escaped br inside inline code', 
   assert.match(html, /<p>Line 1<br>Line 2<br>Line 3<br>Line 4 and <code>code&lt;br&gt;tag<\/code><\/p>/);
 });
 
+test('does not mangle words with underscores or code spans into strange characters', () => {
+  const markdown = 'Biến `my_variable_name` và `get_user_by_id()` và text `sample_code_span` hiển thị chuẩn.';
+  const html = parseMarkdownToHtml(markdown);
+  assert.doesNotMatch(html, /%%CODE/);
+  assert.doesNotMatch(html, /CODESPAN/);
+  assert.match(html, /<code>my_variable_name<\/code>/);
+  assert.match(html, /<code>get_user_by_id\(\)<\/code>/);
+});
+
+test('parses markdown links and images correctly', () => {
+  const markdown = 'Xem [Tài liệu hướng dẫn](https://example.com/guide) và ảnh ![Logo](https://example.com/logo.png)';
+  const html = parseMarkdownToHtml(markdown);
+  assert.match(html, /<a href="https:\/\/example\.com\/guide">Tài liệu hướng dẫn<\/a>/);
+  assert.match(html, /<img src="https:\/\/example\.com\/logo\.png" alt="Logo">/);
+});
+
+test('parses tables into structured HTML table', () => {
+  const markdown = '| Cột 1 | Cột 2 |\n| :--- | :--- |\n| Giá trị A | Giá trị B |';
+  const html = parseMarkdownToHtml(markdown);
+  assert.match(html, /<table>/);
+  assert.match(html, /<th>Cột 1<\/th>/);
+  assert.match(html, /<td>Giá trị A<\/td>/);
+});
+
+test('parses fenced code blocks without mangling content', () => {
+  const markdown = '```js\nconst x = "<div class=\'test\'>Hello</div>";\n```';
+  const html = parseMarkdownToHtml(markdown);
+  assert.match(html, /<pre><code class="language-js">const x = &quot;&lt;div class=&#39;test&#39;&gt;Hello&lt;\/div&gt;&quot;;<\/code><\/pre>/);
+});
+
+test('parses alerts and blockquotes correctly', () => {
+  const markdown = '> [!IMPORTANT]\n> Lưu ý quan trọng khi vận hành hệ thống.';
+  const html = parseMarkdownToHtml(markdown);
+  assert.match(html, /<blockquote class="alert-important">/);
+  assert.match(html, /Lưu ý quan trọng khi vận hành hệ thống\./);
+});
+
 test('normalizes absolute file paths to project-relative paths', () => {
   const markdown = 'Link: file:///home/rcvn/workspaces/5needs/v4legacy/docs/architecture.html';
   const html = parseMarkdownToHtml(markdown, '/home/rcvn/workspaces/5needs/v4legacy');
@@ -44,6 +81,7 @@ test('reads sample markdown from file', () => {
   const markdown = readFileSync(new URL('../examples/sample.md', import.meta.url), 'utf8');
   const html = parseMarkdownToHtml(markdown);
   assert.match(html, /<h1>Deployment and Operations Guide - V4 Legacy Project<\/h1>/);
+  assert.match(html, /<table>/);
 });
 
 test('writes output files to a new directory', async () => {
