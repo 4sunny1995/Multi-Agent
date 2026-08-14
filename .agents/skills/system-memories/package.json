@@ -1,0 +1,24 @@
+{
+  "name": "ags-skill-system-memories",
+  "version": "1.0.0",
+  "description": "Long-term system memory & state checkpoint tracker for Antigravity Multi-Agent ecosystem",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "memorize": "node scripts/memorize.js --auto",
+    "scan": "node scripts/memorize.js --scan",
+    "snapshot": "node scripts/memorize.js --snapshot",
+    "sync": "node scripts/memorize.js --sync-state",
+    "html": "node scripts/memorize.js --export-html",
+    "status": "node scripts/memorize.js --status"
+  },
+  "keywords": [
+    "antigravity",
+    "memory",
+    "state-tracking",
+    "multi-agent",
+    "checkpoint"
+  ],
+  "author": "Antigravity Multi-Agent Team",
+  "license": "ISC"
+}
