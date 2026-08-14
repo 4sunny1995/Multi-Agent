@@ -17,7 +17,7 @@
 
 ## 3. CẤU TRÚC THƯ MỤC CỐT LÕI (CORE DIRECTORIES)
 *(Ghi chú các thư mục quan trọng để AI biết nên xem code ở đâu)*
-- `.agents/`: Chứa 8 mục/file cốt lõi.
+- `.agents/`: Chứa 9 mục/file cốt lõi.
 - `docs/`: Chứa 5 mục/file cốt lõi.
 - `src/`: Chứa 0 mục/file cốt lõi.
 - `tests/`: Chứa 0 mục/file cốt lõi.
@@ -27,8 +27,8 @@
 - **External Secret (SDC-001)**: `[Cách lấy biến môi trường trong dự án này]`
 
 ## 5. NỢ KỸ THUẬT & TRẠNG THÁI CUỐI (TECH DEBTS & LAST ACTION)
-- **Nhánh / Phiên bản hiện tại**: `upgrade-docs-skills-and-rule` (Commit: `5c28075`)
-- **Hành động gần nhất (System Memory Checkpoint)**: `Khởi tạo hệ thống System Memories (MMS-001) và đồng bộ STATE.md` [16:02:10 14/8/2026]
+- **Nhánh / Phiên bản hiện tại**: `release/8.1` (Commit: `dede4f3`)
+- **Hành động gần nhất (System Memory Checkpoint)**: `Hoàn tất giải quyết merge conflict release/8.0 vào release/8.1` [16:16:23 14/8/2026]
 - **Nợ kỹ thuật cần xử lý (Tech Debt)**: `[Không có blocker nghiêm trọng]`
 - **Blockers hiện hành**: `[None]`
 

@@ -107,5 +107,106 @@
         "childrenCount": 0
       }
     ]
+  },
+  {
+    "id": "mem-mssqfz7w-i3r3",
+    "timestamp": "2026-08-14T09:16:23.948Z",
+    "message": "Hoàn tất giải quyết merge conflict release/8.0 vào release/8.1",
+    "author": "DEV Agent",
+    "triggerAction": "workflow:dev",
+    "git": {
+      "isGitRepo": true,
+      "branch": "release/8.1",
+      "lastCommitHash": "dede4f3",
+      "lastCommitMessage": "Merge branch 'release/8.0' into release/8.1 and resolve conflicts",
+      "lastCommitDate": "2026-08-14 16:16:18 +0700",
+      "modifiedFilesCount": 0,
+      "modifiedFiles": []
+    },
+    "techStack": {
+      "runtime": "Node.js v24.15.0",
+      "platform": "linux",
+      "mainPackage": "antigravity",
+      "version": "1.0.0",
+      "directDependencies": [],
+      "devDependencies": []
+    },
+    "agentsStats": {
+      "skillsCount": 9,
+      "skillsList": [
+        "api-security-testing",
+        "archify",
+        "audit-system",
+        "code-review",
+        "markdown-convert",
+        "requiment-analyse",
+        "serve-docs",
+        "system-memories",
+        "token-tracker"
+      ],
+      "rulesCount": 22,
+      "rulesList": [
+        "README.md",
+        "algorithms-handbook.md",
+        "antigravity-standard.md",
+        "cto-strategic-vision.md",
+        "database-protection-standards.md",
+        "document-lifecycle-standard.md",
+        "documentation-standards.md",
+        "enterprise-standards.md",
+        "external-secret.md",
+        "infrastructure-standards.md",
+        "legacy-principles.md",
+        "llm-prompt-engineering.md",
+        "operations-standards.md",
+        "security-hardening-standards.md",
+        "software-engineering-standards.md",
+        "system-scale-alignment.md",
+        "team-retro-archive.md",
+        "team-retro.md",
+        "token-tracking-standard.md",
+        "translate-language.md",
+        "ui-ux-design-principles.md",
+        "versioning-standards.md"
+      ],
+      "workflowsCount": 13,
+      "workflowsList": [
+        "analyse.md",
+        "audit.md",
+        "design.md",
+        "dev.md",
+        "enterprise-dev.md",
+        "fix.md",
+        "infra.md",
+        "inspect.md",
+        "release.md",
+        "report.md",
+        "retro.md",
+        "secure.md",
+        "trans.md"
+      ]
+    },
+    "coreDirectories": [
+      {
+        "name": ".agents",
+        "path": ".agents/",
+        "childrenCount": 9
+      },
+      {
+        "name": "docs",
+        "path": "docs/",
+        "childrenCount": 5
+      },
+      {
+        "name": "src",
+        "path": "src/",
+        "childrenCount": 0
+      },
+      {
+        "name": "tests",
+        "path": "tests/",
+        "childrenCount": 0
+      }
+    ]
   }
 ]

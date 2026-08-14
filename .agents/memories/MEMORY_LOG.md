@@ -4,6 +4,7 @@
 
 | Checkpoint ID | Tác giả (Role) | Nội dung / Thay đổi | Nhánh Git | Thời gian |
 | :--- | :--- | :--- | :--- | :--- |
+| `mem-mssqfz7w-i3r3` | **DEV Agent** | Hoàn tất giải quyết merge conflict release/8.0 vào release/8.1 | `release/8.1` | 16:16:23 14/8/2026 |
 | `mem-msspxomg-aper` | **DEV Agent** | Khởi tạo hệ thống System Memories (MMS-001) và đồng bộ STATE.md | `upgrade-docs-skills-and-rule` | 16:02:10 14/8/2026 |
 
 ---
