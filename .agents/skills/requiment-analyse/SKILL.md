@@ -25,9 +25,9 @@ Chuyển Requirement thành các User Story độc lập, có mã định danh v
 <input_output>
 | Stage | Input | Output | Path |
 |------|------|------|------|
-| Analyse | BRD, Requirement, Meeting Note | Requirement Summary | docs/analysis/ |
-| Breakdown | Requirement Summary | User Story | docs/user_story.md |
-| Handoff | User Story | Story Mapping | docs/story_map.md |
+| Analyse | BRD, Requirement, Meeting Note | Requirement Summary | docs/draft/business/requirement_summary.md |
+| Breakdown | Requirement Summary | User Story | docs/draft/business/user_story.md |
+| Handoff | User Story | Story Mapping | docs/draft/business/story_map.md |
 </input_output>
 
 <guidelines>
